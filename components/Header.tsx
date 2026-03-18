@@ -113,7 +113,7 @@ export default function Header() {
               <Button asChild className="rounded-full bg-white text-black hover:bg-white/90 py-7 text-lg">
                 <a href="tel:+390111234567"><Phone className="w-5 h-5 mr-2" /> Chiama Ora</a>
               </Button>
-              <Button asChild variant="outline" className="rounded-full border-white/20 text-white py-7 text-lg hover:bg-white/10">
+              <Button asChild className="rounded-full bg-white text-green-600 hover:bg-white/90 py-7 text-lg">
                 <a href="/capitolato.pdf" download><Download className="w-5 h-5 mr-2" /> Scarica Capitolato</a>
               </Button>
             </div>
