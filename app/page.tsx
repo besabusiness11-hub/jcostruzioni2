@@ -1,7 +1,6 @@
 import Header from "@/components/Header"
 import Hero from "@/components/Hero"
 import Footer from "@/components/Footer"
-import PromoBanner from "@/components/PromoBanner"
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight, Leaf, Shield, Sparkles, Building2 } from "lucide-react"
@@ -113,8 +112,8 @@ export default function Home() {
               <span className="block text-primary">curati, sofisticati</span>
             </h2>
             <p className="text-muted-foreground text-lg">
-              Bilocali, trilocali, quadrilocali ed attici disegnati per soddisfare 
-              le più attente e preziose esigenze abitative del vivere moderno.
+              Bilocali, trilocali e quadrilocali disegnati per soddisfare 
+              le più attente e preziose esigenze abitative del vivere moderno, con planimetrie dedicate per ogni appartamento.
             </p>
           </div>
 
@@ -228,7 +227,6 @@ export default function Home() {
       </section>
 
       <Footer />
-      <PromoBanner />
     </main>
   )
 }

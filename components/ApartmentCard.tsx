@@ -2,15 +2,12 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Maximize, BedDouble, Bath } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 
 interface ApartmentCardProps {
   title: string
   subtitle: string
   image: string
-  rooms: number
-  bathrooms: number
-  sqm: string
   price: string
   available: number
   href?: string
@@ -20,9 +17,6 @@ export default function ApartmentCard({
   title,
   subtitle,
   image,
-  rooms,
-  bathrooms,
-  sqm,
   price,
   available,
   href = "#",
@@ -54,24 +48,7 @@ export default function ApartmentCard({
         </div>
       </div>
 
-      {/* Details */}
       <div className="p-6">
-        {/* Features */}
-        <div className="flex items-center gap-6 mb-6 pb-6 border-b border-border">
-          <div className="flex items-center gap-2 text-muted-foreground">
-            <BedDouble className="w-5 h-5" />
-            <span className="text-sm">{rooms} locali</span>
-          </div>
-          <div className="flex items-center gap-2 text-muted-foreground">
-            <Bath className="w-5 h-5" />
-            <span className="text-sm">{bathrooms} bagni</span>
-          </div>
-          <div className="flex items-center gap-2 text-muted-foreground">
-            <Maximize className="w-5 h-5" />
-            <span className="text-sm">{sqm}</span>
-          </div>
-        </div>
-
         {/* Price & CTA */}
         <div className="flex items-center justify-between">
           <div>

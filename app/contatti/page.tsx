@@ -2,7 +2,6 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
-import PromoBanner from "@/components/PromoBanner"
 import { Phone, Mail, MapPin, Clock, ArrowRight, Send, MessageSquare, Calendar } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
@@ -172,7 +171,6 @@ export default function ContattiPage() {
                     <option value="bilocale">Bilocale</option>
                     <option value="trilocale">Trilocale</option>
                     <option value="quadrilocale">Quadrilocale</option>
-                    <option value="attico">Attico</option>
                   </select>
                 </div>
 
@@ -295,7 +293,6 @@ export default function ContattiPage() {
       </section>
 
       <Footer />
-      <PromoBanner />
     </main>
   )
 }

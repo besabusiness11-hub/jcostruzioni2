@@ -3,7 +3,6 @@ import Link from "next/link"
 import type { Metadata } from "next"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
-import PromoBanner from "@/components/PromoBanner"
 import { Leaf, Shield, Sparkles, Building2, Sun, Thermometer, Zap, Droplets, ArrowRight } from "lucide-react"
 
 export const metadata: Metadata = {
@@ -265,7 +264,6 @@ export default function IlProgettoPage() {
       </section>
 
       <Footer />
-      <PromoBanner />
     </main>
   )
 }

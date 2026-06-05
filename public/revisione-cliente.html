@@ -1,0 +1,1110 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Revisione Cliente - J Costruzioni</title>
+    <style>
+      :root {
+        --ink: #18211c;
+        --muted: #66726a;
+        --paper: #fbfaf6;
+        --panel: #ffffff;
+        --line: #d9ded6;
+        --green: #4a7c59;
+        --green-dark: #31543b;
+        --gold: #c29b52;
+        --red: #b94c4c;
+        --blue: #3f6f94;
+        --shadow: 0 18px 50px rgba(24, 33, 28, 0.12);
+        --radius: 8px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--ink);
+        background:
+          linear-gradient(135deg, rgba(74, 124, 89, 0.10), transparent 34%),
+          linear-gradient(180deg, #f4f2eb 0%, var(--paper) 42%, #ecefe8 100%);
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      button,
+      input,
+      select,
+      textarea {
+        font: inherit;
+      }
+
+      button {
+        cursor: pointer;
+      }
+
+      .app {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 390px;
+        min-height: 100vh;
+      }
+
+      .workspace {
+        min-width: 0;
+        padding: 28px;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        margin-bottom: 22px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .mark {
+        width: 46px;
+        height: 46px;
+        display: grid;
+        place-items: center;
+        color: #fff;
+        background: var(--green);
+        border-radius: 50%;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 24px;
+        font-weight: 700;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        font-weight: 500;
+        letter-spacing: 0;
+      }
+
+      h1 {
+        font-size: clamp(30px, 4vw, 52px);
+        line-height: 0.96;
+      }
+
+      .eyebrow {
+        color: var(--green);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+
+      .subcopy {
+        max-width: 720px;
+        margin: 10px 0 0;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .actions {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .button,
+      .file-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: 42px;
+        border: 1px solid transparent;
+        border-radius: 999px;
+        padding: 10px 16px;
+        color: #fff;
+        background: var(--green);
+        font-size: 14px;
+        font-weight: 700;
+        text-decoration: none;
+        transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+      }
+
+      .button:hover,
+      .file-button:hover {
+        background: var(--green-dark);
+        transform: translateY(-1px);
+      }
+
+      .button.secondary {
+        color: var(--ink);
+        background: transparent;
+        border-color: var(--line);
+      }
+
+      .button.secondary:hover {
+        background: #fff;
+      }
+
+      .file-button input {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+      }
+
+      .board {
+        display: grid;
+        grid-template-rows: auto minmax(440px, 1fr);
+        overflow: hidden;
+        min-height: calc(100vh - 172px);
+        background: rgba(255, 255, 255, 0.72);
+        border: 1px solid rgba(217, 222, 214, 0.9);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+
+      .board-toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 14px;
+        border-bottom: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.75);
+      }
+
+      .tabs {
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+      }
+
+      .tab {
+        max-width: 210px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 9px 13px;
+        overflow: hidden;
+        color: var(--muted);
+        background: #fff;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .tab.active {
+        color: #fff;
+        background: var(--ink);
+        border-color: var(--ink);
+      }
+
+      .canvas-wrap {
+        position: relative;
+        overflow: auto;
+        min-height: 440px;
+        display: grid;
+        place-items: start center;
+        padding: 28px;
+        background:
+          linear-gradient(90deg, rgba(24, 33, 28, 0.04) 1px, transparent 1px),
+          linear-gradient(rgba(24, 33, 28, 0.04) 1px, transparent 1px);
+        background-size: 24px 24px;
+      }
+
+      .empty-state {
+        width: min(680px, 100%);
+        align-self: center;
+        justify-self: center;
+        margin-top: 70px;
+        padding: 44px;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.86);
+        border: 1px dashed var(--line);
+        border-radius: var(--radius);
+      }
+
+      .empty-state h2 {
+        font-size: 32px;
+        margin-bottom: 10px;
+      }
+
+      .stage {
+        position: relative;
+        display: none;
+        width: max-content;
+        max-width: none;
+        background: #fff;
+        box-shadow: 0 22px 60px rgba(24, 33, 28, 0.16);
+        user-select: none;
+      }
+
+      .stage.active {
+        display: block;
+      }
+
+      .stage img {
+        display: block;
+        width: min(1000px, calc(100vw - 520px));
+        height: auto;
+        min-width: 520px;
+      }
+
+      .overlay {
+        position: absolute;
+        inset: 0;
+      }
+
+      .pin,
+      .draft {
+        position: absolute;
+        border: 2px solid var(--green);
+        background: rgba(74, 124, 89, 0.12);
+        min-width: 28px;
+        min-height: 28px;
+      }
+
+      .pin {
+        transition: box-shadow 180ms ease, border-color 180ms ease;
+      }
+
+      .pin.active {
+        border-color: var(--gold);
+        box-shadow: 0 0 0 4px rgba(194, 155, 82, 0.24);
+      }
+
+      .pin .number {
+        position: absolute;
+        top: -14px;
+        left: -14px;
+        display: grid;
+        place-items: center;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        color: #fff;
+        background: var(--green);
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      .pin.active .number {
+        background: var(--gold);
+      }
+
+      .sidebar {
+        display: grid;
+        grid-template-rows: auto auto minmax(0, 1fr) auto;
+        min-height: 100vh;
+        border-left: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.92);
+      }
+
+      .panel {
+        padding: 24px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .panel h2 {
+        font-size: 28px;
+        margin-bottom: 8px;
+      }
+
+      .field {
+        display: grid;
+        gap: 7px;
+        margin-bottom: 14px;
+      }
+
+      .field label {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .field input,
+      .field select,
+      .field textarea {
+        width: 100%;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 11px 12px;
+        color: var(--ink);
+        background: #fff;
+        outline: none;
+      }
+
+      .field input:focus,
+      .field select:focus,
+      .field textarea:focus {
+        border-color: var(--green);
+        box-shadow: 0 0 0 3px rgba(74, 124, 89, 0.14);
+      }
+
+      textarea {
+        min-height: 98px;
+        resize: vertical;
+      }
+
+      .two-cols {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .comment-list {
+        overflow: auto;
+        padding: 18px;
+      }
+
+      .comment-card {
+        border: 1px solid var(--line);
+        border-left: 4px solid var(--green);
+        border-radius: var(--radius);
+        padding: 14px;
+        margin-bottom: 12px;
+        background: #fff;
+      }
+
+      .comment-card.active {
+        border-left-color: var(--gold);
+        box-shadow: 0 10px 30px rgba(24, 33, 28, 0.10);
+      }
+
+      .meta {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        color: var(--muted);
+        font-size: 12px;
+        margin-bottom: 8px;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        border-radius: 999px;
+        padding: 4px 8px;
+        color: #fff;
+        background: var(--green);
+        font-size: 11px;
+        font-weight: 800;
+      }
+
+      .badge.high {
+        background: var(--red);
+      }
+
+      .badge.medium {
+        background: var(--gold);
+      }
+
+      .card-title {
+        margin: 0 0 6px;
+        font-weight: 800;
+      }
+
+      .card-text {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.45;
+      }
+
+      .card-actions {
+        display: flex;
+        gap: 8px;
+        margin-top: 12px;
+      }
+
+      .mini {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 7px 10px;
+        color: var(--ink);
+        background: #fff;
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .mini.danger {
+        color: var(--red);
+      }
+
+      .report {
+        display: none;
+        position: fixed;
+        inset: 28px;
+        z-index: 10;
+        grid-template-rows: auto 1fr auto;
+        overflow: hidden;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+      }
+
+      .report.open {
+        display: grid;
+      }
+
+      .report header,
+      .report footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 18px 22px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .report footer {
+        border-top: 1px solid var(--line);
+        border-bottom: 0;
+      }
+
+      .report textarea {
+        width: 100%;
+        height: 100%;
+        min-height: 0;
+        border: 0;
+        border-radius: 0;
+        padding: 22px;
+        font-family: Consolas, "Courier New", monospace;
+        font-size: 14px;
+        line-height: 1.55;
+      }
+
+      .toast {
+        position: fixed;
+        left: 28px;
+        bottom: 28px;
+        z-index: 20;
+        transform: translateY(20px);
+        opacity: 0;
+        border-radius: 999px;
+        padding: 12px 16px;
+        color: #fff;
+        background: var(--ink);
+        transition: opacity 180ms ease, transform 180ms ease;
+      }
+
+      .toast.visible {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      @media (max-width: 1040px) {
+        .app {
+          grid-template-columns: 1fr;
+        }
+
+        .sidebar {
+          min-height: auto;
+          border-left: 0;
+          border-top: 1px solid var(--line);
+        }
+
+        .stage img {
+          width: calc(100vw - 56px);
+          min-width: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="app">
+      <section class="workspace">
+        <div class="topbar">
+          <div>
+            <div class="brand">
+              <div class="mark">J</div>
+              <div>
+                <div class="eyebrow">Area revisione cliente</div>
+                <h1>Commenti sul sito</h1>
+              </div>
+            </div>
+            <p class="subcopy">
+              Carica screenshot o render del sito, seleziona una zona e indica cosa cambiare. Alla fine esporta il report e invialo insieme alle immagini.
+            </p>
+          </div>
+
+          <div class="actions">
+            <label class="file-button">
+              Carica immagini
+              <input id="imageInput" type="file" accept="image/*" multiple />
+            </label>
+            <label class="file-button secondary button">
+              Importa revisione
+              <input id="importInput" type="file" accept="application/json,.json" />
+            </label>
+            <button id="downloadPageButton" class="button secondary" type="button">Scarica questa pagina</button>
+            <button id="reportButton" class="button" type="button">Crea report</button>
+          </div>
+        </div>
+
+        <div class="board">
+          <div class="board-toolbar">
+            <div id="tabs" class="tabs" aria-label="Immagini caricate"></div>
+            <div class="actions">
+              <button id="clearSelectionButton" class="button secondary" type="button">Annulla selezione</button>
+              <button id="resetButton" class="button secondary" type="button">Svuota revisione</button>
+            </div>
+          </div>
+
+          <div id="canvasWrap" class="canvas-wrap">
+            <div id="emptyState" class="empty-state">
+              <h2>Carica una schermata del sito</h2>
+              <p class="subcopy">
+                Puoi usare screenshot desktop, mobile, render o immagini esportate dal sito. Dopo il caricamento trascina sull'immagine per creare una zona commentabile.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="sidebar">
+        <div class="panel">
+          <div class="eyebrow">Nuovo commento</div>
+          <h2>Dettaglio intervento</h2>
+          <p class="subcopy">Disegna una zona sull'immagine e compila i campi. Il cliente puo anche inserire richieste generali senza area selezionata.</p>
+        </div>
+
+        <form id="commentForm" class="panel">
+          <div class="field">
+            <label for="sectionName">Pagina o sezione</label>
+            <input id="sectionName" name="sectionName" placeholder="Home, footer, tipologie, menu..." />
+          </div>
+
+          <div class="two-cols">
+            <div class="field">
+              <label for="changeType">Tipo</label>
+              <select id="changeType" name="changeType">
+                <option>Testo da aggiungere</option>
+                <option>Testo da modificare</option>
+                <option>Sezione da rimuovere</option>
+                <option>Immagine da sostituire</option>
+                <option>Layout/stile</option>
+                <option>Errore o bug</option>
+                <option>Altro</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="priority">Priorita</label>
+              <select id="priority" name="priority">
+                <option>Bassa</option>
+                <option>Media</option>
+                <option>Alta</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="requestedText">Testo esatto da inserire</label>
+            <textarea id="requestedText" name="requestedText" placeholder="Scrivi qui il testo nuovo o corretto, se serve."></textarea>
+          </div>
+
+          <div class="field">
+            <label for="notes">Commento operativo</label>
+            <textarea id="notes" name="notes" placeholder="Cosa va cambiato? Cosa va tolto? Dove deve comparire?"></textarea>
+          </div>
+
+          <button class="button" type="submit">Salva commento</button>
+        </form>
+
+        <div id="commentList" class="comment-list" aria-live="polite"></div>
+
+        <div class="panel">
+          <div class="actions">
+            <button id="downloadJsonButton" class="button secondary" type="button">Scarica JSON</button>
+            <button id="downloadReportButton" class="button" type="button">Scarica report</button>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <section id="reportModal" class="report" aria-modal="true" aria-labelledby="reportTitle" role="dialog">
+      <header>
+        <div>
+          <div class="eyebrow">Report automatico</div>
+          <h2 id="reportTitle">Modifiche richieste</h2>
+        </div>
+        <button id="closeReportButton" class="button secondary" type="button">Chiudi</button>
+      </header>
+      <textarea id="reportText" spellcheck="false"></textarea>
+      <footer>
+        <p class="subcopy">Questo testo puo essere copiato e mandato a chi lavora sul sito.</p>
+        <div class="actions">
+          <button id="copyReportButton" class="button secondary" type="button">Copia</button>
+          <button id="downloadReportButtonModal" class="button" type="button">Scarica .md</button>
+        </div>
+      </footer>
+    </section>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script>
+      const state = {
+        images: [],
+        activeImageId: null,
+        comments: [],
+        draftRect: null,
+        selectedCommentId: null,
+      };
+
+      const els = {
+        imageInput: document.getElementById("imageInput"),
+        importInput: document.getElementById("importInput"),
+        tabs: document.getElementById("tabs"),
+        canvasWrap: document.getElementById("canvasWrap"),
+        emptyState: document.getElementById("emptyState"),
+        commentForm: document.getElementById("commentForm"),
+        commentList: document.getElementById("commentList"),
+        sectionName: document.getElementById("sectionName"),
+        changeType: document.getElementById("changeType"),
+        priority: document.getElementById("priority"),
+        requestedText: document.getElementById("requestedText"),
+        notes: document.getElementById("notes"),
+        reportModal: document.getElementById("reportModal"),
+        reportText: document.getElementById("reportText"),
+        toast: document.getElementById("toast"),
+      };
+
+      const uid = () => Math.random().toString(36).slice(2, 10);
+
+      function showToast(message) {
+        els.toast.textContent = message;
+        els.toast.classList.add("visible");
+        window.setTimeout(() => els.toast.classList.remove("visible"), 2200);
+      }
+
+      function activeImage() {
+        return state.images.find((image) => image.id === state.activeImageId) || null;
+      }
+
+      function saveLocal() {
+        const snapshot = {
+          images: state.images,
+          activeImageId: state.activeImageId,
+          comments: state.comments,
+        };
+        localStorage.setItem("jcostruzioni-review", JSON.stringify(snapshot));
+      }
+
+      function loadLocal() {
+        const raw = localStorage.getItem("jcostruzioni-review");
+        if (!raw) return;
+        try {
+          const parsed = JSON.parse(raw);
+          state.images = parsed.images || [];
+          state.activeImageId = parsed.activeImageId || state.images[0]?.id || null;
+          state.comments = parsed.comments || [];
+        } catch {
+          localStorage.removeItem("jcostruzioni-review");
+        }
+      }
+
+      function render() {
+        renderTabs();
+        renderStages();
+        renderComments();
+        saveLocal();
+      }
+
+      function renderTabs() {
+        els.tabs.innerHTML = "";
+        state.images.forEach((image) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "tab" + (image.id === state.activeImageId ? " active" : "");
+          button.textContent = image.name;
+          button.addEventListener("click", () => {
+            state.activeImageId = image.id;
+            state.draftRect = null;
+            state.selectedCommentId = null;
+            render();
+          });
+          els.tabs.appendChild(button);
+        });
+      }
+
+      function renderStages() {
+        els.canvasWrap.querySelectorAll(".stage").forEach((node) => node.remove());
+        els.emptyState.style.display = state.images.length ? "none" : "block";
+
+        state.images.forEach((image) => {
+          const stage = document.createElement("div");
+          stage.className = "stage" + (image.id === state.activeImageId ? " active" : "");
+          stage.dataset.imageId = image.id;
+
+          const img = document.createElement("img");
+          img.src = image.src;
+          img.alt = image.name;
+
+          const overlay = document.createElement("div");
+          overlay.className = "overlay";
+          wireDrawing(overlay, image.id);
+
+          stage.appendChild(img);
+          stage.appendChild(overlay);
+          els.canvasWrap.appendChild(stage);
+
+          imageComments(image.id).forEach((comment, index) => {
+            overlay.appendChild(createPin(comment, index + 1));
+          });
+
+          if (state.draftRect && state.draftRect.imageId === image.id) {
+            const draft = document.createElement("div");
+            draft.className = "draft";
+            applyRect(draft, state.draftRect);
+            overlay.appendChild(draft);
+          }
+        });
+      }
+
+      function imageComments(imageId) {
+        return state.comments.filter((comment) => comment.imageId === imageId);
+      }
+
+      function createPin(comment, number) {
+        const pin = document.createElement("button");
+        pin.type = "button";
+        pin.className = "pin" + (comment.id === state.selectedCommentId ? " active" : "");
+        pin.title = comment.notes || comment.changeType;
+        applyRect(pin, comment.rect);
+
+        const label = document.createElement("span");
+        label.className = "number";
+        label.textContent = number;
+        pin.appendChild(label);
+
+        pin.addEventListener("click", (event) => {
+          event.stopPropagation();
+          state.selectedCommentId = comment.id;
+          render();
+        });
+
+        return pin;
+      }
+
+      function applyRect(node, rect) {
+        node.style.left = rect.x + "%";
+        node.style.top = rect.y + "%";
+        node.style.width = rect.w + "%";
+        node.style.height = rect.h + "%";
+      }
+
+      function wireDrawing(overlay, imageId) {
+        let start = null;
+
+        overlay.addEventListener("pointerdown", (event) => {
+          if (event.target !== overlay) return;
+          const box = overlay.getBoundingClientRect();
+          start = {
+            x: ((event.clientX - box.left) / box.width) * 100,
+            y: ((event.clientY - box.top) / box.height) * 100,
+            box,
+          };
+          state.selectedCommentId = null;
+          overlay.setPointerCapture(event.pointerId);
+        });
+
+        overlay.addEventListener("pointermove", (event) => {
+          if (!start) return;
+          const currentX = ((event.clientX - start.box.left) / start.box.width) * 100;
+          const currentY = ((event.clientY - start.box.top) / start.box.height) * 100;
+          state.draftRect = normalizeRect(imageId, start.x, start.y, currentX, currentY);
+          renderStages();
+        });
+
+        overlay.addEventListener("pointerup", () => {
+          if (!start || !state.draftRect) return;
+          if (state.draftRect.w < 1 || state.draftRect.h < 1) {
+            state.draftRect = null;
+          }
+          start = null;
+          renderStages();
+        });
+      }
+
+      function normalizeRect(imageId, x1, y1, x2, y2) {
+        const x = Math.max(0, Math.min(x1, x2));
+        const y = Math.max(0, Math.min(y1, y2));
+        const right = Math.min(100, Math.max(x1, x2));
+        const bottom = Math.min(100, Math.max(y1, y2));
+        return { imageId, x, y, w: right - x, h: bottom - y };
+      }
+
+      function renderComments() {
+        els.commentList.innerHTML = "";
+        if (!state.comments.length) {
+          const empty = document.createElement("p");
+          empty.className = "subcopy";
+          empty.textContent = "Nessun commento salvato.";
+          els.commentList.appendChild(empty);
+          return;
+        }
+
+        state.comments.forEach((comment, index) => {
+          const card = document.createElement("article");
+          card.className = "comment-card" + (comment.id === state.selectedCommentId ? " active" : "");
+
+          const image = state.images.find((item) => item.id === comment.imageId);
+          card.innerHTML = `
+            <div class="meta">
+              <span>#${index + 1} - ${escapeHtml(image?.name || "Commento generale")}</span>
+              <span class="badge ${priorityClass(comment.priority)}">${escapeHtml(comment.priority)}</span>
+            </div>
+            <p class="card-title">${escapeHtml(comment.sectionName || "Sezione non indicata")}</p>
+            <p class="card-text"><strong>${escapeHtml(comment.changeType)}</strong></p>
+            ${comment.requestedText ? `<p class="card-text">${escapeHtml(comment.requestedText)}</p>` : ""}
+            ${comment.notes ? `<p class="card-text">${escapeHtml(comment.notes)}</p>` : ""}
+          `;
+
+          const actions = document.createElement("div");
+          actions.className = "card-actions";
+
+          const select = document.createElement("button");
+          select.type = "button";
+          select.className = "mini";
+          select.textContent = "Vedi";
+          select.addEventListener("click", () => {
+            state.activeImageId = comment.imageId || state.activeImageId;
+            state.selectedCommentId = comment.id;
+            render();
+          });
+
+          const remove = document.createElement("button");
+          remove.type = "button";
+          remove.className = "mini danger";
+          remove.textContent = "Elimina";
+          remove.addEventListener("click", () => {
+            state.comments = state.comments.filter((item) => item.id !== comment.id);
+            if (state.selectedCommentId === comment.id) state.selectedCommentId = null;
+            render();
+          });
+
+          actions.append(select, remove);
+          card.appendChild(actions);
+          els.commentList.appendChild(card);
+        });
+      }
+
+      function priorityClass(priority) {
+        if (priority === "Alta") return "high";
+        if (priority === "Media") return "medium";
+        return "";
+      }
+
+      function escapeHtml(value) {
+        return String(value || "")
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+
+      function buildReport() {
+        const date = new Date().toLocaleString("it-IT");
+        const lines = [
+          "# Report revisione sito J Costruzioni",
+          "",
+          `Generato: ${date}`,
+          `Immagini caricate: ${state.images.length}`,
+          `Commenti totali: ${state.comments.length}`,
+          "",
+        ];
+
+        state.images.forEach((image) => {
+          const comments = imageComments(image.id);
+          lines.push(`## ${image.name}`);
+          if (!comments.length) {
+            lines.push("", "Nessun commento su questa immagine.", "");
+            return;
+          }
+
+          comments.forEach((comment, index) => {
+            lines.push(`### ${index + 1}. ${comment.sectionName || "Sezione non indicata"}`);
+            lines.push(`- Tipo intervento: ${comment.changeType}`);
+            lines.push(`- Priorita: ${comment.priority}`);
+            lines.push(`- Area immagine: x ${round(comment.rect.x)}%, y ${round(comment.rect.y)}%, larghezza ${round(comment.rect.w)}%, altezza ${round(comment.rect.h)}%`);
+            if (comment.requestedText) lines.push(`- Testo da inserire/modificare: ${comment.requestedText}`);
+            if (comment.notes) lines.push(`- Note operative: ${comment.notes}`);
+            lines.push("");
+          });
+        });
+
+        const general = state.comments.filter((comment) => !comment.imageId);
+        if (general.length) {
+          lines.push("## Richieste generali", "");
+          general.forEach((comment, index) => {
+            lines.push(`### ${index + 1}. ${comment.sectionName || "Richiesta generale"}`);
+            lines.push(`- Tipo intervento: ${comment.changeType}`);
+            lines.push(`- Priorita: ${comment.priority}`);
+            if (comment.requestedText) lines.push(`- Testo da inserire/modificare: ${comment.requestedText}`);
+            if (comment.notes) lines.push(`- Note operative: ${comment.notes}`);
+            lines.push("");
+          });
+        }
+
+        return lines.join("\n");
+      }
+
+      function round(number) {
+        return Math.round(number * 10) / 10;
+      }
+
+      function download(name, type, content) {
+        const blob = new Blob([content], { type });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = name;
+        link.click();
+        URL.revokeObjectURL(url);
+      }
+
+      function exportJson() {
+        const content = JSON.stringify(
+          {
+            version: 1,
+            exportedAt: new Date().toISOString(),
+            images: state.images,
+            comments: state.comments,
+          },
+          null,
+          2,
+        );
+        download("revisione-jcostruzioni.json", "application/json", content);
+      }
+
+      function openReport() {
+        els.reportText.value = buildReport();
+        els.reportModal.classList.add("open");
+      }
+
+      els.imageInput.addEventListener("change", async (event) => {
+        const files = Array.from(event.target.files || []);
+        for (const file of files) {
+          const src = await readFile(file);
+          const image = { id: uid(), name: file.name, src };
+          state.images.push(image);
+          state.activeImageId = image.id;
+        }
+        event.target.value = "";
+        render();
+      });
+
+      els.importInput.addEventListener("change", async (event) => {
+        const file = event.target.files?.[0];
+        if (!file) return;
+        try {
+          const raw = await file.text();
+          const data = JSON.parse(raw);
+          state.images = data.images || [];
+          state.comments = data.comments || [];
+          state.activeImageId = state.images[0]?.id || null;
+          state.draftRect = null;
+          state.selectedCommentId = null;
+          render();
+          showToast("Revisione importata");
+        } catch {
+          showToast("File non valido");
+        }
+        event.target.value = "";
+      });
+
+      function readFile(file) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+      }
+
+      els.commentForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const image = activeImage();
+        const rect = state.draftRect || (image ? { imageId: image.id, x: 8, y: 8, w: 18, h: 12 } : null);
+
+        const comment = {
+          id: uid(),
+          imageId: rect?.imageId || null,
+          rect,
+          sectionName: els.sectionName.value.trim(),
+          changeType: els.changeType.value,
+          priority: els.priority.value,
+          requestedText: els.requestedText.value.trim(),
+          notes: els.notes.value.trim(),
+          createdAt: new Date().toISOString(),
+        };
+
+        if (!comment.sectionName && !comment.requestedText && !comment.notes) {
+          showToast("Inserisci almeno un dettaglio");
+          return;
+        }
+
+        state.comments.push(comment);
+        state.selectedCommentId = comment.id;
+        state.draftRect = null;
+        els.commentForm.reset();
+        render();
+        showToast("Commento salvato");
+      });
+
+      document.getElementById("clearSelectionButton").addEventListener("click", () => {
+        state.draftRect = null;
+        state.selectedCommentId = null;
+        render();
+      });
+
+      document.getElementById("resetButton").addEventListener("click", () => {
+        if (!window.confirm("Vuoi svuotare immagini e commenti?")) return;
+        state.images = [];
+        state.comments = [];
+        state.activeImageId = null;
+        state.draftRect = null;
+        state.selectedCommentId = null;
+        localStorage.removeItem("jcostruzioni-review");
+        render();
+      });
+
+      document.getElementById("reportButton").addEventListener("click", openReport);
+      document.getElementById("downloadPageButton").addEventListener("click", () => {
+        const html = "<!doctype html>\n" + document.documentElement.outerHTML;
+        download("revisione-cliente-jcostruzioni.html", "text/html", html);
+      });
+      document.getElementById("downloadJsonButton").addEventListener("click", exportJson);
+      document.getElementById("downloadReportButton").addEventListener("click", () => download("report-revisione-jcostruzioni.md", "text/markdown", buildReport()));
+      document.getElementById("downloadReportButtonModal").addEventListener("click", () => download("report-revisione-jcostruzioni.md", "text/markdown", els.reportText.value));
+      document.getElementById("closeReportButton").addEventListener("click", () => els.reportModal.classList.remove("open"));
+      document.getElementById("copyReportButton").addEventListener("click", async () => {
+        try {
+          if (navigator.clipboard) {
+            await navigator.clipboard.writeText(els.reportText.value);
+          } else {
+            els.reportText.select();
+            document.execCommand("copy");
+          }
+          showToast("Report copiato");
+        } catch {
+          els.reportText.select();
+          showToast("Testo selezionato, usa Ctrl+C");
+        }
+      });
+
+      loadLocal();
+      render();
+    </script>
+  </body>
+</html>

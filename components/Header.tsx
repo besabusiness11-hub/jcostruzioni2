@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Menu, X, Phone, Download, ChevronRight } from "lucide-react"
+import { Menu, X, Phone, Download } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function Header() {
@@ -46,10 +46,11 @@ export default function Header() {
         { href: "/tipologie/bilocali", label: "Bilocali" },
         { href: "/tipologie/trilocali", label: "Trilocali" },
         { href: "/tipologie/quadrilocali", label: "Quadrilocali" },
-        { href: "/tipologie/attici", label: "Attici" },
       ]
     },
-    { href: "/terrazzi-e-giardini", label: "Terrazzi e Giardini" },
+    { href: "/terrazzi-e-giardini#terrazzi", label: "Terrazzi" },
+    { href: "/terrazzi-e-giardini#giardini", label: "Giardini" },
+    { href: "/terrazzi-e-giardini#parti-esterne", label: "Parti esterne" },
     { href: "/contatti", label: "Contatti" },
   ]
 
