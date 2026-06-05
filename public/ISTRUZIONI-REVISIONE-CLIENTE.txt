@@ -1,11 +1,12 @@
 ISTRUZIONI PER LA REVISIONE DEL SITO
 
 1. Apri il file revisione-cliente.html con Chrome, Edge o Safari.
-2. Clicca "Carica immagini" e scegli screenshot o immagini del sito.
-3. Trascina sull'immagine per segnare la zona da commentare.
-4. Compila tipo intervento, priorita, testo da inserire e note operative.
-5. Clicca "Salva commento" per ogni richiesta.
-6. Alla fine clicca "Scarica report" e invia il file .md.
-7. Puoi anche cliccare "Scarica JSON" per inviare una revisione reimportabile.
+2. Le schermate principali del sito sono gia presenti nella pagina.
+3. Se serve, clicca "Carica immagini extra" per aggiungere altri screenshot.
+4. Trascina sull'immagine per segnare la zona da commentare.
+5. Compila tipo intervento, priorita, testo da inserire e note operative.
+6. Clicca "Salva commento" per ogni richiesta.
+7. Alla fine clicca "Scarica report" e invia il file .md.
+8. Clicca anche "Scarica JSON" per inviare una revisione reimportabile e sicura.
 
 Nota: la pagina funziona anche senza internet e salva temporaneamente il lavoro nel browser.

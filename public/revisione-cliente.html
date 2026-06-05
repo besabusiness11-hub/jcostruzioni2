@@ -533,13 +533,13 @@
               </div>
             </div>
             <p class="subcopy">
-              Carica screenshot o render del sito, seleziona una zona e indica cosa cambiare. Alla fine esporta il report e invialo insieme alle immagini.
+              Le schermate principali del sito sono gia incluse. Seleziona una zona, indica cosa cambiare e alla fine esporta il report.
             </p>
           </div>
 
           <div class="actions">
             <label class="file-button">
-              Carica immagini
+              Carica immagini extra
               <input id="imageInput" type="file" accept="image/*" multiple />
             </label>
             <label class="file-button secondary button">
@@ -556,15 +556,15 @@
             <div id="tabs" class="tabs" aria-label="Immagini caricate"></div>
             <div class="actions">
               <button id="clearSelectionButton" class="button secondary" type="button">Annulla selezione</button>
-              <button id="resetButton" class="button secondary" type="button">Svuota revisione</button>
+              <button id="resetButton" class="button secondary" type="button">Ripristina pagine</button>
             </div>
           </div>
 
           <div id="canvasWrap" class="canvas-wrap">
             <div id="emptyState" class="empty-state">
-              <h2>Carica una schermata del sito</h2>
+              <h2>Schermate del sito gia pronte</h2>
               <p class="subcopy">
-                Puoi usare screenshot desktop, mobile, render o immagini esportate dal sito. Dopo il caricamento trascina sull'immagine per creare una zona commentabile.
+                Le pagine principali sono gia caricate. Puoi aggiungere altri screenshot, oppure iniziare subito a trascinare sull'immagine per creare una zona commentabile.
               </p>
             </div>
           </div>
@@ -575,7 +575,7 @@
         <div class="panel">
           <div class="eyebrow">Nuovo commento</div>
           <h2>Dettaglio intervento</h2>
-          <p class="subcopy">Disegna una zona sull'immagine e compila i campi. Il cliente puo anche inserire richieste generali senza area selezionata.</p>
+          <p class="subcopy">Scegli una pagina, disegna una zona sull'immagine e compila i campi. Il cliente puo anche inserire richieste generali senza area selezionata.</p>
         </div>
 
         <form id="commentForm" class="panel">
@@ -679,6 +679,201 @@
       };
 
       const uid = () => Math.random().toString(36).slice(2, 10);
+
+      const DEFAULT_PAGE_SPECS = [
+        {
+          id: "page-home",
+          name: "Home",
+          eyebrow: "Nuove residenze a Torino",
+          title: "Parco Aurora",
+          hero: "Hero edificio + menu",
+          sections: [
+            ["Il Progetto", "Testo introduttivo, caratteristiche e CTA"],
+            ["Tipologie", "Bilocali, trilocali, quadrilocali"],
+            ["Spazi esterni", "Terrazzi, giardini e piscina"],
+            ["Contatti", "Call to action finale"],
+            ["Footer", "Link, contatti e collaborazione IBIM"],
+          ],
+        },
+        {
+          id: "page-project",
+          name: "Il Progetto",
+          eyebrow: "Parco Aurora",
+          title: "Il Progetto",
+          hero: "Immagine progetto",
+          sections: [
+            ["La Visione", "Descrizione residenza e materiali"],
+            ["Caratteristiche", "Sostenibilita, sicurezza, finiture, design"],
+            ["Efficienza", "Impianti e tecnologie"],
+            ["Numeri progetto", "Appartamenti, tipologie, consegna"],
+            ["CTA", "Scopri tipologie e prenota visita"],
+          ],
+        },
+        {
+          id: "page-outdoor",
+          name: "Terrazzi e Giardini",
+          eyebrow: "Spazi esterni",
+          title: "Terrazzi, Giardini e Parti Esterne",
+          hero: "Verde e piscina",
+          sections: [
+            ["I nostri spazi", "Card terrazzi, giardini, esposizione, piscina"],
+            ["Terrazzi", "Sezione dedicata ai terrazzi"],
+            ["Giardini", "Sezione dedicata ai giardini privati"],
+            ["Parti esterne", "Piscina e aree comuni"],
+            ["CTA", "Richiedi informazioni"],
+          ],
+        },
+        {
+          id: "page-types",
+          name: "Tipologie",
+          eyebrow: "Parco Aurora",
+          title: "Tipologie Abitative",
+          hero: "Bilocali, trilocali, quadrilocali",
+          sections: [
+            ["Introduzione", "Ogni appartamento ha planimetria propria"],
+            ["Bilocali", "Descrizione, superfici e prezzo"],
+            ["Trilocali", "Descrizione, superfici e prezzo"],
+            ["Quadrilocali", "Descrizione, superfici e prezzo"],
+            ["CTA", "Contatto commerciale"],
+          ],
+        },
+        {
+          id: "page-bilocali",
+          name: "Bilocali",
+          eyebrow: "55-65 mq",
+          title: "Bilocali",
+          hero: "Soluzioni compatte",
+          sections: [
+            ["Overview", "Descrizione comfort e spazi"],
+            ["Caratteristiche", "Lista dotazioni"],
+            ["Finiture", "Materiali e impianti"],
+            ["Disponibilita", "Tabella apribile con planimetrie"],
+            ["CTA", "Prenota visita"],
+          ],
+        },
+        {
+          id: "page-trilocali",
+          name: "Trilocali",
+          eyebrow: "85-100 mq",
+          title: "Trilocali",
+          hero: "Spazi equilibrati",
+          sections: [
+            ["Overview", "Descrizione zona giorno e terrazzi"],
+            ["Caratteristiche", "Lista dotazioni"],
+            ["Finiture", "Materiali e impianti"],
+            ["Disponibilita", "Tabella apribile con planimetrie"],
+            ["CTA", "Prenota visita"],
+          ],
+        },
+        {
+          id: "page-quadrilocali",
+          name: "Quadrilocali",
+          eyebrow: "115-135 mq",
+          title: "Quadrilocali",
+          hero: "Spazi generosi",
+          sections: [
+            ["Overview", "Descrizione casa famiglia"],
+            ["Caratteristiche", "Lista dotazioni"],
+            ["Finiture Premium", "Materiali e impianti"],
+            ["Disponibilita", "Tabella apribile con planimetrie"],
+            ["CTA", "Prenota visita"],
+          ],
+        },
+        {
+          id: "page-contacts",
+          name: "Contatti",
+          eyebrow: "Contatti",
+          title: "Parliamo del tuo futuro",
+          hero: "Header scuro contatti",
+          sections: [
+            ["Contatti rapidi", "Telefono, email, visita"],
+            ["Modulo", "Campi richiesta informazioni"],
+            ["Dove trovarci", "Indirizzo, orari, telefono, email"],
+            ["Mappa", "Area Google Maps"],
+            ["CTA", "Chiama ora"],
+          ],
+        },
+      ];
+
+      function makeDefaultImages() {
+        return DEFAULT_PAGE_SPECS.map((spec) => ({
+          id: spec.id,
+          name: spec.name,
+          src: makePageSnapshot(spec),
+          builtIn: true,
+        }));
+      }
+
+      function restoreDefaultPages(keepComments = false) {
+        state.images = makeDefaultImages();
+        state.activeImageId = state.images[0]?.id || null;
+        state.draftRect = null;
+        state.selectedCommentId = null;
+        if (!keepComments) state.comments = [];
+      }
+
+      function makePageSnapshot(spec) {
+        const sectionHeight = 190;
+        const height = 820 + spec.sections.length * sectionHeight;
+        const sectionMarkup = spec.sections
+          .map((section, index) => {
+            const y = 680 + index * sectionHeight;
+            const fill = index % 2 === 0 ? "#f7f5ef" : "#ffffff";
+            const accent = index % 3 === 0 ? "#4a7c59" : index % 3 === 1 ? "#c29b52" : "#3f6f94";
+            return `
+              <rect x="72" y="${y}" width="1056" height="148" rx="12" fill="${fill}" stroke="#d9ded6"/>
+              <rect x="96" y="${y + 30}" width="12" height="88" rx="6" fill="${accent}"/>
+              <text x="132" y="${y + 62}" fill="#18211c" font-size="34" font-family="Georgia, serif">${escapeSvg(section[0])}</text>
+              <text x="132" y="${y + 100}" fill="#66726a" font-size="22" font-family="Segoe UI, sans-serif">${escapeSvg(section[1])}</text>
+              <rect x="890" y="${y + 44}" width="178" height="48" rx="24" fill="none" stroke="${accent}" stroke-width="2"/>
+              <text x="930" y="${y + 75}" fill="${accent}" font-size="16" font-weight="700" font-family="Segoe UI, sans-serif">commenta</text>
+            `;
+          })
+          .join("");
+
+        const svg = `
+          <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="${height}" viewBox="0 0 1200 ${height}">
+            <defs>
+              <linearGradient id="hero" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0" stop-color="#8b7b68"/>
+                <stop offset="0.45" stop-color="#d7d1c5"/>
+                <stop offset="1" stop-color="#445247"/>
+              </linearGradient>
+              <pattern id="windows" width="120" height="105" patternUnits="userSpaceOnUse">
+                <rect x="8" y="10" width="42" height="78" rx="4" fill="rgba(255,255,255,0.42)"/>
+                <rect x="62" y="10" width="42" height="78" rx="4" fill="rgba(24,33,28,0.18)"/>
+              </pattern>
+            </defs>
+            <rect width="1200" height="${height}" fill="#fbfaf6"/>
+            <rect x="0" y="0" width="1200" height="620" fill="url(#hero)"/>
+            <rect x="0" y="0" width="1200" height="620" fill="url(#windows)" opacity="0.8"/>
+            <rect x="0" y="0" width="1200" height="620" fill="rgba(0,0,0,0.36)"/>
+            <text x="600" y="86" text-anchor="middle" fill="#ffffff" font-size="34" letter-spacing="14" font-family="Georgia, serif">J COSTRUZIONI</text>
+            <text x="600" y="126" text-anchor="middle" fill="rgba(255,255,255,0.78)" font-size="13" letter-spacing="8" font-family="Segoe UI, sans-serif">RESIDENZE DI PRESTIGIO</text>
+            <text x="600" y="260" text-anchor="middle" fill="#ffffff" font-size="22" letter-spacing="10" font-family="Segoe UI, sans-serif">${escapeSvg(spec.eyebrow)}</text>
+            <text x="600" y="380" text-anchor="middle" fill="#ffffff" font-size="82" font-family="Georgia, serif">${escapeSvg(spec.title)}</text>
+            <text x="600" y="438" text-anchor="middle" fill="rgba(255,255,255,0.84)" font-size="28" font-family="Segoe UI, sans-serif">${escapeSvg(spec.hero)}</text>
+            <rect x="438" y="488" width="150" height="54" rx="27" fill="#4a7c59"/>
+            <text x="513" y="523" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="700" font-family="Segoe UI, sans-serif">CTA</text>
+            <rect x="612" y="488" width="150" height="54" rx="27" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.65)"/>
+            <text x="687" y="523" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="700" font-family="Segoe UI, sans-serif">INFO</text>
+            ${sectionMarkup}
+            <rect x="0" y="${height - 150}" width="1200" height="150" fill="#18211c"/>
+            <text x="72" y="${height - 88}" fill="#ffffff" font-size="32" font-family="Georgia, serif">Footer</text>
+            <text x="72" y="${height - 52}" fill="rgba(255,255,255,0.68)" font-size="20" font-family="Segoe UI, sans-serif">Contatti, link progetto, collaborazione IBIM</text>
+          </svg>
+        `;
+
+        return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+      }
+
+      function escapeSvg(value) {
+        return String(value || "")
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;");
+      }
 
       function showToast(message) {
         els.toast.textContent = message;
@@ -1012,6 +1207,9 @@
           const data = JSON.parse(raw);
           state.images = data.images || [];
           state.comments = data.comments || [];
+          if (!state.images.length) {
+            restoreDefaultPages(true);
+          }
           state.activeImageId = state.images[0]?.id || null;
           state.draftRect = null;
           state.selectedCommentId = null;
@@ -1069,12 +1267,8 @@
       });
 
       document.getElementById("resetButton").addEventListener("click", () => {
-        if (!window.confirm("Vuoi svuotare immagini e commenti?")) return;
-        state.images = [];
-        state.comments = [];
-        state.activeImageId = null;
-        state.draftRect = null;
-        state.selectedCommentId = null;
+        if (!window.confirm("Vuoi cancellare i commenti e ripristinare le pagine standard?")) return;
+        restoreDefaultPages(false);
         localStorage.removeItem("jcostruzioni-review");
         render();
       });
@@ -1104,6 +1298,9 @@
       });
 
       loadLocal();
+      if (!state.images.length) {
+        restoreDefaultPages(true);
+      }
       render();
     </script>
   </body>
