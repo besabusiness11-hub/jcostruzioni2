@@ -1,13 +1,17 @@
 ISTRUZIONI PER LA REVISIONE DEL SITO
 
-1. Apri il link online della pagina revisione con Chrome, Edge o Safari.
-2. A sinistra trovi tutte le pagine principali del sito gia caricate.
-3. Clicca una pagina per vederla in anteprima reale a piena altezza.
-4. Lascia attiva "Modalita commento" e trascina sulla zona da commentare.
-5. Compila intervento, priorita, testo richiesto e nota operativa.
-6. Clicca "Salva richiesta" per ogni modifica.
-7. Se vuoi navigare davvero la pagina, clicca "Modalita naviga".
-8. Alla fine clicca "Scarica .md" o "Crea report" e invia il file.
-9. Clicca anche "Scarica JSON" per inviare una revisione reimportabile e sicura.
+1. Apri la pagina revisione con Chrome, Edge o Safari.
+2. In alto trovi le pagine principali del sito sotto forma di menu.
+3. Clicca una voce del menu per saltare direttamente alla pagina da controllare.
+4. Le pagine sono mostrate una sotto l'altra come una sola tavola lunga.
+5. Per commentare una zona precisa, trascina con il mouse sull'area da modificare.
+6. Appena rilasci, compare il box per scrivere intervento, priorita, testo e nota operativa.
+7. Clicca "Salva e aggiungi al report" per inserire la richiesta nel report finale.
+8. Se la richiesta non riguarda una zona precisa, usa il modulo laterale "Richiesta generale".
+9. Alla fine clicca "Crea report".
+10. Controlla il report Markdown gia strutturato per pagine e sezioni.
+11. Se vuoi, rifinisci direttamente il testo del report nella finestra.
+12. Clicca "Scarica .md" e invia il file generato.
 
-Nota: per vedere le pagine reali del sito, usa il link online. Il lavoro viene salvato temporaneamente nel browser, ma il JSON e il salvataggio piu sicuro.
+Nota importante:
+Le richieste vengono salvate automaticamente nel browser mentre lavori. Per sicurezza, alla fine invia sempre il file .md scaricato dal pulsante "Crea report".

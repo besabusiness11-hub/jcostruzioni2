@@ -3,23 +3,20 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Studio Revisione - J Costruzioni</title>
+    <title>Studio Revisione Cliente - J Costruzioni</title>
     <style>
       :root {
-        --ink: #151b18;
-        --ink-soft: #27342e;
-        --muted: #657168;
+        --ink: #141a17;
+        --muted: #67736a;
+        --soft: #f4f1e8;
+        --paper: #fffdf8;
         --line: #d9ddd5;
-        --paper: #f4f1e8;
-        --panel: #fffdf8;
         --green: #3f7852;
         --green-dark: #245132;
-        --sage: #dfe8dc;
-        --gold: #bc9249;
+        --gold: #b88c43;
+        --red: #b44b4b;
         --blue: #3f6684;
-        --red: #b54b4b;
-        --shadow: 0 24px 70px rgba(21, 27, 24, 0.16);
-        --radius: 8px;
+        --shadow: 0 24px 70px rgba(20, 26, 23, 0.16);
       }
 
       * {
@@ -32,8 +29,8 @@
         min-height: 100%;
         color: var(--ink);
         background:
-          linear-gradient(135deg, rgba(63, 120, 82, 0.14), transparent 34%),
-          linear-gradient(180deg, #fbfaf5 0%, var(--paper) 100%);
+          linear-gradient(135deg, rgba(63, 120, 82, 0.13), transparent 32%),
+          linear-gradient(180deg, #fbfaf6 0%, var(--soft) 100%);
         font-family: "Aptos", "Segoe UI", Tahoma, sans-serif;
       }
 
@@ -49,37 +46,39 @@
       }
 
       .app {
-        display: grid;
-        grid-template-columns: 276px minmax(0, 1fr) 390px;
-        height: 100vh;
-        overflow: hidden;
+        min-height: 100vh;
       }
 
-      .rail,
-      .inspector {
-        background: rgba(255, 253, 248, 0.94);
-        border-color: var(--line);
-      }
-
-      .rail {
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 30;
         display: grid;
-        grid-template-rows: auto 1fr auto;
-        border-right: 1px solid var(--line);
+        grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1.6fr) auto;
+        gap: 18px;
+        align-items: center;
+        padding: 16px 22px;
+        border-bottom: 1px solid var(--line);
+        background: rgba(255, 253, 248, 0.92);
+        backdrop-filter: blur(18px);
+        box-shadow: 0 10px 34px rgba(20, 26, 23, 0.08);
       }
 
       .brand {
-        padding: 22px;
-        border-bottom: 1px solid var(--line);
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        min-width: 0;
       }
 
       .mark {
         display: grid;
         place-items: center;
-        width: 46px;
-        height: 46px;
-        margin-bottom: 16px;
+        width: 44px;
+        height: 44px;
+        flex: 0 0 auto;
         border-radius: 50%;
-        color: white;
+        color: #fff;
         background: var(--green);
         font-family: Georgia, "Times New Roman", serif;
         font-size: 24px;
@@ -96,13 +95,12 @@
       }
 
       h1 {
-        max-width: 210px;
-        font-size: 34px;
-        line-height: 0.98;
+        font-size: 27px;
+        line-height: 1;
       }
 
       h2 {
-        font-size: 28px;
+        font-size: 32px;
       }
 
       h3 {
@@ -111,140 +109,58 @@
 
       .eyebrow {
         display: block;
-        margin-bottom: 8px;
+        margin-bottom: 4px;
         color: var(--green);
         font-size: 11px;
-        font-weight: 800;
+        font-weight: 900;
         letter-spacing: 0.18em;
         text-transform: uppercase;
       }
 
       .copy {
-        margin: 10px 0 0;
+        margin: 8px 0 0;
         color: var(--muted);
         font-size: 14px;
-        line-height: 1.55;
+        line-height: 1.45;
       }
 
-      .page-list {
-        overflow: auto;
-        padding: 14px;
+      .page-nav {
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        padding: 2px;
+        scrollbar-width: thin;
       }
 
-      .page-button {
-        width: 100%;
-        display: grid;
-        grid-template-columns: 34px 1fr auto;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 8px;
-        border: 1px solid transparent;
-        border-radius: var(--radius);
-        padding: 10px;
-        color: var(--ink);
-        background: transparent;
-        text-align: left;
-        transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
-      }
-
-      .page-button:hover {
-        transform: translateX(2px);
-        background: #fff;
-        border-color: var(--line);
-      }
-
-      .page-button.active {
-        background: var(--ink);
-        color: white;
-      }
-
-      .page-number {
-        display: grid;
-        place-items: center;
-        width: 34px;
-        height: 34px;
-        border-radius: 50%;
-        color: white;
-        background: var(--green);
-        font-size: 12px;
-        font-weight: 800;
-      }
-
-      .page-button.active .page-number {
-        background: var(--gold);
-      }
-
-      .page-name {
-        font-weight: 800;
-      }
-
-      .page-path {
-        display: block;
-        margin-top: 2px;
-        color: inherit;
-        opacity: 0.62;
-        font-size: 12px;
-      }
-
-      .count-pill {
-        min-width: 28px;
+      .page-tab {
+        flex: 0 0 auto;
+        border: 1px solid var(--line);
         border-radius: 999px;
-        padding: 4px 8px;
-        color: var(--green-dark);
-        background: var(--sage);
-        font-size: 12px;
-        font-weight: 800;
-        text-align: center;
-      }
-
-      .page-button.active .count-pill {
+        padding: 10px 13px;
         color: var(--ink);
-        background: white;
+        background: #fff;
+        font-size: 13px;
+        font-weight: 900;
+        transition: background 160ms ease, color 160ms ease, transform 160ms ease;
       }
 
-      .rail-footer {
-        padding: 14px;
-        border-top: 1px solid var(--line);
+      .page-tab:hover {
+        transform: translateY(-1px);
+        border-color: rgba(63, 120, 82, 0.42);
       }
 
-      .main {
-        display: grid;
-        grid-template-rows: auto 1fr;
-        min-width: 0;
-        overflow: hidden;
+      .page-tab.active {
+        color: #fff;
+        background: var(--ink);
+        border-color: var(--ink);
       }
 
-      .topbar {
+      .actions {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        padding: 18px 22px;
-        border-bottom: 1px solid var(--line);
-        background: rgba(255, 253, 248, 0.76);
-        backdrop-filter: blur(18px);
-      }
-
-      .current-title {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        min-width: 0;
-      }
-
-      .live-dot {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background: var(--green);
-        box-shadow: 0 0 0 6px rgba(63, 120, 82, 0.14);
-      }
-
-      .toolbar {
-        display: flex;
-        align-items: center;
+        justify-content: flex-end;
+        gap: 9px;
         flex-wrap: wrap;
-        gap: 10px;
       }
 
       .button,
@@ -260,7 +176,7 @@
         color: #fff;
         background: var(--green);
         font-size: 13px;
-        font-weight: 800;
+        font-weight: 900;
         text-decoration: none;
         transition: background 160ms ease, transform 160ms ease, border-color 160ms ease;
       }
@@ -281,7 +197,7 @@
       .button.danger {
         color: var(--red);
         background: #fff;
-        border-color: rgba(181, 75, 75, 0.28);
+        border-color: rgba(180, 75, 75, 0.35);
       }
 
       .file-button input {
@@ -292,30 +208,82 @@
         clip: rect(0 0 0 0);
       }
 
-      .canvas-shell {
-        overflow: auto;
-        padding: 34px;
-        background:
-          linear-gradient(90deg, rgba(21, 27, 24, 0.045) 1px, transparent 1px),
-          linear-gradient(rgba(21, 27, 24, 0.045) 1px, transparent 1px);
-        background-size: 28px 28px;
+      .workspace {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 380px;
+        gap: 24px;
+        align-items: start;
+        padding: 28px;
       }
 
-      .frame-wrap {
-        position: relative;
-        width: 1440px;
-        min-height: 1800px;
-        margin: 0 auto 70px;
-        background: #fff;
-        border: 1px solid rgba(21, 27, 24, 0.14);
+      .long-board {
+        min-width: 0;
+      }
+
+      .intro-card,
+      .page-shot,
+      .report-panel {
+        border: 1px solid rgba(217, 221, 213, 0.92);
+        border-radius: 8px;
+        background: rgba(255, 253, 248, 0.9);
         box-shadow: var(--shadow);
-        transform-origin: top center;
       }
 
-      .review-frame {
+      .intro-card {
+        margin-bottom: 20px;
+        padding: 24px;
+      }
+
+      .page-shot {
+        position: relative;
+        overflow: visible;
+        margin-bottom: 34px;
+      }
+
+      .page-shot-header {
+        position: sticky;
+        top: 74px;
+        z-index: 12;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 14px 18px;
+        border-bottom: 1px solid var(--line);
+        background: rgba(255, 253, 248, 0.94);
+        backdrop-filter: blur(12px);
+      }
+
+      .page-meta {
+        min-width: 0;
+      }
+
+      .page-url {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .page-counter {
+        border-radius: 999px;
+        padding: 7px 11px;
+        color: var(--green-dark);
+        background: rgba(63, 120, 82, 0.12);
+        font-size: 12px;
+        font-weight: 900;
+      }
+
+      .page-canvas {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        background: #fff;
+      }
+
+      .site-frame {
         display: block;
-        width: 1440px;
-        min-height: 1800px;
+        width: 100%;
+        min-height: 1100px;
         border: 0;
         background: white;
       }
@@ -323,20 +291,22 @@
       .annotation-layer {
         position: absolute;
         inset: 0;
-        z-index: 2;
+        z-index: 5;
         cursor: crosshair;
       }
 
-      .annotation-layer.hidden {
-        pointer-events: none;
-        opacity: 0;
+      .iframe-shield {
+        position: absolute;
+        inset: 0;
+        z-index: 4;
+        background: transparent;
       }
 
       .annotation,
       .draft {
         position: absolute;
-        min-width: 26px;
-        min-height: 26px;
+        min-width: 22px;
+        min-height: 22px;
         border: 2px solid var(--green);
         background: rgba(63, 120, 82, 0.12);
       }
@@ -348,80 +318,58 @@
 
       .annotation.active {
         border-color: var(--gold);
-        box-shadow: 0 0 0 5px rgba(188, 146, 73, 0.22);
+        box-shadow: 0 0 0 5px rgba(184, 140, 67, 0.22);
       }
 
-      .annotation-number {
+      .pin {
         position: absolute;
-        top: -16px;
-        left: -16px;
+        top: -15px;
+        left: -15px;
         display: grid;
         place-items: center;
-        width: 32px;
-        height: 32px;
+        width: 30px;
+        height: 30px;
         border-radius: 50%;
-        color: white;
+        color: #fff;
         background: var(--green);
         font-size: 13px;
         font-weight: 900;
       }
 
-      .annotation.active .annotation-number {
+      .annotation.active .pin {
         background: var(--gold);
       }
 
-      .iframe-shield {
+      .quick-composer {
         position: absolute;
-        inset: 0;
-        z-index: 1;
-        background: transparent;
+        z-index: 20;
+        width: min(430px, calc(100% - 36px));
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 14px;
+        background: var(--paper);
+        box-shadow: 0 22px 60px rgba(20, 26, 23, 0.24);
       }
 
-      .iframe-shield.browse {
-        pointer-events: none;
-      }
-
-      .inspector {
-        display: grid;
-        grid-template-rows: auto auto minmax(0, 1fr) auto;
-        border-left: 1px solid var(--line);
-      }
-
-      .panel {
-        padding: 20px;
-        border-bottom: 1px solid var(--line);
-      }
-
-      .step-card {
-        display: grid;
-        grid-template-columns: 28px 1fr;
+      .composer-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         gap: 10px;
-        margin-top: 14px;
-      }
-
-      .step-card span {
-        display: grid;
-        place-items: center;
-        width: 28px;
-        height: 28px;
-        border-radius: 50%;
-        color: white;
-        background: var(--ink);
-        font-size: 12px;
-        font-weight: 900;
+        margin-bottom: 10px;
       }
 
       .field {
         display: grid;
-        gap: 7px;
-        margin-bottom: 13px;
+        gap: 6px;
+        margin-bottom: 10px;
       }
 
       .field label {
         color: var(--muted);
-        font-size: 11px;
+        font-size: 10px;
         font-weight: 900;
-        letter-spacing: 0.15em;
+        letter-spacing: 0.14em;
         text-transform: uppercase;
       }
 
@@ -430,15 +378,15 @@
       .field textarea {
         width: 100%;
         border: 1px solid var(--line);
-        border-radius: var(--radius);
-        padding: 11px 12px;
+        border-radius: 8px;
+        padding: 10px 11px;
         color: var(--ink);
         background: #fff;
         outline: none;
       }
 
       .field textarea {
-        min-height: 92px;
+        min-height: 82px;
         resize: vertical;
       }
 
@@ -455,33 +403,57 @@
         gap: 10px;
       }
 
-      .comments {
+      .report-panel {
+        position: sticky;
+        top: 96px;
+        max-height: calc(100vh - 124px);
+        display: grid;
+        grid-template-rows: auto minmax(0, 1fr) auto;
+        overflow: hidden;
+      }
+
+      .report-head,
+      .general-panel,
+      .report-foot {
+        padding: 18px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .report-foot {
+        border-top: 1px solid var(--line);
+        border-bottom: 0;
+      }
+
+      .comment-list {
         overflow: auto;
-        padding: 16px;
+        padding: 14px;
+      }
+
+      .general-panel {
+        background: rgba(244, 241, 232, 0.64);
       }
 
       .comment {
         border: 1px solid var(--line);
         border-left: 4px solid var(--green);
-        border-radius: var(--radius);
-        padding: 13px;
-        margin-bottom: 11px;
+        border-radius: 8px;
+        padding: 12px;
+        margin-bottom: 10px;
         background: #fff;
       }
 
       .comment.active {
         border-left-color: var(--gold);
-        box-shadow: 0 14px 32px rgba(21, 27, 24, 0.11);
+        box-shadow: 0 12px 30px rgba(20, 26, 23, 0.1);
       }
 
       .comment-top {
         display: flex;
-        align-items: center;
         justify-content: space-between;
         gap: 8px;
-        margin-bottom: 8px;
         color: var(--muted);
         font-size: 12px;
+        margin-bottom: 7px;
       }
 
       .badge {
@@ -510,13 +482,13 @@
         margin: 0;
         color: var(--muted);
         font-size: 13px;
-        line-height: 1.45;
+        line-height: 1.42;
       }
 
       .comment-actions {
         display: flex;
         gap: 8px;
-        margin-top: 12px;
+        margin-top: 11px;
       }
 
       .mini {
@@ -524,7 +496,7 @@
         border-radius: 999px;
         padding: 7px 10px;
         color: var(--ink);
-        background: white;
+        background: #fff;
         font-size: 12px;
         font-weight: 900;
       }
@@ -533,25 +505,25 @@
         color: var(--red);
       }
 
-      .report {
+      .report-modal {
         display: none;
         position: fixed;
         inset: 26px;
-        z-index: 20;
+        z-index: 50;
         grid-template-rows: auto 1fr auto;
         overflow: hidden;
         border: 1px solid var(--line);
-        border-radius: var(--radius);
-        background: var(--panel);
+        border-radius: 8px;
+        background: var(--paper);
         box-shadow: 0 34px 90px rgba(0, 0, 0, 0.28);
       }
 
-      .report.open {
+      .report-modal.open {
         display: grid;
       }
 
-      .report header,
-      .report footer {
+      .modal-head,
+      .modal-foot {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -560,12 +532,12 @@
         border-bottom: 1px solid var(--line);
       }
 
-      .report footer {
+      .modal-foot {
         border-top: 1px solid var(--line);
         border-bottom: 0;
       }
 
-      .report textarea {
+      .report-text {
         width: 100%;
         height: 100%;
         min-height: 0;
@@ -581,7 +553,7 @@
         position: fixed;
         left: 28px;
         bottom: 28px;
-        z-index: 30;
+        z-index: 70;
         transform: translateY(18px);
         opacity: 0;
         border-radius: 999px;
@@ -596,320 +568,282 @@
         opacity: 1;
       }
 
-      @media (max-width: 1180px) {
-        .app {
-          grid-template-columns: 220px minmax(0, 1fr);
+      @media (max-width: 1120px) {
+        .topbar {
+          grid-template-columns: 1fr;
         }
 
-        .inspector {
-          position: fixed;
-          right: 0;
-          top: 0;
-          bottom: 0;
-          z-index: 10;
-          width: min(390px, 92vw);
-          box-shadow: -16px 0 50px rgba(21, 27, 24, 0.14);
+        .workspace {
+          grid-template-columns: 1fr;
+        }
+
+        .report-panel {
+          position: static;
+          max-height: none;
         }
       }
     </style>
   </head>
   <body>
     <main class="app">
-      <aside class="rail">
+      <header class="topbar">
         <div class="brand">
           <div class="mark">J</div>
-          <span class="eyebrow">Client review studio</span>
-          <h1>Revisioni sul sito reale</h1>
-          <p class="copy">Scegli una pagina, evidenzia cio che vuoi cambiare e costruisci un report preciso per lo sviluppo.</p>
+          <div>
+            <span class="eyebrow">Revisione guidata</span>
+            <h1>Commenta il sito completo</h1>
+          </div>
         </div>
 
-        <nav id="pageList" class="page-list" aria-label="Pagine del sito"></nav>
+        <nav id="pageNav" class="page-nav" aria-label="Vai alla pagina"></nav>
 
-        <div class="rail-footer">
-          <button id="resetButton" class="button danger" type="button">Svuota commenti</button>
+        <div class="actions">
+          <button id="openReportButton" class="button" type="button">Crea report</button>
         </div>
-      </aside>
+      </header>
 
-      <section class="main">
-        <header class="topbar">
-          <div class="current-title">
-            <span class="live-dot" aria-hidden="true"></span>
-            <div>
-              <span class="eyebrow">Pagina in revisione</span>
-              <h2 id="currentPageTitle">Home</h2>
+      <section class="workspace">
+        <div class="long-board">
+          <section class="intro-card">
+            <span class="eyebrow">Una sola tavola lunga</span>
+            <h2>Tutte le pagine sono qui sotto, una dopo l'altra.</h2>
+            <p class="copy">
+              Clicca un nome in alto per saltare alla pagina. Trascina sulla zona da modificare: apparira subito il box per scrivere cosa aggiungere, rimuovere o cambiare. Ogni nota finisce automaticamente nel report.
+            </p>
+          </section>
+          <div id="pagesBoard"></div>
+        </div>
+
+        <aside class="report-panel">
+          <div class="report-head">
+            <span class="eyebrow">Report live</span>
+            <h2>Richieste salvate</h2>
+            <p class="copy">Questa lista si aggiorna appena salvi una richiesta. Alla fine clicca Crea report.</p>
+          </div>
+          <form id="generalForm" class="general-panel">
+            <span class="eyebrow">Richiesta generale</span>
+            <div class="field">
+              <label for="generalPage">Pagina</label>
+              <select id="generalPage" name="pageId"></select>
+            </div>
+            <div class="field">
+              <label for="generalTarget">Elemento o sezione</label>
+              <input id="generalTarget" name="target" placeholder="Menu, titolo hero, tabella, footer..." />
+            </div>
+            <div class="split">
+              <div class="field">
+                <label for="generalType">Intervento</label>
+                <select id="generalType" name="type">
+                  <option>Modificare testo</option>
+                  <option>Aggiungere contenuto</option>
+                  <option>Rimuovere sezione</option>
+                  <option>Cambiare immagine</option>
+                  <option>Layout o stile</option>
+                  <option>Errore o bug</option>
+                  <option>Domanda</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="generalPriority">Priorita</label>
+                <select id="generalPriority" name="priority">
+                  <option>Bassa</option>
+                  <option>Media</option>
+                  <option>Alta</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="generalText">Testo esatto o contenuto richiesto</label>
+              <textarea id="generalText" name="text" placeholder="Inserisci qui il testo preciso, se va aggiunto o modificato."></textarea>
+            </div>
+            <div class="field">
+              <label for="generalNotes">Decisione / nota operativa</label>
+              <textarea id="generalNotes" name="notes" placeholder="Esempio: togliere questo blocco, cambiare immagine, rendere piu evidente, spostare sopra..."></textarea>
+            </div>
+            <button class="button" type="submit">Salva richiesta</button>
+          </form>
+          <div id="commentList" class="comment-list" aria-live="polite"></div>
+          <div class="report-foot">
+            <div class="actions">
+              <button id="clearButton" class="button danger" type="button">Svuota</button>
             </div>
           </div>
-
-          <div class="toolbar">
-            <button id="modeButton" class="button secondary" type="button">Modalita naviga</button>
-            <label class="file-button secondary">
-              Importa JSON
-              <input id="importInput" type="file" accept="application/json,.json" />
-            </label>
-            <button id="downloadJsonButton" class="button secondary" type="button">Scarica JSON</button>
-            <button id="reportButton" class="button" type="button">Crea report</button>
-          </div>
-        </header>
-
-        <div id="canvasShell" class="canvas-shell">
-          <div id="frameWrap" class="frame-wrap">
-            <iframe id="reviewFrame" class="review-frame" title="Pagina del sito in revisione"></iframe>
-            <div id="iframeShield" class="iframe-shield"></div>
-            <div id="annotationLayer" class="annotation-layer"></div>
-          </div>
-        </div>
+        </aside>
       </section>
-
-      <aside class="inspector">
-        <div class="panel">
-          <span class="eyebrow">Come funziona</span>
-          <h2>Commento guidato</h2>
-          <div class="step-card"><span>1</span><p class="copy">Clicca una pagina nella colonna a sinistra.</p></div>
-          <div class="step-card"><span>2</span><p class="copy">Attiva modalita commento e trascina sulla zona da modificare.</p></div>
-          <div class="step-card"><span>3</span><p class="copy">Scrivi cosa aggiungere, rimuovere o cambiare. Alla fine scarica report e JSON.</p></div>
-        </div>
-
-        <form id="commentForm" class="panel">
-          <div class="field">
-            <label for="targetName">Elemento o sezione</label>
-            <input id="targetName" placeholder="Menu, titolo hero, tabella, footer..." />
-          </div>
-
-          <div class="split">
-            <div class="field">
-              <label for="changeType">Intervento</label>
-              <select id="changeType">
-                <option value="Modificare testo">Modificare testo</option>
-                <option value="Aggiungere contenuto">Aggiungere contenuto</option>
-                <option value="Rimuovere sezione">Rimuovere sezione</option>
-                <option value="Cambiare immagine">Cambiare immagine</option>
-                <option value="Layout o stile">Layout o stile</option>
-                <option value="Errore o bug">Errore o bug</option>
-                <option value="Domanda">Domanda</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="priority">Priorita</label>
-              <select id="priority">
-                <option>Bassa</option>
-                <option>Media</option>
-                <option>Alta</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="field">
-            <label for="exactText">Testo esatto o contenuto richiesto</label>
-            <textarea id="exactText" placeholder="Inserisci qui il testo preciso, se va aggiunto o modificato."></textarea>
-          </div>
-
-          <div class="field">
-            <label for="notes">Decisione / nota operativa</label>
-            <textarea id="notes" placeholder="Esempio: togliere questo blocco, cambiare immagine, rendere piu evidente, spostare sopra..."></textarea>
-          </div>
-
-          <button class="button" type="submit">Salva richiesta</button>
-        </form>
-
-        <section id="comments" class="comments" aria-live="polite"></section>
-
-        <div class="panel">
-          <div class="toolbar">
-            <button id="downloadReportButton" class="button secondary" type="button">Scarica .md</button>
-            <button id="copyReportButton" class="button" type="button">Copia report</button>
-          </div>
-        </div>
-      </aside>
     </main>
 
-    <section id="reportModal" class="report" aria-modal="true" aria-labelledby="reportTitle" role="dialog">
-      <header>
+    <section id="reportModal" class="report-modal" aria-modal="true" aria-labelledby="reportTitle" role="dialog">
+      <div class="modal-head">
         <div>
           <span class="eyebrow">Report automatico</span>
           <h2 id="reportTitle">Task precisi per il sito</h2>
         </div>
         <button id="closeReportButton" class="button secondary" type="button">Chiudi</button>
-      </header>
-      <textarea id="reportText" spellcheck="false"></textarea>
-      <footer>
-        <p class="copy">Il report e gia ordinato per pagina e trasformato in punti operativi.</p>
-        <div class="toolbar">
-          <button id="downloadReportButtonModal" class="button secondary" type="button">Scarica .md</button>
-          <button id="copyReportButtonModal" class="button" type="button">Copia</button>
+      </div>
+      <textarea id="reportText" class="report-text" spellcheck="false"></textarea>
+      <div class="modal-foot">
+        <p class="copy">Il report e gia ordinato per pagina, zona e tipo intervento.</p>
+        <div class="actions">
+          <button id="copyReportButton" class="button secondary" type="button">Copia</button>
+          <button id="downloadReportButtonModal" class="button" type="button">Scarica .md</button>
         </div>
-      </footer>
+      </div>
     </section>
 
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
     <script>
       const pages = [
-        { id: "home", label: "Home", path: "/" },
-        { id: "progetto", label: "Il Progetto", path: "/il-progetto" },
-        { id: "esterni", label: "Terrazzi e Giardini", path: "/terrazzi-e-giardini" },
-        { id: "tipologie", label: "Tipologie", path: "/tipologie" },
-        { id: "bilocali", label: "Bilocali", path: "/tipologie/bilocali" },
-        { id: "trilocali", label: "Trilocali", path: "/tipologie/trilocali" },
-        { id: "quadrilocali", label: "Quadrilocali", path: "/tipologie/quadrilocali" },
-        { id: "contatti", label: "Contatti", path: "/contatti" },
+        { id: "home", label: "Home", path: "/", sections: ["Header/Menu", "Hero", "Il Progetto", "Tipologie", "Spazi esterni", "CTA contatti", "Footer"] },
+        { id: "progetto", label: "Il Progetto", path: "/il-progetto", sections: ["Header/Menu", "Hero", "La Visione", "Caratteristiche", "Efficienza energetica", "Numeri progetto", "CTA", "Footer"] },
+        { id: "esterni", label: "Terrazzi e Giardini", path: "/terrazzi-e-giardini", sections: ["Header/Menu", "Hero", "I nostri spazi", "Terrazzi", "Giardini", "Parti esterne / piscina", "CTA", "Footer"] },
+        { id: "tipologie", label: "Tipologie", path: "/tipologie", sections: ["Header/Menu", "Hero", "Introduzione", "Bilocali", "Trilocali", "Quadrilocali", "CTA", "Footer"] },
+        { id: "bilocali", label: "Bilocali", path: "/tipologie/bilocali", sections: ["Header/Menu", "Hero", "Overview", "Caratteristiche", "Finiture", "Disponibilita e planimetrie", "CTA", "Footer"] },
+        { id: "trilocali", label: "Trilocali", path: "/tipologie/trilocali", sections: ["Header/Menu", "Hero", "Overview", "Caratteristiche", "Finiture", "Disponibilita e planimetrie", "CTA", "Footer"] },
+        { id: "quadrilocali", label: "Quadrilocali", path: "/tipologie/quadrilocali", sections: ["Header/Menu", "Hero", "Overview", "Caratteristiche", "Finiture Premium", "Disponibilita e planimetrie", "CTA", "Footer"] },
+        { id: "contatti", label: "Contatti", path: "/contatti", sections: ["Header/Menu", "Hero", "Contatti rapidi", "Modulo", "Dove trovarci", "Mappa", "CTA telefono", "Footer"] },
       ];
 
       const state = {
-        activePageId: "home",
-        commentMode: true,
         comments: [],
-        draftRect: null,
-        selectedId: null,
+        draft: null,
+        activeCommentId: null,
       };
 
+      const GENERAL_SECTION = "Richieste generali pagina";
+
       const els = {
-        pageList: document.getElementById("pageList"),
-        frame: document.getElementById("reviewFrame"),
-        frameWrap: document.getElementById("frameWrap"),
-        layer: document.getElementById("annotationLayer"),
-        shield: document.getElementById("iframeShield"),
-        title: document.getElementById("currentPageTitle"),
-        modeButton: document.getElementById("modeButton"),
-        comments: document.getElementById("comments"),
-        form: document.getElementById("commentForm"),
-        targetName: document.getElementById("targetName"),
-        changeType: document.getElementById("changeType"),
-        priority: document.getElementById("priority"),
-        exactText: document.getElementById("exactText"),
-        notes: document.getElementById("notes"),
-        importInput: document.getElementById("importInput"),
+        pageNav: document.getElementById("pageNav"),
+        pagesBoard: document.getElementById("pagesBoard"),
+        commentList: document.getElementById("commentList"),
+        generalForm: document.getElementById("generalForm"),
+        generalPage: document.getElementById("generalPage"),
         reportModal: document.getElementById("reportModal"),
         reportText: document.getElementById("reportText"),
         toast: document.getElementById("toast"),
       };
 
       const uid = () => Math.random().toString(36).slice(2, 10);
-      const activePage = () => pages.find((page) => page.id === state.activePageId) || pages[0];
-      const pageComments = (pageId = state.activePageId) => state.comments.filter((comment) => comment.pageId === pageId);
+      const pageById = (id) => pages.find((page) => page.id === id) || pages[0];
+      const commentsFor = (pageId) => state.comments.filter((comment) => comment.pageId === pageId);
 
-      function saveLocal() {
-        localStorage.setItem("jcostruzioni-studio-review", JSON.stringify({
-          activePageId: state.activePageId,
-          comments: state.comments,
-        }));
-      }
-
-      function loadLocal() {
-        try {
-          const raw = localStorage.getItem("jcostruzioni-studio-review");
-          if (!raw) return;
-          const data = JSON.parse(raw);
-          state.activePageId = data.activePageId || "home";
-          state.comments = data.comments || [];
-        } catch {
-          localStorage.removeItem("jcostruzioni-studio-review");
-        }
-      }
-
-      function showToast(message) {
-        els.toast.textContent = message;
-        els.toast.classList.add("visible");
-        window.setTimeout(() => els.toast.classList.remove("visible"), 2200);
-      }
-
-      function render() {
+      function init() {
+        loadLocal();
+        renderNavigation();
         renderPages();
-        renderAnnotations();
-        renderCommentList();
-        syncMode();
-        saveLocal();
+        renderComments();
+        observeCurrentPage();
       }
 
-      function renderPages() {
-        els.pageList.innerHTML = "";
-        pages.forEach((page, index) => {
+      function renderNavigation() {
+        els.pageNav.innerHTML = "";
+        els.generalPage.innerHTML = "";
+        pages.forEach((page) => {
           const button = document.createElement("button");
           button.type = "button";
-          button.className = "page-button" + (page.id === state.activePageId ? " active" : "");
-          button.innerHTML = `
-            <span class="page-number">${index + 1}</span>
-            <span><span class="page-name">${escapeHtml(page.label)}</span><span class="page-path">${escapeHtml(page.path)}</span></span>
-            <span class="count-pill">${pageComments(page.id).length}</span>
-          `;
-          button.addEventListener("click", () => setPage(page.id));
-          els.pageList.appendChild(button);
+          button.className = "page-tab";
+          button.dataset.target = page.id;
+          button.textContent = page.label;
+          button.addEventListener("click", () => {
+            document.getElementById("page-" + page.id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+          });
+          els.pageNav.appendChild(button);
+
+          const option = document.createElement("option");
+          option.value = page.id;
+          option.textContent = page.label;
+          els.generalPage.appendChild(option);
         });
       }
 
-      function setPage(pageId) {
-        state.activePageId = pageId;
-        state.draftRect = null;
-        state.selectedId = null;
-        const page = activePage();
-        els.title.textContent = page.label;
-        els.frame.src = page.path;
-        render();
+      function renderPages() {
+        els.pagesBoard.innerHTML = "";
+        pages.forEach((page, index) => {
+          const section = document.createElement("section");
+          section.id = "page-" + page.id;
+          section.className = "page-shot";
+          section.dataset.pageId = page.id;
+          section.innerHTML = `
+            <div class="page-shot-header">
+              <div class="page-meta">
+                <span class="eyebrow">Pagina ${index + 1}</span>
+                <h2>${escapeHtml(page.label)}</h2>
+                <div class="page-url">${escapeHtml(page.path)}</div>
+              </div>
+              <span class="page-counter">${commentsFor(page.id).length} commenti</span>
+            </div>
+            <div class="page-canvas">
+              <iframe class="site-frame" title="${escapeHtml(page.label)}" src="${page.path}"></iframe>
+              <div class="iframe-shield"></div>
+              <div class="annotation-layer" data-page-id="${page.id}"></div>
+            </div>
+          `;
+          els.pagesBoard.appendChild(section);
+        });
+
+        document.querySelectorAll(".site-frame").forEach((frame) => {
+          frame.addEventListener("load", () => resizeFrame(frame));
+        });
+
+        document.querySelectorAll(".annotation-layer").forEach((layer) => {
+          wireLayer(layer);
+        });
+
+        renderAnnotations();
       }
 
-      function syncMode() {
-        els.modeButton.textContent = state.commentMode ? "Modalita commento" : "Modalita naviga";
-        els.modeButton.classList.toggle("secondary", !state.commentMode);
-        els.layer.classList.toggle("hidden", !state.commentMode);
-        els.shield.classList.toggle("browse", !state.commentMode);
-      }
-
-      els.modeButton.addEventListener("click", () => {
-        state.commentMode = !state.commentMode;
-        state.draftRect = null;
-        syncMode();
-        renderAnnotations();
-      });
-
-      els.frame.addEventListener("load", () => {
-        resizeFrameToContent();
-        renderAnnotations();
-      });
-
-      function resizeFrameToContent() {
+      function resizeFrame(frame) {
         try {
-          const doc = els.frame.contentDocument;
-          const height = Math.max(
-            doc.documentElement.scrollHeight,
-            doc.body?.scrollHeight || 0,
-            1800,
-          );
-          els.frame.style.height = height + "px";
-          els.frameWrap.style.height = height + "px";
+          const doc = frame.contentDocument;
+          const height = Math.max(doc.documentElement.scrollHeight, doc.body?.scrollHeight || 0, 900);
+          frame.style.height = height + "px";
+          frame.closest(".page-canvas").style.height = height + "px";
         } catch {
-          els.frame.style.height = "2400px";
-          els.frameWrap.style.height = "2400px";
+          frame.style.height = "1800px";
+          frame.closest(".page-canvas").style.height = "1800px";
         }
+        renderAnnotations();
       }
 
-      let drawStart = null;
-      els.layer.addEventListener("pointerdown", (event) => {
-        if (!state.commentMode || event.target !== els.layer) return;
-        const box = els.layer.getBoundingClientRect();
-        drawStart = {
-          x: ((event.clientX - box.left) / box.width) * 100,
-          y: ((event.clientY - box.top) / box.height) * 100,
-          box,
-        };
-        state.selectedId = null;
-        els.layer.setPointerCapture(event.pointerId);
-      });
+      function wireLayer(layer) {
+        let start = null;
+        layer.addEventListener("pointerdown", (event) => {
+          if (event.target !== layer) return;
+          closeComposer();
+          const box = layer.getBoundingClientRect();
+          start = {
+            pageId: layer.dataset.pageId,
+            x: ((event.clientX - box.left) / box.width) * 100,
+            y: ((event.clientY - box.top) / box.height) * 100,
+            box,
+          };
+          layer.setPointerCapture(event.pointerId);
+        });
 
-      els.layer.addEventListener("pointermove", (event) => {
-        if (!drawStart) return;
-        const currentX = ((event.clientX - drawStart.box.left) / drawStart.box.width) * 100;
-        const currentY = ((event.clientY - drawStart.box.top) / drawStart.box.height) * 100;
-        state.draftRect = normalizeRect(drawStart.x, drawStart.y, currentX, currentY);
-        renderAnnotations();
-      });
+        layer.addEventListener("pointermove", (event) => {
+          if (!start) return;
+          const currentX = ((event.clientX - start.box.left) / start.box.width) * 100;
+          const currentY = ((event.clientY - start.box.top) / start.box.height) * 100;
+          state.draft = {
+            pageId: start.pageId,
+            rect: normalizeRect(start.x, start.y, currentX, currentY),
+          };
+          renderAnnotations();
+        });
 
-      els.layer.addEventListener("pointerup", () => {
-        if (!drawStart) return;
-        drawStart = null;
-        if (state.draftRect && (state.draftRect.w < 0.7 || state.draftRect.h < 0.7)) {
-          state.draftRect = null;
-        }
-        renderAnnotations();
-      });
+        layer.addEventListener("pointerup", () => {
+          if (!start) return;
+          const draft = state.draft;
+          start = null;
+          if (!draft || draft.rect.w < 0.6 || draft.rect.h < 0.6) {
+            state.draft = null;
+            renderAnnotations();
+            return;
+          }
+          renderAnnotations();
+          openComposer(draft.pageId, draft.rect);
+        });
+      }
 
       function normalizeRect(x1, y1, x2, y2) {
         const x = Math.max(0, Math.min(x1, x2));
@@ -920,100 +854,179 @@
       }
 
       function renderAnnotations() {
-        els.layer.innerHTML = "";
-        pageComments().forEach((comment, index) => {
-          const marker = document.createElement("button");
-          marker.type = "button";
-          marker.className = "annotation" + (comment.id === state.selectedId ? " active" : "");
-          marker.style.left = comment.rect.x + "%";
-          marker.style.top = comment.rect.y + "%";
-          marker.style.width = comment.rect.w + "%";
-          marker.style.height = comment.rect.h + "%";
-          marker.innerHTML = `<span class="annotation-number">${index + 1}</span>`;
-          marker.addEventListener("click", (event) => {
-            event.stopPropagation();
-            state.selectedId = comment.id;
-            render();
+        document.querySelectorAll(".annotation-layer").forEach((layer) => {
+          const pageId = layer.dataset.pageId;
+          layer.querySelectorAll(".annotation,.draft").forEach((node) => node.remove());
+          commentsFor(pageId).forEach((comment, index) => {
+            if (!comment.rect) return;
+            const marker = document.createElement("button");
+            marker.type = "button";
+            marker.className = "annotation" + (comment.id === state.activeCommentId ? " active" : "");
+            applyRect(marker, comment.rect);
+            marker.innerHTML = `<span class="pin">${index + 1}</span>`;
+            marker.addEventListener("click", (event) => {
+              event.stopPropagation();
+              state.activeCommentId = comment.id;
+              scrollCommentIntoView(comment.id);
+              renderAnnotations();
+              renderComments();
+            });
+            layer.appendChild(marker);
           });
-          els.layer.appendChild(marker);
+
+          if (state.draft && state.draft.pageId === pageId) {
+            const draft = document.createElement("div");
+            draft.className = "draft";
+            applyRect(draft, state.draft.rect);
+            layer.appendChild(draft);
+          }
         });
 
-        if (state.draftRect) {
-          const draft = document.createElement("div");
-          draft.className = "draft";
-          draft.style.left = state.draftRect.x + "%";
-          draft.style.top = state.draftRect.y + "%";
-          draft.style.width = state.draftRect.w + "%";
-          draft.style.height = state.draftRect.h + "%";
-          els.layer.appendChild(draft);
-        }
+        document.querySelectorAll(".page-shot").forEach((section) => {
+          const count = commentsFor(section.dataset.pageId).length;
+          section.querySelector(".page-counter").textContent = `${count} commenti`;
+        });
       }
 
-      els.form.addEventListener("submit", (event) => {
-        event.preventDefault();
-        const rect = state.draftRect || { x: 6, y: 6, w: 18, h: 10 };
-        const comment = {
-          id: uid(),
-          pageId: state.activePageId,
-          pageLabel: activePage().label,
-          path: activePage().path,
-          rect,
-          targetName: els.targetName.value.trim(),
-          changeType: els.changeType.value,
-          priority: els.priority.value,
-          exactText: els.exactText.value.trim(),
-          notes: els.notes.value.trim(),
-          createdAt: new Date().toISOString(),
-        };
+      function applyRect(node, rect) {
+        node.style.left = rect.x + "%";
+        node.style.top = rect.y + "%";
+        node.style.width = rect.w + "%";
+        node.style.height = rect.h + "%";
+      }
 
-        if (!comment.targetName && !comment.exactText && !comment.notes) {
-          showToast("Inserisci almeno una nota");
-          return;
-        }
+      function openComposer(pageId, rect) {
+        closeComposer();
+        const page = pageById(pageId);
+        const layer = document.querySelector(`.annotation-layer[data-page-id="${pageId}"]`);
+        if (!layer) return;
 
-        state.comments.push(comment);
-        state.selectedId = comment.id;
-        state.draftRect = null;
-        els.form.reset();
-        render();
-        showToast("Richiesta salvata");
-      });
+        const composer = document.createElement("form");
+        composer.className = "quick-composer";
+        const left = Math.min(98 - 32, Math.max(1, rect.x));
+        const top = Math.min(97, rect.y + rect.h + 1);
+        composer.style.left = left + "%";
+        composer.style.top = top + "%";
+        composer.innerHTML = `
+          <div class="composer-head">
+            <div>
+              <span class="eyebrow">Commento su ${escapeHtml(page.label)}</span>
+              <h3>Descrivi la modifica</h3>
+            </div>
+            <button class="mini danger" type="button" data-close>Chiudi</button>
+          </div>
+          <div class="field">
+            <label>Elemento o sezione</label>
+            <input name="target" placeholder="Titolo, immagine, menu, tabella..." required />
+          </div>
+          <div class="split">
+            <div class="field">
+              <label>Intervento</label>
+              <select name="type">
+                <option>Modificare testo</option>
+                <option>Aggiungere contenuto</option>
+                <option>Rimuovere sezione</option>
+                <option>Cambiare immagine</option>
+                <option>Layout o stile</option>
+                <option>Errore o bug</option>
+                <option>Domanda</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Priorita</label>
+              <select name="priority">
+                <option>Bassa</option>
+                <option>Media</option>
+                <option>Alta</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label>Testo o contenuto esatto</label>
+            <textarea name="text" placeholder="Scrivi il testo da inserire o correggere."></textarea>
+          </div>
+          <div class="field">
+            <label>Nota operativa</label>
+            <textarea name="notes" placeholder="Spiega cosa vuoi cambiare, togliere, aggiungere o evidenziare."></textarea>
+          </div>
+          <button class="button" type="submit">Salva e aggiungi al report</button>
+        `;
 
-      function renderCommentList() {
-        els.comments.innerHTML = "";
-        const comments = pageComments();
-        if (!comments.length) {
+        composer.querySelector("[data-close]").addEventListener("click", () => {
+          state.draft = null;
+          closeComposer();
+          renderAnnotations();
+        });
+
+        composer.addEventListener("submit", (event) => {
+          event.preventDefault();
+          const form = new FormData(composer);
+          const comment = {
+            id: uid(),
+            pageId,
+            pageLabel: page.label,
+            path: page.path,
+            rect,
+            target: String(form.get("target") || "").trim(),
+            type: String(form.get("type") || ""),
+            priority: String(form.get("priority") || ""),
+            text: String(form.get("text") || "").trim(),
+            notes: String(form.get("notes") || "").trim(),
+            createdAt: new Date().toISOString(),
+          };
+          if (!comment.target && !comment.text && !comment.notes) {
+            showToast("Scrivi almeno un dettaglio");
+            return;
+          }
+          state.comments.push(comment);
+          state.activeCommentId = comment.id;
+          state.draft = null;
+          closeComposer();
+          saveLocal();
+          renderAnnotations();
+          renderComments();
+          showToast("Aggiunto al report");
+        });
+
+        layer.appendChild(composer);
+        composer.querySelector("input[name='target']").focus();
+      }
+
+      function closeComposer() {
+        document.querySelectorAll(".quick-composer").forEach((node) => node.remove());
+      }
+
+      function renderComments() {
+        els.commentList.innerHTML = "";
+        if (!state.comments.length) {
           const empty = document.createElement("p");
           empty.className = "copy";
-          empty.textContent = "Nessuna richiesta su questa pagina. Disegna una zona e salva il primo commento.";
-          els.comments.appendChild(empty);
+          empty.textContent = "Nessuna richiesta salvata. Trascina su una zona del sito o usa il modulo qui sopra.";
+          els.commentList.appendChild(empty);
           return;
         }
 
-        comments.forEach((comment, index) => {
+        state.comments.forEach((comment, index) => {
           const card = document.createElement("article");
-          card.className = "comment" + (comment.id === state.selectedId ? " active" : "");
+          card.id = "comment-" + comment.id;
+          card.className = "comment" + (comment.id === state.activeCommentId ? " active" : "");
           card.innerHTML = `
             <div class="comment-top">
-              <span>#${index + 1} - ${escapeHtml(comment.changeType)}</span>
+              <span>#${index + 1} - ${escapeHtml(comment.pageLabel)}</span>
               <span class="badge ${comment.priority.toLowerCase()}">${escapeHtml(comment.priority)}</span>
             </div>
-            <p class="comment-title">${escapeHtml(comment.targetName || "Elemento non indicato")}</p>
-            ${comment.exactText ? `<p class="comment-text"><strong>Testo:</strong> ${escapeHtml(comment.exactText)}</p>` : ""}
+            <p class="comment-title">${escapeHtml(comment.type)} - ${escapeHtml(comment.target || "Area selezionata")}</p>
+            ${comment.text ? `<p class="comment-text"><strong>Testo:</strong> ${escapeHtml(comment.text)}</p>` : ""}
             ${comment.notes ? `<p class="comment-text">${escapeHtml(comment.notes)}</p>` : ""}
           `;
 
           const actions = document.createElement("div");
           actions.className = "comment-actions";
-          const view = document.createElement("button");
-          view.type = "button";
-          view.className = "mini";
-          view.textContent = "Mostra";
-          view.addEventListener("click", () => {
-            state.selectedId = comment.id;
-            scrollToRect(comment.rect);
-            render();
-          });
+          const show = document.createElement("button");
+          show.type = "button";
+          show.className = "mini";
+          show.textContent = comment.rect ? "Vai alla zona" : "Vai alla pagina";
+          show.addEventListener("click", () => focusComment(comment));
 
           const remove = document.createElement("button");
           remove.type = "button";
@@ -1021,20 +1034,32 @@
           remove.textContent = "Elimina";
           remove.addEventListener("click", () => {
             state.comments = state.comments.filter((item) => item.id !== comment.id);
-            if (state.selectedId === comment.id) state.selectedId = null;
-            render();
+            if (state.activeCommentId === comment.id) state.activeCommentId = null;
+            saveLocal();
+            renderAnnotations();
+            renderComments();
           });
 
-          actions.append(view, remove);
+          actions.append(show, remove);
           card.appendChild(actions);
-          els.comments.appendChild(card);
+          els.commentList.appendChild(card);
         });
       }
 
-      function scrollToRect(rect) {
-        const shell = document.getElementById("canvasShell");
-        const targetY = (rect.y / 100) * els.frameWrap.offsetHeight - 90;
-        shell.scrollTo({ top: Math.max(0, targetY), behavior: "smooth" });
+      function focusComment(comment) {
+        state.activeCommentId = comment.id;
+        const section = document.getElementById("page-" + comment.pageId);
+        if (section) {
+          const canvas = section.querySelector(".page-canvas");
+          const y = comment.rect ? canvas.offsetTop + (comment.rect.y / 100) * canvas.offsetHeight - 130 : 0;
+          window.scrollTo({ top: section.offsetTop + Math.max(0, y), behavior: "smooth" });
+        }
+        renderAnnotations();
+        renderComments();
+      }
+
+      function scrollCommentIntoView(id) {
+        document.getElementById("comment-" + id)?.scrollIntoView({ block: "nearest", behavior: "smooth" });
       }
 
       function buildReport() {
@@ -1044,28 +1069,52 @@
           `Generato: ${new Date().toLocaleString("it-IT")}`,
           `Richieste totali: ${state.comments.length}`,
           "",
-          "## Sintesi operativa",
+          "## Come leggere il report",
+          "",
+          "- Ogni punto con checkbox e gia trasformato in attivita operativa.",
+          "- Le sezioni senza note restano come promemoria di controllo.",
+          "- Le richieste create dal modulo laterale finiscono nella sezione piu coerente; se non e chiara, vanno in \"Richieste generali pagina\".",
+          "",
+          "## Sintesi per tipologia intervento",
           "",
         ];
 
-        const byType = groupBy(state.comments, "changeType");
-        Object.entries(byType).forEach(([type, items]) => {
-          lines.push(`- ${type}: ${items.length}`);
-        });
+        const byType = groupBy(state.comments, "type");
+        if (state.comments.length) {
+          Object.entries(byType).forEach(([type, items]) => lines.push(`- ${type}: ${items.length}`));
+        } else {
+          lines.push("- Nessuna richiesta salvata: compilare le sezioni qui sotto.");
+        }
+        lines.push("");
 
+        lines.push("## Sintesi per priorita", "");
+        const byPriority = groupBy(state.comments, "priority");
+        ["Alta", "Media", "Bassa"].forEach((priority) => {
+          lines.push(`- ${priority}: ${(byPriority[priority] || []).length}`);
+        });
         lines.push("");
 
         pages.forEach((page) => {
-          const comments = pageComments(page.id);
-          if (!comments.length) return;
-          lines.push(`## ${page.label} (${page.path})`, "");
-          comments.forEach((comment, index) => {
-            lines.push(`### ${index + 1}. ${comment.changeType} - ${comment.targetName || "Elemento non indicato"}`);
-            lines.push(`- Priorita: ${comment.priority}`);
-            lines.push(`- Posizione area: x ${round(comment.rect.x)}%, y ${round(comment.rect.y)}%, larghezza ${round(comment.rect.w)}%, altezza ${round(comment.rect.h)}%`);
-            if (comment.exactText) lines.push(`- Testo/contenuto richiesto: ${comment.exactText}`);
-            if (comment.notes) lines.push(`- Nota operativa: ${comment.notes}`);
-            lines.push(`- Task suggerito: ${taskSentence(comment)}`);
+          const items = commentsFor(page.id);
+          const sectionMap = mapCommentsToSections(page, items);
+          lines.push(`## ${page.label} - ${page.path}`, "");
+          [...page.sections, GENERAL_SECTION].forEach((sectionName) => {
+            const sectionItems = sectionMap[sectionName] || [];
+            lines.push(`### ${sectionName}`, "");
+            if (sectionItems.length) {
+              sectionItems.forEach((comment, index) => {
+                lines.push(`- [ ] ${index + 1}. ${comment.type || "Intervento"} - ${comment.target || "Area selezionata"}`);
+                lines.push(`  - Priorita: ${comment.priority || "Bassa"}`);
+                lines.push(`  - Area: ${formatRect(comment.rect)}`);
+                lines.push(`  - Testo esatto o contenuto richiesto: ${comment.text || "Da compilare / non indicato"}`);
+                lines.push(`  - Decisione / nota operativa: ${comment.notes || "Da compilare / non indicata"}`);
+                lines.push(`  - Task operativo: ${taskSentence(comment)}`);
+              });
+            } else {
+              lines.push("- [ ] Nessuna modifica indicata / Da verificare");
+              lines.push("  - Testo esatto o contenuto richiesto: ");
+              lines.push("  - Decisione / nota operativa: ");
+            }
             lines.push("");
           });
         });
@@ -1073,14 +1122,76 @@
         return lines.join("\n");
       }
 
+      function mapCommentsToSections(page, items) {
+        const map = Object.fromEntries([...page.sections, GENERAL_SECTION].map((section) => [section, []]));
+        items.forEach((comment) => {
+          map[sectionForComment(page, comment)].push(comment);
+        });
+        return map;
+      }
+
       function taskSentence(comment) {
-        const target = comment.targetName || "l'area selezionata";
-        if (comment.changeType === "Rimuovere sezione") return `Rimuovere ${target} dalla pagina ${comment.pageLabel}.`;
-        if (comment.changeType === "Aggiungere contenuto") return `Aggiungere il contenuto richiesto in ${target} nella pagina ${comment.pageLabel}.`;
-        if (comment.changeType === "Modificare testo") return `Aggiornare il testo di ${target} nella pagina ${comment.pageLabel}.`;
-        if (comment.changeType === "Cambiare immagine") return `Sostituire o rivedere l'immagine in ${target} nella pagina ${comment.pageLabel}.`;
-        if (comment.changeType === "Layout o stile") return `Rivedere layout/stile di ${target} nella pagina ${comment.pageLabel}.`;
+        const target = comment.target || "l'area selezionata";
+        if (comment.type === "Rimuovere sezione") return `Rimuovere ${target} nella pagina ${comment.pageLabel}.`;
+        if (comment.type === "Aggiungere contenuto") return `Aggiungere il contenuto richiesto in ${target} nella pagina ${comment.pageLabel}.`;
+        if (comment.type === "Modificare testo") return `Aggiornare il testo di ${target} nella pagina ${comment.pageLabel}.`;
+        if (comment.type === "Cambiare immagine") return `Sostituire o rivedere l'immagine in ${target} nella pagina ${comment.pageLabel}.`;
+        if (comment.type === "Layout o stile") return `Rivedere layout/stile di ${target} nella pagina ${comment.pageLabel}.`;
         return `Verificare ${target} nella pagina ${comment.pageLabel}.`;
+      }
+
+      function sectionForComment(page, comment) {
+        const text = normalize(`${comment.target || ""} ${comment.type || ""} ${comment.text || ""} ${comment.notes || ""}`);
+        if (!text) return GENERAL_SECTION;
+        let bestSection = GENERAL_SECTION;
+        let bestScore = 0;
+        page.sections.forEach((sectionName) => {
+          const score = sectionScore(sectionName, text);
+          if (score > bestScore) {
+            bestScore = score;
+            bestSection = sectionName;
+          }
+        });
+        return bestScore > 0 ? bestSection : GENERAL_SECTION;
+      }
+
+      function sectionScore(sectionName, text) {
+        const section = normalize(sectionName);
+        let score = 0;
+        section.split(" ").filter(Boolean).forEach((word) => {
+          if (word.length > 2 && text.includes(word)) score += 2;
+        });
+        const rules = [
+          [/header|menu|navigazione|hamburger/, /header|menu/],
+          [/hero|titolo|testata|headline|copertina/, /hero/],
+          [/footer|fondo|privacy|collaborazione|ibim/, /footer/],
+          [/cta|bottone|pulsante|contatti|telefono|whatsapp/, /cta|contatti|telefono/],
+          [/tabella|planimetr|disponibil|prezzo|appartamento/, /disponibilita|tipologie|bilocali|trilocali|quadrilocali/],
+          [/terrazzo|terrazzi/, /terrazzi|spazi esterni/],
+          [/giardino|giardini/, /giardini|spazi esterni/],
+          [/piscina|estern|parti esterne/, /piscina|esterni|spazi esterni/],
+          [/immagine|foto|render|visual/, /hero|immagine|esterni|spazi/],
+          [/modulo|form|email|messaggio/, /modulo|contatti/],
+          [/mappa|indirizzo|dove/, /mappa|dove trovarci/],
+        ];
+        rules.forEach(([needle, target]) => {
+          if (needle.test(text) && target.test(section)) score += 5;
+        });
+        return score;
+      }
+
+      function normalize(value) {
+        return String(value || "")
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replace(/[^a-z0-9]+/g, " ")
+          .trim();
+      }
+
+      function formatRect(rect) {
+        if (!rect) return "richiesta generale senza area selezionata";
+        return `x ${round(rect.x)}%, y ${round(rect.y)}%, larghezza ${round(rect.w)}%, altezza ${round(rect.h)}%`;
       }
 
       function groupBy(items, key) {
@@ -1092,28 +1203,13 @@
         }, {});
       }
 
-      function exportJson() {
-        download("revisione-jcostruzioni.json", "application/json", JSON.stringify({
-          version: 2,
-          exportedAt: new Date().toISOString(),
-          pages,
-          comments: state.comments,
-        }, null, 2));
-      }
-
-      function download(name, type, content) {
-        const blob = new Blob([content], { type });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = name;
-        link.click();
-        URL.revokeObjectURL(url);
-      }
-
       function openReport() {
         els.reportText.value = buildReport();
         els.reportModal.classList.add("open");
+      }
+
+      function downloadReport() {
+        download("report-revisione-jcostruzioni.md", "text/markdown", buildReport());
       }
 
       async function copyReport() {
@@ -1126,6 +1222,52 @@
           els.reportText.select();
           showToast("Testo selezionato, usa Ctrl+C");
         }
+      }
+
+      function download(name, type, content) {
+        const blob = new Blob([content], { type });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = name;
+        link.click();
+        URL.revokeObjectURL(url);
+      }
+
+      function saveLocal() {
+        localStorage.setItem("jcostruzioni-review-board", JSON.stringify({ comments: state.comments }));
+      }
+
+      function loadLocal() {
+        try {
+          const raw = localStorage.getItem("jcostruzioni-review-board");
+          if (!raw) return;
+          const data = JSON.parse(raw);
+          state.comments = data.comments || [];
+        } catch {
+          localStorage.removeItem("jcostruzioni-review-board");
+        }
+      }
+
+      function observeCurrentPage() {
+        const observer = new IntersectionObserver((entries) => {
+          const visible = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+          if (!visible) return;
+          const pageId = visible.target.dataset.pageId;
+          document.querySelectorAll(".page-tab").forEach((tab) => {
+            tab.classList.toggle("active", tab.dataset.target === pageId);
+          });
+        }, { rootMargin: "-20% 0px -65% 0px", threshold: [0.1, 0.2, 0.4] });
+
+        document.querySelectorAll(".page-shot").forEach((section) => observer.observe(section));
+      }
+
+      function showToast(message) {
+        els.toast.textContent = message;
+        els.toast.classList.add("visible");
+        window.setTimeout(() => els.toast.classList.remove("visible"), 2200);
       }
 
       function round(number) {
@@ -1141,38 +1283,53 @@
           .replaceAll("'", "&#039;");
       }
 
-      els.importInput.addEventListener("change", async (event) => {
-        const file = event.target.files?.[0];
-        if (!file) return;
-        try {
-          const data = JSON.parse(await file.text());
-          state.comments = data.comments || [];
-          state.activePageId = data.activePageId || state.comments[0]?.pageId || "home";
-          setPage(state.activePageId);
-          showToast("Revisione importata");
-        } catch {
-          showToast("File JSON non valido");
+      els.generalForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const form = new FormData(els.generalForm);
+        const page = pageById(String(form.get("pageId") || "home"));
+        const comment = {
+          id: uid(),
+          pageId: page.id,
+          pageLabel: page.label,
+          path: page.path,
+          rect: null,
+          target: String(form.get("target") || "").trim(),
+          type: String(form.get("type") || ""),
+          priority: String(form.get("priority") || ""),
+          text: String(form.get("text") || "").trim(),
+          notes: String(form.get("notes") || "").trim(),
+          createdAt: new Date().toISOString(),
+        };
+        if (!comment.target && !comment.text && !comment.notes) {
+          showToast("Scrivi almeno una richiesta");
+          return;
         }
-        event.target.value = "";
+        state.comments.push(comment);
+        state.activeCommentId = comment.id;
+        els.generalForm.reset();
+        els.generalPage.value = page.id;
+        saveLocal();
+        renderAnnotations();
+        renderComments();
+        showToast("Richiesta aggiunta al report");
       });
 
-      document.getElementById("downloadJsonButton").addEventListener("click", exportJson);
-      document.getElementById("reportButton").addEventListener("click", openReport);
-      document.getElementById("downloadReportButton").addEventListener("click", () => download("report-revisione-jcostruzioni.md", "text/markdown", buildReport()));
+      document.getElementById("openReportButton").addEventListener("click", openReport);
       document.getElementById("downloadReportButtonModal").addEventListener("click", () => download("report-revisione-jcostruzioni.md", "text/markdown", els.reportText.value));
       document.getElementById("copyReportButton").addEventListener("click", copyReport);
-      document.getElementById("copyReportButtonModal").addEventListener("click", copyReport);
       document.getElementById("closeReportButton").addEventListener("click", () => els.reportModal.classList.remove("open"));
-      document.getElementById("resetButton").addEventListener("click", () => {
-        if (!window.confirm("Vuoi eliminare tutti i commenti salvati?")) return;
+      document.getElementById("clearButton").addEventListener("click", () => {
+        if (!window.confirm("Vuoi eliminare tutti i commenti?")) return;
         state.comments = [];
-        state.draftRect = null;
-        state.selectedId = null;
-        render();
+        state.activeCommentId = null;
+        state.draft = null;
+        closeComposer();
+        saveLocal();
+        renderAnnotations();
+        renderComments();
       });
 
-      loadLocal();
-      setPage(state.activePageId);
+      init();
     </script>
   </body>
 </html>
