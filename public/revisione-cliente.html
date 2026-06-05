@@ -275,7 +275,7 @@
 
       .page-canvas {
         position: relative;
-        overflow: hidden;
+        overflow: visible;
         width: 100%;
         background: #fff;
       }
@@ -283,7 +283,7 @@
       .site-frame {
         display: block;
         width: 100%;
-        min-height: 1100px;
+        min-height: 1400px;
         border: 0;
         background: white;
       }
@@ -344,6 +344,8 @@
         position: absolute;
         z-index: 20;
         width: min(430px, calc(100% - 36px));
+        max-height: min(620px, calc(100vh - 118px));
+        overflow: auto;
         border: 1px solid var(--line);
         border-radius: 8px;
         padding: 14px;
@@ -408,8 +410,8 @@
         top: 96px;
         max-height: calc(100vh - 124px);
         display: grid;
-        grid-template-rows: auto minmax(0, 1fr) auto;
-        overflow: hidden;
+        grid-template-rows: auto auto minmax(120px, 1fr) auto;
+        overflow: auto;
       }
 
       .report-head,
@@ -422,15 +424,27 @@
       .report-foot {
         border-top: 1px solid var(--line);
         border-bottom: 0;
+        position: sticky;
+        bottom: 0;
+        background: rgba(255, 253, 248, 0.96);
       }
 
       .comment-list {
         overflow: auto;
         padding: 14px;
+        min-height: 120px;
       }
 
       .general-panel {
         background: rgba(244, 241, 232, 0.64);
+      }
+
+      .general-panel .button {
+        width: 100%;
+      }
+
+      .general-panel textarea {
+        min-height: 96px;
       }
 
       .comment {
@@ -782,7 +796,7 @@
         });
 
         document.querySelectorAll(".site-frame").forEach((frame) => {
-          frame.addEventListener("load", () => resizeFrame(frame));
+          frame.addEventListener("load", () => scheduleFrameResize(frame));
         });
 
         document.querySelectorAll(".annotation-layer").forEach((layer) => {
@@ -792,15 +806,42 @@
         renderAnnotations();
       }
 
+      function scheduleFrameResize(frame) {
+        resizeFrame(frame);
+        [120, 350, 800, 1600, 3200, 5200].forEach((delay) => {
+          window.setTimeout(() => resizeFrame(frame), delay);
+        });
+
+        try {
+          const doc = frame.contentDocument;
+          frame._reviewResizeObserver?.disconnect();
+          frame._reviewResizeObserver = new ResizeObserver(() => resizeFrame(frame));
+          frame._reviewResizeObserver.observe(doc.documentElement);
+          if (doc.body) frame._reviewResizeObserver.observe(doc.body);
+          doc.querySelectorAll("img, video").forEach((media) => {
+            media.addEventListener("load", () => resizeFrame(frame), { once: true });
+            media.addEventListener("loadedmetadata", () => resizeFrame(frame), { once: true });
+          });
+        } catch {
+          resizeFrame(frame);
+        }
+      }
+
       function resizeFrame(frame) {
         try {
           const doc = frame.contentDocument;
-          const height = Math.max(doc.documentElement.scrollHeight, doc.body?.scrollHeight || 0, 900);
+          const height = Math.max(
+            doc.documentElement.scrollHeight,
+            doc.documentElement.offsetHeight,
+            doc.body?.scrollHeight || 0,
+            doc.body?.offsetHeight || 0,
+            1200
+          );
           frame.style.height = height + "px";
           frame.closest(".page-canvas").style.height = height + "px";
         } catch {
-          frame.style.height = "1800px";
-          frame.closest(".page-canvas").style.height = "1800px";
+          frame.style.height = "2600px";
+          frame.closest(".page-canvas").style.height = "2600px";
         }
         renderAnnotations();
       }
@@ -903,10 +944,9 @@
 
         const composer = document.createElement("form");
         composer.className = "quick-composer";
-        const left = Math.min(98 - 32, Math.max(1, rect.x));
-        const top = Math.min(97, rect.y + rect.h + 1);
-        composer.style.left = left + "%";
-        composer.style.top = top + "%";
+        composer.style.left = "18px";
+        composer.style.top = "18px";
+        composer.style.visibility = "hidden";
         composer.innerHTML = `
           <div class="composer-head">
             <div>
@@ -989,7 +1029,35 @@
         });
 
         layer.appendChild(composer);
-        composer.querySelector("input[name='target']").focus();
+        window.requestAnimationFrame(() => {
+          positionComposer(composer, layer, rect);
+          composer.style.visibility = "visible";
+          composer.scrollIntoView({ block: "nearest", behavior: "smooth" });
+          composer.querySelector("input[name='target']").focus();
+        });
+      }
+
+      function positionComposer(composer, layer, rect) {
+        const layerWidth = layer.clientWidth;
+        const layerHeight = layer.scrollHeight || layer.offsetHeight;
+        const composerWidth = composer.offsetWidth;
+        const composerHeight = composer.offsetHeight;
+        const gap = 14;
+        const pad = 18;
+        const selectedLeft = (rect.x / 100) * layerWidth;
+        const selectedTop = (rect.y / 100) * layerHeight;
+        const selectedBottom = ((rect.y + rect.h) / 100) * layerHeight;
+        const maxLeft = Math.max(pad, layerWidth - composerWidth - pad);
+        const maxTop = Math.max(pad, layerHeight - composerHeight - pad);
+        const left = clamp(selectedLeft, pad, maxLeft);
+        let top = selectedBottom + gap;
+
+        if (top + composerHeight > layerHeight - pad) {
+          top = selectedTop - composerHeight - gap;
+        }
+
+        composer.style.left = clamp(top < pad ? selectedLeft : left, pad, maxLeft) + "px";
+        composer.style.top = clamp(top, pad, maxTop) + "px";
       }
 
       function closeComposer() {
@@ -1268,6 +1336,10 @@
         els.toast.textContent = message;
         els.toast.classList.add("visible");
         window.setTimeout(() => els.toast.classList.remove("visible"), 2200);
+      }
+
+      function clamp(value, min, max) {
+        return Math.min(Math.max(value, min), max);
       }
 
       function round(number) {
