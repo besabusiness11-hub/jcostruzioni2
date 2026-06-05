@@ -3,7 +3,7 @@ ISTRUZIONI PER LA REVISIONE DEL SITO
 1. Apri la pagina revisione con Chrome, Edge o Safari.
 2. In alto trovi le pagine principali del sito sotto forma di menu.
 3. Clicca una voce del menu per saltare direttamente alla pagina da controllare.
-4. Le pagine sono mostrate una sotto l'altra come una sola tavola lunga.
+4. Le pagine sono mostrate una sotto l'altra come schermate complete del sito.
 5. Per commentare una zona precisa, trascina con il mouse sull'area da modificare.
 6. Appena rilasci, compare il box per scrivere intervento, priorita, testo e nota operativa.
 7. Clicca "Salva e aggiungi al report" per inserire la richiesta nel report finale.
@@ -15,3 +15,6 @@ ISTRUZIONI PER LA REVISIONE DEL SITO
 
 Nota importante:
 Le richieste vengono salvate automaticamente nel browser mentre lavori. Per sicurezza, alla fine invia sempre il file .md scaricato dal pulsante "Crea report".
+
+Se ricevi lo zip:
+Estrai tutto il contenuto e apri "revisione-cliente.html". Non separare la pagina dalla cartella "revision-shots", perche contiene le schermate complete del sito.

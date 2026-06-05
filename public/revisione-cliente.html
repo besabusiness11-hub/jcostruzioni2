@@ -280,12 +280,13 @@
         background: #fff;
       }
 
-      .site-frame {
+      .site-shot {
         display: block;
         width: 100%;
-        min-height: 1400px;
+        height: auto;
         border: 0;
         background: white;
+        user-select: none;
       }
 
       .annotation-layer {
@@ -293,13 +294,7 @@
         inset: 0;
         z-index: 5;
         cursor: crosshair;
-      }
-
-      .iframe-shield {
-        position: absolute;
-        inset: 0;
-        z-index: 4;
-        background: transparent;
+        touch-action: none;
       }
 
       .annotation,
@@ -708,14 +703,14 @@
 
     <script>
       const pages = [
-        { id: "home", label: "Home", path: "/", sections: ["Header/Menu", "Hero", "Il Progetto", "Tipologie", "Spazi esterni", "CTA contatti", "Footer"] },
-        { id: "progetto", label: "Il Progetto", path: "/il-progetto", sections: ["Header/Menu", "Hero", "La Visione", "Caratteristiche", "Efficienza energetica", "Numeri progetto", "CTA", "Footer"] },
-        { id: "esterni", label: "Terrazzi e Giardini", path: "/terrazzi-e-giardini", sections: ["Header/Menu", "Hero", "I nostri spazi", "Terrazzi", "Giardini", "Parti esterne / piscina", "CTA", "Footer"] },
-        { id: "tipologie", label: "Tipologie", path: "/tipologie", sections: ["Header/Menu", "Hero", "Introduzione", "Bilocali", "Trilocali", "Quadrilocali", "CTA", "Footer"] },
-        { id: "bilocali", label: "Bilocali", path: "/tipologie/bilocali", sections: ["Header/Menu", "Hero", "Overview", "Caratteristiche", "Finiture", "Disponibilita e planimetrie", "CTA", "Footer"] },
-        { id: "trilocali", label: "Trilocali", path: "/tipologie/trilocali", sections: ["Header/Menu", "Hero", "Overview", "Caratteristiche", "Finiture", "Disponibilita e planimetrie", "CTA", "Footer"] },
-        { id: "quadrilocali", label: "Quadrilocali", path: "/tipologie/quadrilocali", sections: ["Header/Menu", "Hero", "Overview", "Caratteristiche", "Finiture Premium", "Disponibilita e planimetrie", "CTA", "Footer"] },
-        { id: "contatti", label: "Contatti", path: "/contatti", sections: ["Header/Menu", "Hero", "Contatti rapidi", "Modulo", "Dove trovarci", "Mappa", "CTA telefono", "Footer"] },
+        { id: "home", label: "Home", path: "/", shot: "revision-shots/home.png", sections: ["Header/Menu", "Hero", "Il Progetto", "Tipologie", "Spazi esterni", "CTA contatti", "Footer"] },
+        { id: "progetto", label: "Il Progetto", path: "/il-progetto", shot: "revision-shots/il-progetto.png", sections: ["Header/Menu", "Hero", "La Visione", "Caratteristiche", "Efficienza energetica", "Numeri progetto", "CTA", "Footer"] },
+        { id: "esterni", label: "Terrazzi e Giardini", path: "/terrazzi-e-giardini", shot: "revision-shots/terrazzi-e-giardini.png", sections: ["Header/Menu", "Hero", "I nostri spazi", "Terrazzi", "Giardini", "Parti esterne / piscina", "CTA", "Footer"] },
+        { id: "tipologie", label: "Tipologie", path: "/tipologie", shot: "revision-shots/tipologie.png", sections: ["Header/Menu", "Hero", "Introduzione", "Bilocali", "Trilocali", "Quadrilocali", "CTA", "Footer"] },
+        { id: "bilocali", label: "Bilocali", path: "/tipologie/bilocali", shot: "revision-shots/bilocali.png", sections: ["Header/Menu", "Hero", "Overview", "Caratteristiche", "Finiture", "Disponibilita e planimetrie", "CTA", "Footer"] },
+        { id: "trilocali", label: "Trilocali", path: "/tipologie/trilocali", shot: "revision-shots/trilocali.png", sections: ["Header/Menu", "Hero", "Overview", "Caratteristiche", "Finiture", "Disponibilita e planimetrie", "CTA", "Footer"] },
+        { id: "quadrilocali", label: "Quadrilocali", path: "/tipologie/quadrilocali", shot: "revision-shots/quadrilocali.png", sections: ["Header/Menu", "Hero", "Overview", "Caratteristiche", "Finiture Premium", "Disponibilita e planimetrie", "CTA", "Footer"] },
+        { id: "contatti", label: "Contatti", path: "/contatti", shot: "revision-shots/contatti.png", sections: ["Header/Menu", "Hero", "Contatti rapidi", "Modulo", "Dove trovarci", "Mappa", "CTA telefono", "Footer"] },
       ];
 
       const state = {
@@ -787,62 +782,17 @@
               <span class="page-counter">${commentsFor(page.id).length} commenti</span>
             </div>
             <div class="page-canvas">
-              <iframe class="site-frame" title="${escapeHtml(page.label)}" src="${page.path}"></iframe>
-              <div class="iframe-shield"></div>
+              <img class="site-shot" src="${page.shot}" alt="Schermata completa pagina ${escapeHtml(page.label)}" draggable="false" />
               <div class="annotation-layer" data-page-id="${page.id}"></div>
             </div>
           `;
           els.pagesBoard.appendChild(section);
         });
 
-        document.querySelectorAll(".site-frame").forEach((frame) => {
-          frame.addEventListener("load", () => scheduleFrameResize(frame));
-        });
-
         document.querySelectorAll(".annotation-layer").forEach((layer) => {
           wireLayer(layer);
         });
 
-        renderAnnotations();
-      }
-
-      function scheduleFrameResize(frame) {
-        resizeFrame(frame);
-        [120, 350, 800, 1600, 3200, 5200].forEach((delay) => {
-          window.setTimeout(() => resizeFrame(frame), delay);
-        });
-
-        try {
-          const doc = frame.contentDocument;
-          frame._reviewResizeObserver?.disconnect();
-          frame._reviewResizeObserver = new ResizeObserver(() => resizeFrame(frame));
-          frame._reviewResizeObserver.observe(doc.documentElement);
-          if (doc.body) frame._reviewResizeObserver.observe(doc.body);
-          doc.querySelectorAll("img, video").forEach((media) => {
-            media.addEventListener("load", () => resizeFrame(frame), { once: true });
-            media.addEventListener("loadedmetadata", () => resizeFrame(frame), { once: true });
-          });
-        } catch {
-          resizeFrame(frame);
-        }
-      }
-
-      function resizeFrame(frame) {
-        try {
-          const doc = frame.contentDocument;
-          const height = Math.max(
-            doc.documentElement.scrollHeight,
-            doc.documentElement.offsetHeight,
-            doc.body?.scrollHeight || 0,
-            doc.body?.offsetHeight || 0,
-            1200
-          );
-          frame.style.height = height + "px";
-          frame.closest(".page-canvas").style.height = height + "px";
-        } catch {
-          frame.style.height = "2600px";
-          frame.closest(".page-canvas").style.height = "2600px";
-        }
         renderAnnotations();
       }
 
