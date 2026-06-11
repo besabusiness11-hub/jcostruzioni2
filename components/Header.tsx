@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Menu, X, Phone, Download } from "lucide-react"
+import { Menu, X, Download } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function Header() {
@@ -111,9 +111,6 @@ export default function Header() {
             ))}
 
             <div className="mt-6 flex flex-col gap-4">
-              <Button asChild className="rounded-full bg-white text-black hover:bg-white/90 py-7 text-lg">
-                <a href="tel:+390111234567"><Phone className="w-5 h-5 mr-2" /> Chiama Ora</a>
-              </Button>
               <Button asChild className="rounded-full bg-white text-green-600 hover:bg-white/90 py-7 text-lg">
                 <a href="/capitolato.pdf" download><Download className="w-5 h-5 mr-2" /> Scarica Capitolato</a>
               </Button>

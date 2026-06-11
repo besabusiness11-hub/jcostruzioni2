@@ -4,30 +4,12 @@ import type { Metadata } from "next"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import UnitAvailabilityTable from "@/components/UnitAvailabilityTable"
-import { ArrowLeft, ArrowRight, Check } from "lucide-react"
+import { ArrowLeft, ArrowRight } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Bilocali | Parco Aurora - Residenze di Prestigio a Torino",
-  description: "Scopri i bilocali di Parco Aurora: soluzioni compatte e funzionali con planimetrie dedicate per ogni appartamento.",
+  title: "Bilocali | Residenza Belvedere - Garbagnate Monastero",
+  description: "Scopri i bilocali di Residenza Belvedere: soluzioni compatte e funzionali con planimetrie dedicate per ogni appartamento.",
 }
-
-const features = [
-  "Soggiorno con angolo cottura",
-  "Camera matrimoniale",
-  "Bagno con doccia",
-  "Balcone o terrazzo",
-  "Cantina inclusa",
-  "Posto auto disponibile",
-]
-
-const finishes = [
-  "Pavimento in parquet di rovere",
-  "Infissi in alluminio a taglio termico",
-  "Porta blindata di sicurezza",
-  "Videocitofono digitale",
-  "Predisposizione climatizzazione",
-  "Riscaldamento a pavimento",
-]
 
 const units = [
   { name: "A1", floor: "Piano 1", sqm: 55, terrace: 8, price: "245.000", available: true, uniqueness: "Affaccio raccolto e distribuzione compatta per una gestione quotidiana semplice." },
@@ -47,7 +29,7 @@ export default function BilocaliPage() {
 
       <section className="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <Image src="/images/apartment-2rooms.jpg" alt="Bilocali Parco Aurora" fill className="object-cover" priority sizes="100vw" />
+          <Image src="/images/apartment-2rooms.jpg" alt="Bilocali Residenza Belvedere" fill className="object-cover" priority sizes="100vw" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
         </div>
 
@@ -67,7 +49,7 @@ export default function BilocaliPage() {
 
       <section className="py-16 lg:py-20 bg-background">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+          <div className="max-w-3xl">
             <div>
               <span className="inline-block text-primary text-sm tracking-[0.3em] uppercase mb-4 font-medium">
                 55-65 mq
@@ -78,11 +60,6 @@ export default function BilocaliPage() {
               <p className="text-muted-foreground text-lg leading-relaxed">
                 I bilocali sono pensati per chi cerca un ambiente accogliente senza rinunciare a luce, funzionalita e spazi esterni proporzionati.
               </p>
-            </div>
-
-            <div className="grid sm:grid-cols-2 gap-8">
-              <FeatureList title="Caratteristiche" items={features} />
-              <FeatureList title="Finiture" items={finishes} />
             </div>
           </div>
         </div>
@@ -128,21 +105,5 @@ export default function BilocaliPage() {
 
       <Footer />
     </main>
-  )
-}
-
-function FeatureList({ title, items }: { title: string; items: string[] }) {
-  return (
-    <div>
-      <h3 className="font-serif text-xl text-foreground mb-4 font-medium">{title}</h3>
-      <ul className="space-y-3">
-        {items.map((item) => (
-          <li key={item} className="flex items-start gap-3">
-            <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-            <span className="text-muted-foreground">{item}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
   )
 }

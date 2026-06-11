@@ -1,9 +1,7 @@
 "use client"
 
-import React from "react"
-
-import { useState } from "react"
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from "lucide-react"
+import React, { useState } from "react"
+import { CheckCircle, Clock, Mail, MapPin, Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 
@@ -20,7 +18,6 @@ export default function ContactSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Simulate form submission
     setIsSubmitted(true)
     setTimeout(() => setIsSubmitted(false), 5000)
   }
@@ -29,22 +26,17 @@ export default function ContactSection() {
     {
       icon: MapPin,
       title: "Indirizzo",
-      content: "Via Aurora 35, 10123 Torino",
-    },
-    {
-      icon: Phone,
-      title: "Telefono",
-      content: "+39 011 123 4567",
+      content: "Garbagnate Monastero, Provincia di Lecco",
     },
     {
       icon: Mail,
       title: "Email",
-      content: "info@parcoaurora.it",
+      content: "info@besaweb.com",
     },
     {
       icon: Clock,
-      title: "Orari Ufficio Vendite",
-      content: "Lun-Ven: 9:00-18:00 | Sab: 10:00-13:00",
+      title: "Orari",
+      content: "Lun-Ven: 9:00-18:00",
     },
   ]
 
@@ -52,7 +44,6 @@ export default function ContactSection() {
     <section id="contatti" className="py-24 lg:py-32 bg-background">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
-          {/* Left Column - Info */}
           <div>
             <span className="inline-block text-primary text-sm tracking-[0.3em] uppercase mb-4 font-medium">
               Contattaci
@@ -62,11 +53,9 @@ export default function ContactSection() {
               <span className="block text-primary">percorso verso casa</span>
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed mb-10">
-              Il nostro team è a disposizione per guidarti nella scelta 
-              della soluzione abitativa perfetta per te e la tua famiglia.
+              Il nostro team e a disposizione per guidarti nella scelta della soluzione abitativa perfetta per te e la tua famiglia.
             </p>
 
-            {/* Contact Details */}
             <div className="space-y-6">
               {contactInfo.map((info) => (
                 <div key={info.title} className="flex items-start gap-4 group">
@@ -82,7 +71,6 @@ export default function ContactSection() {
             </div>
           </div>
 
-          {/* Right Column - Form */}
           <div className="bg-secondary rounded-3xl p-8 lg:p-10">
             {isSubmitted ? (
               <div className="h-full flex flex-col items-center justify-center text-center py-12">
@@ -189,8 +177,7 @@ export default function ContactSection() {
                     className="mt-1 w-4 h-4 rounded border-border text-primary focus:ring-primary"
                   />
                   <label htmlFor="privacy" className="text-sm text-muted-foreground">
-                    Accetto la <a href="#" className="text-primary hover:underline">Privacy Policy</a> e 
-                    autorizzo il trattamento dei miei dati personali. *
+                    Accetto la <a href="#" className="text-primary hover:underline">Privacy Policy</a> e autorizzo il trattamento dei miei dati personali. *
                   </label>
                 </div>
 

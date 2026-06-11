@@ -4,34 +4,12 @@ import type { Metadata } from "next"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import UnitAvailabilityTable from "@/components/UnitAvailabilityTable"
-import { ArrowLeft, ArrowRight, Check } from "lucide-react"
+import { ArrowLeft, ArrowRight } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Quadrilocali | Parco Aurora - Residenze di Prestigio a Torino",
-  description: "Scopri i quadrilocali di Parco Aurora: spazi generosi con planimetrie dedicate per ogni appartamento.",
+  title: "Quadrilocali | Residenza Belvedere - Garbagnate Monastero",
+  description: "Scopri i quadrilocali di Residenza Belvedere: spazi generosi con planimetrie dedicate per ogni appartamento.",
 }
-
-const features = [
-  "Ampio soggiorno doppio",
-  "Cucina abitabile separata",
-  "Camera matrimoniale con cabina armadio",
-  "Due camere per i ragazzi",
-  "Doppi servizi con finestra",
-  "Terrazzo o giardino privato",
-  "Doppio posto auto",
-  "Cantina di pertinenza",
-]
-
-const finishes = [
-  "Pavimento in parquet di rovere a listoni",
-  "Infissi in alluminio a taglio termico",
-  "Porta blindata classe 4",
-  "Videocitofono digitale HD",
-  "Impianto di climatizzazione canalizzato",
-  "Riscaldamento a pavimento",
-  "Predisposizione antifurto",
-  "Tapparelle motorizzate",
-]
 
 const units = [
   { name: "F1", floor: "Piano 1", sqm: 115, terrace: 20, garden: 50, price: "485.000", available: true, uniqueness: "Giardino privato e zona giorno ampia per una vita familiare aperta verso l'esterno." },
@@ -49,7 +27,7 @@ export default function QuadrilocaliPage() {
 
       <section className="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <Image src="/images/apartment-4rooms.jpg" alt="Quadrilocali Parco Aurora" fill className="object-cover" priority sizes="100vw" />
+          <Image src="/images/apartment-4rooms.jpg" alt="Quadrilocali Residenza Belvedere" fill className="object-cover" priority sizes="100vw" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
         </div>
 
@@ -69,7 +47,7 @@ export default function QuadrilocaliPage() {
 
       <section className="py-16 lg:py-20 bg-background">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+          <div className="max-w-3xl">
             <div>
               <span className="inline-block text-primary text-sm tracking-[0.3em] uppercase mb-4 font-medium">
                 115-135 mq
@@ -80,11 +58,6 @@ export default function QuadrilocaliPage() {
               <p className="text-muted-foreground text-lg leading-relaxed">
                 I quadrilocali offrono ambienti ampi, privacy e spazi esterni importanti per famiglie che cercano comfort senza compromessi.
               </p>
-            </div>
-
-            <div className="grid sm:grid-cols-2 gap-8">
-              <FeatureList title="Caratteristiche" items={features} />
-              <FeatureList title="Finiture Premium" items={finishes} />
             </div>
           </div>
         </div>
@@ -130,21 +103,5 @@ export default function QuadrilocaliPage() {
 
       <Footer />
     </main>
-  )
-}
-
-function FeatureList({ title, items }: { title: string; items: string[] }) {
-  return (
-    <div>
-      <h3 className="font-serif text-xl text-foreground mb-4 font-medium">{title}</h3>
-      <ul className="space-y-3">
-        {items.map((item) => (
-          <li key={item} className="flex items-start gap-3">
-            <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-            <span className="text-muted-foreground">{item}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
   )
 }

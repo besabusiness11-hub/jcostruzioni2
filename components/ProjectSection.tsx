@@ -1,28 +1,28 @@
 "use client"
 
 import { useRef } from "react"
-import { Leaf, Shield, Sparkles, Building2 } from "lucide-react"
+import { Building2, HomeIcon, Leaf, Sparkles } from "lucide-react"
 
 const features = [
   {
     icon: Leaf,
-    title: "Sostenibilità",
-    description: "Classe energetica A4, pannelli fotovoltaici e impianti di ultima generazione per un impatto ambientale minimo.",
+    title: "Sostenibilita",
+    description: "Classe energetica A4, fotovoltaico e impianti di ultima generazione per contenere consumi e impatto ambientale.",
   },
   {
-    icon: Shield,
-    title: "Sicurezza",
-    description: "Sistemi di videosorveglianza, accessi controllati e portineria per garantire la massima tranquillità.",
+    icon: HomeIcon,
+    title: "Domotica",
+    description: "Predisposizioni intelligenti per una casa pratica, moderna e connessa.",
   },
   {
     icon: Sparkles,
     title: "Finiture Premium",
-    description: "Materiali di pregio selezionati, pavimenti in legno massello e dettagli artigianali in ogni ambiente.",
+    description: "Materiali selezionati, dettagli curati e ambienti progettati per un comfort quotidiano di alto livello.",
   },
   {
     icon: Building2,
-    title: "Design Italiano",
-    description: "Architettura contemporanea firmata da studi di fama internazionale, perfetta integrazione con il verde circostante.",
+    title: "Design Contemporaneo",
+    description: "Architettura moderna integrata con il verde e pensata per valorizzare luce, privacy e spazi esterni.",
   },
 ]
 
@@ -36,7 +36,6 @@ export default function ProjectSection() {
       className="py-24 lg:py-32 bg-secondary"
     >
       <div className="container mx-auto px-4 lg:px-8">
-        {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 lg:mb-20">
           <span className="inline-block text-primary text-sm tracking-[0.3em] uppercase mb-4 font-medium">
             Il Progetto
@@ -46,13 +45,12 @@ export default function ProjectSection() {
             <span className="block text-primary">con la natura</span>
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed">
-            Parco Aurora nasce dalla visione di creare residenze che uniscono il comfort 
-            contemporaneo alla bellezza degli spazi verdi. Un&apos;oasi di tranquillità a 
-            pochi minuti dal centro di Torino.
+            Residenza Belvedere nasce per offrire un nuovo modo di abitare a Garbagnate
+            Monastero, con appartamenti moderni, spazi esterni privati e una piscina
+            condominiale pensata per il benessere quotidiano.
           </p>
         </div>
 
-        {/* Features Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {features.map((feature, index) => (
             <div
@@ -73,13 +71,12 @@ export default function ProjectSection() {
           ))}
         </div>
 
-        {/* Stats */}
         <div className="mt-20 grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {[
-            { value: "48", label: "Appartamenti" },
-            { value: "4", label: "Tipologie" },
+            { value: "13", label: "Appartamenti" },
+            { value: "3", label: "Tipologie" },
             { value: "A4", label: "Classe Energetica" },
-            { value: "2025", label: "Consegna" },
+            { value: "2027", label: "Consegna" },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
               <div className="font-serif text-4xl lg:text-5xl text-primary font-semibold mb-2">

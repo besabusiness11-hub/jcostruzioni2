@@ -7,9 +7,9 @@ import PageHero from "@/components/PageHero"
 import { ArrowRight, Flower, Leaf, Sun, Waves, Wind } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Terrazzi, Giardini e Parti Esterne | Parco Aurora",
+  title: "Terrazzi, Giardini e Parti Esterne | Residenza Belvedere",
   description:
-    "Scopri terrazzi, giardini privati e parti esterne di Parco Aurora, con aree verdi e piscina pensate per il relax quotidiano.",
+    "Scopri terrazzi, giardini privati e parti esterne di Residenza Belvedere, con aree verdi e piscina pensate per il relax quotidiano.",
 }
 
 const features = [
@@ -21,7 +21,7 @@ const features = [
   {
     icon: Wind,
     title: "Terrazze Panoramiche",
-    description: "Terrazzi ampi e luminosi con viste suggestive sulla citta e il parco circostante, ideali per cene e momenti di relax.",
+    description: "Terrazzi ampi e luminosi con viste suggestive sul verde e sulle montagne, ideali per cene e momenti di relax.",
   },
   {
     icon: Sun,
@@ -180,7 +180,7 @@ export default function TerrazziGiardiniPage() {
             Pronto a scoprire i nostri spazi esterni?
           </h2>
           <p className="text-primary-foreground/80 text-lg max-w-2xl mx-auto mb-10">
-            Prenota una visita privata e lasciati conquistare da terrazzi, giardini e piscina di Parco Aurora.
+            Prenota una visita privata e lasciati conquistare da terrazzi, giardini e piscina di Residenza Belvedere.
           </p>
           <Link
             href="/contatti"

@@ -2,11 +2,11 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
-import { Phone, Mail, MapPin, Clock, ArrowRight, Send, MessageSquare, Calendar } from "lucide-react"
+import { Mail, MapPin, Clock, Send, MessageSquare } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export const metadata: Metadata = {
-  title: "Contatti | J Costruzioni - Residenze di Prestigio a Torino",
+  title: "Contatti | J Costruzioni - Residenza Belvedere",
   description: "Contatta J Costruzioni per ricevere informazioni, prenotare una visita o richieste commerciali. Il nostro team è a tua disposizione.",
 }
 
@@ -40,58 +40,6 @@ export default function ContattiPage() {
 
         {/* Bottom border gradient */}
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-      </section>
-
-      {/* Quick Contact Cards */}
-      <section className="relative -mt-1 bg-slate-950">
-        <div className="container mx-auto px-6 lg:px-12 pb-24">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* Card: Chiama */}
-            <a
-              href="tel:+390111234567"
-              className="group relative bg-white/[0.03] backdrop-blur-sm border border-white/[0.06] rounded-2xl p-8 hover:bg-white/[0.06] hover:border-white/10 transition-all duration-500"
-            >
-              <div className="flex items-start justify-between mb-8">
-                <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center">
-                  <Phone className="w-6 h-6 text-primary" />
-                </div>
-                <ArrowRight className="w-5 h-5 text-white/20 group-hover:text-primary group-hover:translate-x-1 transition-all duration-300" />
-              </div>
-              <h3 className="text-white text-xl font-medium mb-2">Chiama Ora</h3>
-              <p className="text-white/40 text-sm mb-4">Parla direttamente con un consulente</p>
-              <span className="text-white/70 text-lg font-light">+39 011 1234567</span>
-            </a>
-
-            {/* Card: Email */}
-            <a
-              href="mailto:info@jcostruzioni.it"
-              className="group relative bg-white/[0.03] backdrop-blur-sm border border-white/[0.06] rounded-2xl p-8 hover:bg-white/[0.06] hover:border-white/10 transition-all duration-500"
-            >
-              <div className="flex items-start justify-between mb-8">
-                <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center">
-                  <Mail className="w-6 h-6 text-primary" />
-                </div>
-                <ArrowRight className="w-5 h-5 text-white/20 group-hover:text-primary group-hover:translate-x-1 transition-all duration-300" />
-              </div>
-              <h3 className="text-white text-xl font-medium mb-2">Scrivici</h3>
-              <p className="text-white/40 text-sm mb-4">Ti rispondiamo entro 24 ore</p>
-              <span className="text-white/70 text-lg font-light">info@jcostruzioni.it</span>
-            </a>
-
-            {/* Card: Visita */}
-            <div className="group relative bg-white/[0.03] backdrop-blur-sm border border-white/[0.06] rounded-2xl p-8 hover:bg-white/[0.06] hover:border-white/10 transition-all duration-500">
-              <div className="flex items-start justify-between mb-8">
-                <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center">
-                  <Calendar className="w-6 h-6 text-primary" />
-                </div>
-                <ArrowRight className="w-5 h-5 text-white/20 group-hover:text-primary group-hover:translate-x-1 transition-all duration-300" />
-              </div>
-              <h3 className="text-white text-xl font-medium mb-2">Prenota una visita</h3>
-              <p className="text-white/40 text-sm mb-4">Vieni a vedere le residenze dal vivo</p>
-              <span className="text-white/70 text-lg font-light">Su appuntamento</span>
-            </div>
-          </div>
-        </div>
       </section>
 
       {/* Form + Info Section */}
@@ -212,8 +160,8 @@ export default function ContattiPage() {
                     <div className="flex gap-4">
                       <MapPin className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                       <div>
-                        <p className="text-white/90 font-medium">Via Parco Aurora, 123</p>
-                        <p className="text-white/50 text-sm">10135 Torino (TO)</p>
+                        <p className="text-white/90 font-medium">Garbagnate Monastero</p>
+                        <p className="text-white/50 text-sm">Provincia di Lecco (LC)</p>
                       </div>
                     </div>
                     
@@ -240,16 +188,6 @@ export default function ContattiPage() {
                       </div>
                     </div>
 
-                    <div className="w-full h-px bg-white/10" />
-
-                    <div className="flex gap-4">
-                      <Phone className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                      <div>
-                        <p className="text-white/90 font-medium">+39 011 1234567</p>
-                        <p className="text-white/50 text-sm">Chiama per un appuntamento</p>
-                      </div>
-                    </div>
-
                     <div className="flex gap-4">
                       <Mail className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                       <div>
@@ -263,7 +201,7 @@ export default function ContattiPage() {
                 {/* Map Card */}
                 <div className="rounded-3xl overflow-hidden h-64 border border-border">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2818.5516286471467!2d7.665971!3d45.07169!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sTorino!5e0!3m2!1sit!2sit!4v0"
+                    src="https://www.google.com/maps?q=Garbagnate%20Monastero%20LC&output=embed"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
@@ -273,19 +211,6 @@ export default function ContattiPage() {
                   ></iframe>
                 </div>
 
-                {/* CTA Card */}
-                <div className="bg-primary rounded-3xl p-8 text-primary-foreground text-center">
-                  <h3 className="font-serif text-2xl mb-3">Preferisci parlare?</h3>
-                  <p className="text-primary-foreground/70 text-sm mb-6">
-                    Chiamaci subito per parlare con un responsabile commerciale
-                  </p>
-                  <Button asChild className="bg-white text-slate-900 hover:bg-white/90 rounded-full px-8 py-6 text-base font-medium">
-                    <a href="tel:+390111234567">
-                      <Phone className="w-5 h-5 mr-2" />
-                      Chiama Ora
-                    </a>
-                  </Button>
-                </div>
               </div>
             </div>
           </div>

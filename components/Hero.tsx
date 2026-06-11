@@ -18,7 +18,7 @@ export default function Hero() {
       <div className="absolute inset-0 z-0">
         <Image
           src="/images/hero-building.jpg"
-          alt="Parco Aurora - Residenze di prestigio a Torino"
+          alt="Residenza Belvedere - Residenze moderne a Garbagnate Monastero"
           fill
           className="object-cover"
           priority
@@ -35,7 +35,7 @@ export default function Hero() {
           }`}
         >
           <span className="inline-block text-white/90 text-sm md:text-base tracking-[0.3em] uppercase mb-6 font-light">
-            Nuove Residenze a Torino
+            Nuove residenze a Garbagnate Monastero
           </span>
         </div>
 
@@ -44,8 +44,8 @@ export default function Hero() {
             isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-          <span className="block">Parco</span>
-          <span className="block text-primary-foreground/90">Aurora</span>
+          <span className="block">Residenza</span>
+          <span className="block text-primary-foreground/90">Belvedere</span>
         </h1>
 
         <p
@@ -53,8 +53,7 @@ export default function Hero() {
             isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-          Un nuovo concetto di abitare nel cuore verde di Torino. 
-          Residenze esclusive con terrazzi panoramici e giardini privati.
+          Residenze moderne nel verde di Garbagnate Monastero, dove comfort, design e benessere si incontrano in un nuovo complesso con piscina condominiale.
         </p>
 
         <div

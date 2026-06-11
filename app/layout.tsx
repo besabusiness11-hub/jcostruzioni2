@@ -1,30 +1,32 @@
 import React from "react"
-import type { Metadata, Viewport } from 'next'
-import { Cormorant_Garamond, Montserrat } from 'next/font/google'
+import type { Metadata, Viewport } from "next"
+import { Cormorant_Garamond, Montserrat } from "next/font/google"
 
-import './globals.css'
+import "./globals.css"
 
-const cormorant = Cormorant_Garamond({ 
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-serif'
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-serif",
 })
 
-const montserrat = Montserrat({ 
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-sans'
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-sans",
 })
 
 export const metadata: Metadata = {
-  title: 'Parco Aurora - Residenze di Prestigio a Torino',
-  description: 'Scopri le nuove residenze di lusso nel cuore di Torino. Appartamenti esclusivi con terrazzi e giardini privati, finiture di pregio e sostenibilità ambientale.',
-  keywords: 'appartamenti torino, residenze lusso, nuove costruzioni torino, parco aurora',
+  title: "Residenza Belvedere - Nuove Residenze a Garbagnate Monastero",
+  description:
+    "Scopri Residenza Belvedere a Garbagnate Monastero: appartamenti moderni immersi nel verde, con terrazzi, giardini privati e piscina condominiale.",
+  keywords:
+    "appartamenti Garbagnate Monastero, nuove costruzioni Lecco, Residenza Belvedere, appartamenti con piscina",
 }
 
 export const viewport: Viewport = {
-  themeColor: '#4a7c59',
-  width: 'device-width',
+  themeColor: "#4a7c59",
+  width: "device-width",
   initialScale: 1,
 }
 

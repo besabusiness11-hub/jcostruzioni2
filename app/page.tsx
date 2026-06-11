@@ -3,7 +3,7 @@ import Hero from "@/components/Hero"
 import Footer from "@/components/Footer"
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight, Leaf, Shield, Sparkles, Building2 } from "lucide-react"
+import { ArrowRight, Leaf, HomeIcon, Sparkles, Building2 } from "lucide-react"
 
 const features = [
   {
@@ -12,9 +12,9 @@ const features = [
     description: "Classe energetica A4 e impianti di ultima generazione",
   },
   {
-    icon: Shield,
-    title: "Sicurezza",
-    description: "Videosorveglianza e accessi controllati",
+    icon: HomeIcon,
+    title: "Domotica",
+    description: "Predisposizioni intelligenti per una casa pratica, moderna e connessa",
   },
   {
     icon: Sparkles,
@@ -68,10 +68,11 @@ export default function Home() {
                 <span className="block text-primary">dal cuore verde</span>
               </h2>
               <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-                Parco Aurora è un progetto di rigenerazione urbana caratterizzato dalle linee 
-                pulite ed essenziali dell&apos;architettura torinese. La ricerca dei materiali 
-                prime-class e la volontà di rendere gli ambienti molto luminosi sono state 
-                peculiarità imprescindibili nelle scelte progettuali.
+                Il progetto nasce a Garbagnate Monastero con l&apos;obiettivo di creare un nuovo modo di vivere la casa:
+                moderno, luminoso e immerso nel verde. Il complesso sara composto da appartamenti di nuova costruzione,
+                progettati con linee contemporanee, ampi terrazzi, giardini privati e spazi esterni pensati per garantire
+                comfort, privacy e qualita della vita. Al centro della residenza, la piscina condominiale diventera un
+                luogo esclusivo di relax e convivialita, riservato ai residenti.
               </p>
               <Link
                 href="/il-progetto"
@@ -187,13 +188,12 @@ export default function Home() {
                 Spazi Esterni
               </span>
               <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-6 leading-tight">
-                Terrazzi e giardini
+                Terrazzi, giardini
                 <span className="block text-primary">esclusivi</span>
               </h2>
               <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-                Spazi fondamentali per un&apos;esperienza abitativa unica e rilassante 
-                da godere in ogni momento della giornata. Spazi esterni accoglienti 
-                e riservati per una cena estiva o per un più semplice e quotidiano momento di relax.
+                Spazi esterni accoglienti e riservati, pensati per vivere la casa anche all&apos;aperto e valorizzati dalla
+                presenza della piscina condominiale.
               </p>
               <Link
                 href="/terrazzi-e-giardini"
@@ -215,7 +215,7 @@ export default function Home() {
           </h2>
           <p className="text-primary-foreground/80 text-lg max-w-2xl mx-auto mb-10">
             Chiedi un appuntamento dedicato con un responsabile commerciale 
-            per scoprire tutto su Parco Aurora.
+            per scoprire tutto su Residenza Belvedere.
           </p>
           <Link
             href="/contatti"

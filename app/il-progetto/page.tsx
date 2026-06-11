@@ -3,11 +3,11 @@ import Link from "next/link"
 import type { Metadata } from "next"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
-import { Leaf, Shield, Sparkles, Building2, Sun, Thermometer, Zap, Droplets, ArrowRight } from "lucide-react"
+import { Leaf, HomeIcon, Sparkles, Building2, Sun, Thermometer, Zap, Snowflake, ArrowRight } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Il Progetto | Parco Aurora - Residenze di Prestigio a Torino",
-  description: "Scopri il progetto Parco Aurora: architettura contemporanea, sostenibilità e materiali di pregio nel cuore verde di Torino.",
+  title: "Il Progetto | Residenza Belvedere - Garbagnate Monastero",
+  description: "Scopri Residenza Belvedere: appartamenti di nuova costruzione, terrazzi, giardini privati e piscina condominiale a Garbagnate Monastero.",
 }
 
 const features = [
@@ -17,9 +17,9 @@ const features = [
     description: "Classe energetica A4 con pannelli fotovoltaici, impianti geotermici e sistemi di recupero acque piovane per un impatto ambientale minimo.",
   },
   {
-    icon: Shield,
-    title: "Sicurezza Integrata",
-    description: "Sistemi di videosorveglianza 24/7, accessi controllati con badge, citofoni video HD e portineria dedicata per la massima tranquillità.",
+    icon: HomeIcon,
+    title: "Domotica",
+    description: "Soluzioni intelligenti per una gestione semplice e moderna della casa, con predisposizioni per comfort, luci e clima.",
   },
   {
     icon: Sparkles,
@@ -50,9 +50,9 @@ const energyFeatures = [
     description: "Controllo intelligente di luci, clima e sicurezza da smartphone e tablet.",
   },
   {
-    icon: Droplets,
-    title: "Recupero Acque",
-    description: "Sistema di raccolta acque piovane per irrigazione giardini e aree comuni.",
+    icon: Snowflake,
+    title: "Raffrescamento Estivo",
+    description: "Predisposizione per il raffrescamento degli ambienti durante la stagione estiva.",
   },
 ]
 
@@ -66,7 +66,7 @@ export default function IlProgettoPage() {
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/project-detail.jpg"
-            alt="Parco Aurora - Il Progetto"
+            alt="Residenza Belvedere - Il Progetto"
             fill
             className="object-cover"
             priority
@@ -77,13 +77,13 @@ export default function IlProgettoPage() {
         
         <div className="relative z-10 container mx-auto px-4 lg:px-8 text-center">
           <span className="inline-block text-white/90 text-sm tracking-[0.3em] uppercase mb-4 font-light">
-            Parco Aurora
+            Residenza Belvedere
           </span>
           <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl text-white font-medium leading-tight mb-6">
             Il Progetto
           </h1>
           <p className="text-white/80 text-lg md:text-xl max-w-2xl mx-auto">
-            Un connubio perfetto fra comfort e privacy, architettura pulita per una residenza elegante.
+            Appartamenti moderni nel verde di Garbagnate Monastero, con terrazzi, giardini privati e piscina condominiale.
           </p>
         </div>
       </section>
@@ -101,15 +101,16 @@ export default function IlProgettoPage() {
                 <span className="block text-primary">dal cuore verde</span>
               </h2>
               <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                Parco Aurora è un progetto di rigenerazione urbana caratterizzato dalle linee pulite 
-                ed essenziali dell&apos;architettura torinese contemporanea. La ricerca dei materiali 
-                prime-class, la volontà di rendere gli ambienti molto luminosi, il garantire spazi 
-                esterni confortevoli ed abitabili sono state peculiarità imprescindibili nelle scelte progettuali.
+                A Garbagnate Monastero nasce una nuova residenza moderna dal cuore verde, pensata per offrire
+                un&apos;esperienza abitativa elegante, luminosa e immersa nella natura. Il progetto si distingue per
+                un&apos;architettura contemporanea dalle linee pulite, appartamenti di nuova costruzione, ampi terrazzi,
+                giardini privati e spazi esterni progettati per garantire comfort, privacy e qualita della vita.
               </p>
               <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-                Ampie vetrate arricchiscono gli spazi inondando gli ambienti di luce, energia positiva 
-                del vivere la casa. Ogni dettaglio è stato pensato per offrire un&apos;esperienza abitativa 
-                unica e rilassante.
+                Al centro del complesso, la piscina condominiale diventa un elemento distintivo e prezioso:
+                uno spazio riservato ai residenti, dedicato al relax, al benessere e alla convivialita.
+                Ogni dettaglio e stato studiato per creare un ambiente tranquillo e raffinato, dove design,
+                verde e funzionalita si incontrano in perfetto equilibrio.
               </p>
               <Link 
                 href="/tipologie"
@@ -198,7 +199,7 @@ export default function IlProgettoPage() {
                 <span className="block text-primary">A4</span>
               </h2>
               <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                Parco Aurora raggiunge i più alti standard di efficienza energetica grazie a 
+                Residenza Belvedere raggiunge alti standard di efficienza energetica grazie a 
                 soluzioni tecnologiche all&apos;avanguardia che garantiscono comfort abitativo e 
                 risparmio sui costi di gestione.
               </p>
@@ -217,10 +218,10 @@ export default function IlProgettoPage() {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
             {[
-              { value: "48", label: "Appartamenti" },
-              { value: "4", label: "Tipologie" },
+              { value: "13", label: "Appartamenti" },
+              { value: "3", label: "Tipologie" },
               { value: "A4", label: "Classe Energetica" },
-              { value: "2025", label: "Consegna Prevista" },
+              { value: "Dicembre 2027", label: "Consegna Prevista" },
             ].map((stat) => (
               <div key={stat.label} className="text-center">
                 <div className="font-serif text-4xl lg:text-5xl text-primary-foreground font-semibold mb-2">
@@ -242,10 +243,6 @@ export default function IlProgettoPage() {
             Vieni a scoprire il tuo
             <span className="block text-primary">nuovo appartamento</span>
           </h2>
-          <p className="text-muted-foreground text-lg leading-relaxed max-w-2xl mx-auto mb-10">
-            Prenota una visita guidata al nostro show-room e lasciati conquistare dalla qualità 
-            e dall&apos;eleganza di Parco Aurora.
-          </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/tipologie"

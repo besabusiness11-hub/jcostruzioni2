@@ -6,8 +6,8 @@ import Footer from "@/components/Footer"
 import { ArrowRight } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Tipologie Abitative | Parco Aurora - Residenze di Prestigio a Torino",
-  description: "Scopri le tipologie abitative di Parco Aurora: bilocali, trilocali e quadrilocali con finiture di pregio, spazi esterni e planimetrie dedicate.",
+  title: "Tipologie Abitative | Residenza Belvedere",
+  description: "Scopri le tipologie abitative di Residenza Belvedere: bilocali, trilocali e quadrilocali con spazi esterni, planimetrie dedicate e caratteristiche uniche.",
 }
 
 const apartments = [
@@ -56,7 +56,7 @@ export default function TipologiePage() {
 
         <div className="relative z-10 container mx-auto px-4 lg:px-8 text-center">
           <span className="inline-block text-white/90 text-sm tracking-[0.3em] uppercase mb-4 font-light">
-            Parco Aurora
+            Residenza Belvedere
           </span>
           <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl text-white font-medium leading-tight mb-6">
             Tipologie Abitative
