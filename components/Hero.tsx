@@ -17,7 +17,7 @@ export default function Hero() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/hero-building.jpg"
+          src="/images/hero-building.png"
           alt="Belvedere 35 - Residenze moderne a Garbagnate Monastero"
           fill
           className="object-cover"
@@ -28,17 +28,6 @@ export default function Hero() {
       </div>
 
       {/* Content empty to show only background and logo in header */}
-
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
-        <Link
-          href="/il-progetto"
-          className="flex flex-col items-center gap-2 text-white/70 hover:text-white transition-colors duration-300 group"
-        >
-          <span className="text-xs tracking-widest uppercase">Scopri</span>
-          <ChevronDown className="w-6 h-6 animate-bounce" />
-        </Link>
-      </div>
     </section>
   )
 }

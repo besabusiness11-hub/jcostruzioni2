@@ -37,9 +37,12 @@ export default function Header() {
     }
   }, [isMobileMenuOpen])
 
-  // 3. SCROLL AL TOP AL CAMBIO DI ROTTA
+  // 3. SCROLL AL TOP AL CARICAMENTO E AL CAMBIO DI ROTTA
   useEffect(() => {
-    window.scrollTo(0, 0)
+    if (typeof window !== "undefined") {
+      window.history.scrollRestoration = "manual"
+      window.scrollTo(0, 0)
+    }
   }, [pathname])
 
   const navLinks = [

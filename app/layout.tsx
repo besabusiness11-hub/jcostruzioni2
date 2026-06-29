@@ -1,7 +1,6 @@
 import React from "react"
 import type { Metadata, Viewport } from "next"
 import { Cormorant_Garamond, Montserrat } from "next/font/google"
-import Script from "next/script"
 
 import "./globals.css"
 
@@ -43,11 +42,7 @@ export default function RootLayout({
       <body className="font-sans antialiased">
         {children}
         <FloatingContactButton />
-        <Script
-          src="https://api.getnavi.dev/widget.js"
-          data-key="navi_sk_live_e0f77edd77eab0c3626ffd6d5ebddcbdb4ba0ba4"
-          strategy="lazyOnload"
-        />
+
       </body>
     </html>
   )
