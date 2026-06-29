@@ -1,6 +1,7 @@
 import React from "react"
 import type { Metadata, Viewport } from "next"
 import { Cormorant_Garamond, Montserrat } from "next/font/google"
+import Script from "next/script"
 
 import "./globals.css"
 
@@ -17,11 +18,11 @@ const montserrat = Montserrat({
 })
 
 export const metadata: Metadata = {
-  title: "Residenza Belvedere - Nuove Residenze a Garbagnate Monastero",
+  title: "Belvedere 35 - Nuove Residenze a Garbagnate Monastero",
   description:
-    "Scopri Residenza Belvedere a Garbagnate Monastero: appartamenti moderni immersi nel verde, con terrazzi, giardini privati e piscina condominiale.",
+    "Scopri Belvedere 35 a Garbagnate Monastero: appartamenti moderni immersi nel verde, con terrazzi, giardini privati e piscina condominiale.",
   keywords:
-    "appartamenti Garbagnate Monastero, nuove costruzioni Lecco, Residenza Belvedere, appartamenti con piscina",
+    "appartamenti Garbagnate Monastero, nuove costruzioni Lecco, Belvedere 35, appartamenti con piscina",
 }
 
 export const viewport: Viewport = {
@@ -37,7 +38,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="it" className={`${cormorant.variable} ${montserrat.variable}`}>
-      <body className="font-sans antialiased">{children}</body>
+      <body className="font-sans antialiased">
+        {children}
+        <Script
+          src="https://api.getnavi.dev/widget.js"
+          data-key="navi_sk_live_e0f77edd77eab0c3626ffd6d5ebddcbdb4ba0ba4"
+          strategy="lazyOnload"
+        />
+      </body>
     </html>
   )
 }

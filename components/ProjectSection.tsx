@@ -45,7 +45,7 @@ export default function ProjectSection() {
             <span className="block text-primary">con la natura</span>
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed">
-            Residenza Belvedere nasce per offrire un nuovo modo di abitare a Garbagnate
+            Belvedere 35 nasce per offrire un nuovo modo di abitare a Garbagnate
             Monastero, con appartamenti moderni, spazi esterni privati e una piscina
             condominiale pensata per il benessere quotidiano.
           </p>

@@ -51,181 +51,219 @@ const apartments = [
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-[#fcfbf9]">
       <Header />
       <Hero />
       
-      {/* Project Preview Section */}
-      <section className="py-24 lg:py-32 bg-secondary">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            <div>
-              <span className="inline-block text-primary text-sm tracking-[0.3em] uppercase mb-4 font-medium">
+      {/* Sezione Il Progetto (Project Preview) */}
+      <section className="py-24 lg:py-36 bg-gradient-to-b from-[#fbfbf9] to-[#f5f4ed] overflow-hidden">
+        <div className="container mx-auto px-6 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+            
+            {/* Blocco di testo a sinistra */}
+            <div className="lg:col-span-5 animate-fade-in-up">
+              <span className="inline-block text-primary text-[10px] tracking-[0.4em] uppercase mb-4 font-bold">
                 Il Progetto
               </span>
-              <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-6 leading-tight">
+              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground mb-8 leading-tight font-medium">
                 Una residenza esclusiva
-                <span className="block text-primary">dal cuore verde</span>
+                <span className="block text-primary italic font-normal mt-2">dal cuore verde</span>
               </h2>
-              <p className="text-muted-foreground text-lg leading-relaxed mb-8">
+              <p className="text-muted-foreground/90 text-lg leading-relaxed mb-10 font-light">
                 Il progetto nasce a Garbagnate Monastero con l&apos;obiettivo di creare un nuovo modo di vivere la casa:
-                moderno, luminoso e immerso nel verde. Il complesso sara composto da appartamenti di nuova costruzione,
+                moderno, luminoso e immerso nel verde. Il complesso sarà composto da appartamenti di nuova costruzione,
                 progettati con linee contemporanee, ampi terrazzi, giardini privati e spazi esterni pensati per garantire
-                comfort, privacy e qualita della vita. Al centro della residenza, la piscina condominiale diventera un
-                luogo esclusivo di relax e convivialita, riservato ai residenti.
+                comfort, privacy e qualità della vita. Al centro della residenza, la piscina condominiale diventerà un
+                luogo esclusivo di relax e convivialità, riservato ai residenti.
               </p>
               <Link
                 href="/il-progetto"
-                className="inline-flex items-center gap-2 text-primary font-medium hover:gap-4 transition-all duration-300 group"
+                className="inline-flex items-center gap-3 text-primary font-semibold hover:gap-5 transition-all duration-300 group text-sm uppercase tracking-wider"
               >
                 Scopri di più
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
               </Link>
             </div>
             
-            <div className="grid grid-cols-2 gap-4">
-              {features.map((feature) => (
-                <div
-                  key={feature.title}
-                  className="bg-background rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-                >
-                  <div className="w-12 h-12 bg-accent rounded-xl flex items-center justify-center mb-4">
-                    <feature.icon className="w-6 h-6 text-primary" />
+            {/* Bento Grid a destra */}
+            <div className="lg:col-span-7 animate-fade-in-up">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {features.map((feature, idx) => (
+                  <div
+                    key={feature.title}
+                    className="relative bg-background/60 backdrop-blur-sm border border-slate-200/40 rounded-3xl p-8 shadow-sm hover:shadow-xl hover:bg-background transition-all duration-500 hover:-translate-y-1.5 group"
+                  >
+                    <div className="w-14 h-14 bg-accent/40 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary group-hover:scale-110 transition-all duration-500">
+                      <feature.icon className="w-6 h-6 text-primary group-hover:text-primary-foreground transition-colors duration-500" />
+                    </div>
+                    <h3 className="font-serif text-2xl text-foreground mb-3 font-semibold">
+                      {feature.title}
+                    </h3>
+                    <p className="text-muted-foreground/80 text-sm leading-relaxed font-light">
+                      {feature.description}
+                    </p>
                   </div>
-                  <h3 className="font-serif text-lg text-foreground mb-2">{feature.title}</h3>
-                  <p className="text-muted-foreground text-sm">{feature.description}</p>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
+
           </div>
         </div>
       </section>
-
-      {/* Typologies Preview Section */}
-      <section className="py-24 lg:py-32 bg-background">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="inline-block text-primary text-sm tracking-[0.3em] uppercase mb-4 font-medium">
+ 
+      {/* Sezione Tipologie Abitative (Typologies Preview) */}
+      <section className="py-24 lg:py-36 bg-background">
+        <div className="container mx-auto px-6 lg:px-12">
+          
+          {/* Header centrato */}
+          <div className="text-center max-w-3xl mx-auto mb-20 animate-fade-in-up">
+            <span className="inline-block text-primary text-[10px] tracking-[0.4em] uppercase mb-4 font-bold">
               Tipologie Abitative
             </span>
-            <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-6 leading-tight">
+            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground mb-8 leading-tight font-medium">
               Ambienti unici,
-              <span className="block text-primary">curati, sofisticati</span>
+              <span className="block text-primary italic font-normal mt-2">curati, sofisticati</span>
             </h2>
-            <p className="text-muted-foreground text-lg">
+            <p className="text-muted-foreground/90 text-lg font-light leading-relaxed">
               Bilocali, trilocali e quadrilocali disegnati per soddisfare 
               le più attente e preziose esigenze abitative del vivere moderno, con planimetrie dedicate per ogni appartamento.
             </p>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+ 
+          {/* Griglia delle tipologie */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 animate-fade-in-up">
             {apartments.map((apt) => (
               <Link
                 key={apt.title}
                 href={apt.href}
-                className="group relative h-96 rounded-3xl overflow-hidden"
+                className="group relative h-[480px] rounded-[32px] overflow-hidden border border-slate-100 shadow-sm hover:shadow-2xl transition-all duration-700"
               >
                 <Image
                   src={apt.image || "/placeholder.svg"}
                   alt={apt.title}
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-8">
-                  <h3 className="font-serif text-3xl text-white mb-2">{apt.title}</h3>
-                  <p className="text-white/80 mb-4">{apt.sqm}</p>
-                  <span className="inline-flex items-center gap-2 text-white text-sm font-medium group-hover:gap-4 transition-all duration-300">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/10 group-hover:via-black/20 transition-all duration-700" />
+                
+                {/* Metratura in vetro */}
+                <div className="absolute top-6 right-6 backdrop-blur-md bg-white/15 border border-white/20 rounded-full px-4 py-1.5 shadow-lg">
+                  <span className="text-white text-xs font-semibold tracking-wider uppercase">{apt.sqm}</span>
+                </div>
+
+                <div className="absolute bottom-0 left-0 right-0 p-8 md:p-10">
+                  <h3 className="font-serif text-3xl md:text-4xl text-white mb-3 font-semibold">{apt.title}</h3>
+                  <span className="inline-flex items-center gap-2 text-white/95 text-xs font-semibold uppercase tracking-widest group-hover:gap-4 transition-all duration-300">
                     Scopri
-                    <ArrowRight className="w-4 h-4" />
+                    <ArrowRight className="w-4 h-4 text-primary-foreground" />
                   </span>
                 </div>
               </Link>
             ))}
           </div>
-
-          <div className="text-center mt-12">
+ 
+          <div className="text-center mt-16">
             <Link
               href="/tipologie"
-              className="inline-flex items-center justify-center px-8 py-4 bg-primary text-primary-foreground rounded-full text-sm font-medium tracking-wide uppercase transition-all duration-300 hover:bg-primary/90 hover:shadow-xl hover:-translate-y-1"
+              className="inline-flex items-center justify-center px-10 py-5 bg-primary text-primary-foreground rounded-full text-xs font-bold tracking-[0.2em] uppercase transition-all duration-550 hover:bg-primary/95 hover:shadow-2xl hover:-translate-y-1"
             >
               Vedi tutte le tipologie
             </Link>
           </div>
         </div>
       </section>
-
-      {/* Outdoor Preview Section */}
-      <section className="py-24 lg:py-32 bg-secondary">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            <div className="order-2 lg:order-1">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="relative h-64 lg:h-80 rounded-2xl overflow-hidden">
+ 
+      {/* Sezione Spazi Esterni (Outdoor Preview) */}
+      <section className="py-24 lg:py-36 bg-gradient-to-b from-[#fbfbf9] to-[#f5f4ed]">
+        <div className="container mx-auto px-6 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+            
+            {/* Composizione asimmetrica a sinistra */}
+            <div className="order-2 lg:order-1 animate-fade-in-up">
+              <div className="grid grid-cols-2 gap-6 relative">
+                {/* Immagine Terrazza */}
+                <div className="relative h-80 lg:h-96 rounded-[32px] overflow-hidden shadow-lg border border-slate-200/50 hover:shadow-2xl transition-all duration-700 group hover:-translate-y-1">
                   <Image
                     src="/images/terrace.jpg"
                     alt="Terrazza"
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
                     sizes="(max-width: 1024px) 50vw, 25vw"
                   />
+                  <div className="absolute bottom-4 left-4 bg-black/60 backdrop-blur-sm rounded-xl px-4 py-1.5">
+                    <span className="text-white text-[10px] tracking-wider uppercase font-semibold">Terrazzi</span>
+                  </div>
                 </div>
-                <div className="relative h-64 lg:h-80 rounded-2xl overflow-hidden mt-8">
+                {/* Immagine Giardino */}
+                <div className="relative h-80 lg:h-96 rounded-[32px] overflow-hidden shadow-lg border border-slate-200/50 hover:shadow-2xl transition-all duration-700 mt-12 group hover:-translate-y-1">
                   <Image
                     src="/images/garden.jpg"
                     alt="Giardino"
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
                     sizes="(max-width: 1024px) 50vw, 25vw"
                   />
+                  <div className="absolute bottom-4 left-4 bg-black/60 backdrop-blur-sm rounded-xl px-4 py-1.5">
+                    <span className="text-white text-[10px] tracking-wider uppercase font-semibold">Giardini</span>
+                  </div>
                 </div>
               </div>
             </div>
             
-            <div className="order-1 lg:order-2">
-              <span className="inline-block text-primary text-sm tracking-[0.3em] uppercase mb-4 font-medium">
+            {/* Blocco di testo a destra */}
+            <div className="order-1 lg:order-2 animate-fade-in-up">
+              <span className="inline-block text-primary text-[10px] tracking-[0.4em] uppercase mb-4 font-bold">
                 Spazi Esterni
               </span>
-              <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-6 leading-tight">
+              <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-6 leading-tight font-medium">
                 Terrazzi, giardini
-                <span className="block text-primary">esclusivi</span>
+                <span className="block text-primary italic font-normal mt-2">esclusivi</span>
               </h2>
-              <p className="text-muted-foreground text-lg leading-relaxed mb-8">
+              <p className="text-muted-foreground/90 text-lg leading-relaxed mb-10 font-light">
                 Spazi esterni accoglienti e riservati, pensati per vivere la casa anche all&apos;aperto e valorizzati dalla
                 presenza della piscina condominiale.
               </p>
               <Link
                 href="/terrazzi-e-giardini"
-                className="inline-flex items-center gap-2 text-primary font-medium hover:gap-4 transition-all duration-300 group"
+                className="inline-flex items-center gap-3 text-primary font-semibold hover:gap-5 transition-all duration-300 group text-sm uppercase tracking-wider"
               >
                 Lasciati conquistare
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform duration-300" />
               </Link>
             </div>
+            
           </div>
         </div>
       </section>
-
-      {/* Contact CTA Section */}
-      <section className="py-24 lg:py-32 bg-primary text-primary-foreground">
-        <div className="container mx-auto px-4 lg:px-8 text-center">
-          <h2 className="font-serif text-4xl md:text-5xl mb-6">
-            Contattaci per maggiori informazioni
-          </h2>
-          <p className="text-primary-foreground/80 text-lg max-w-2xl mx-auto mb-10">
-            Chiedi un appuntamento dedicato con un responsabile commerciale 
-            per scoprire tutto su Residenza Belvedere.
-          </p>
-          <Link
-            href="/contatti"
-            className="inline-flex items-center justify-center px-8 py-4 bg-background text-foreground rounded-full text-sm font-medium tracking-wide uppercase transition-all duration-300 hover:bg-background/90 hover:shadow-xl hover:-translate-y-1"
-          >
-            Richiedi Informazioni
-          </Link>
+ 
+      {/* Sezione Contatti (Contact CTA) */}
+      <section className="py-24 lg:py-36 bg-gradient-to-b from-white to-[#fcfbf9] overflow-hidden relative">
+        {/* Glow ambientali in background */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+        
+        <div className="container mx-auto px-6 lg:px-12 relative z-10 animate-fade-in-up">
+          <div className="bg-[#3e2d27] text-white rounded-[48px] p-12 lg:p-24 text-center shadow-2xl relative overflow-hidden border border-white/10">
+            {/* Gradiente radiale per effetto di luce speculare interna */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/15 via-transparent to-transparent pointer-events-none" />
+            
+            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-6 font-medium leading-tight max-w-3xl mx-auto">
+              Contattaci per maggiori informazioni
+            </h2>
+            <p className="text-white/80 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-light leading-relaxed">
+              Chiedi un appuntamento dedicato con un responsabile commerciale 
+              per scoprire tutto su Belvedere 35.
+            </p>
+            <Link
+              href="/contatti"
+              className="inline-flex items-center justify-center px-10 py-5 bg-primary text-primary-foreground hover:bg-primary/95 rounded-full text-xs font-bold tracking-[0.2em] uppercase transition-all duration-300 hover:shadow-2xl hover:-translate-y-1"
+            >
+              Richiedi Informazioni
+            </Link>
+          </div>
         </div>
       </section>
-
+ 
       <Footer />
     </main>
   )

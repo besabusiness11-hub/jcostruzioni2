@@ -6,8 +6,8 @@ import Footer from "@/components/Footer"
 import { ArrowRight } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Tipologie Abitative | Residenza Belvedere",
-  description: "Scopri le tipologie abitative di Residenza Belvedere: bilocali, trilocali e quadrilocali con spazi esterni, planimetrie dedicate e caratteristiche uniche.",
+  title: "Tipologie Abitative | Belvedere 35",
+  description: "Scopri le tipologie abitative di Belvedere 35: bilocali, trilocali e quadrilocali con spazi esterni, planimetrie dedicate e caratteristiche uniche.",
 }
 
 const apartments = [
@@ -45,86 +45,96 @@ const apartments = [
 
 export default function TipologiePage() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-[#fcfbf9]">
       <Header />
 
-      <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[70vh] min-h-[500px] flex items-end pb-20 md:pb-24 lg:pb-28 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <Image src="/images/apartment-3rooms.jpg" alt="Tipologie Abitative" fill className="object-cover" priority sizes="100vw" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+          <Image src="/images/apartment-3rooms.jpg" alt="Tipologie Abitative" fill className="object-cover scale-105" priority sizes="100vw" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/45 to-black/85" />
         </div>
 
-        <div className="relative z-10 container mx-auto px-4 lg:px-8 text-center">
-          <span className="inline-block text-white/90 text-sm tracking-[0.3em] uppercase mb-4 font-light">
-            Residenza Belvedere
+        <div className="relative z-10 container mx-auto px-6 lg:px-12 text-left">
+          <span className="inline-block text-primary text-[10px] tracking-[0.4em] uppercase mb-4 font-bold">
+            Belvedere 35
           </span>
-          <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl text-white font-medium leading-tight mb-6">
+          <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-white font-medium leading-[1.1] mb-6">
             Tipologie Abitative
           </h1>
-          <p className="text-white/80 text-lg md:text-xl max-w-2xl mx-auto">
-            Ogni appartamento ha una propria planimetria, con caratteristiche e unicita da scoprire nella tabella delle disponibilita.
+          <p className="text-white/80 text-lg md:text-xl max-w-2xl font-light leading-relaxed">
+            Ogni appartamento ha una propria planimetria, con caratteristiche e unicità da scoprire nella tabella delle disponibilità.
           </p>
         </div>
+
+        {/* Bordo inferiore sfumato */}
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
       </section>
 
-      <section className="py-16 lg:py-20 bg-background">
-        <div className="container mx-auto px-4 lg:px-8 text-center max-w-4xl">
-          <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-6 leading-tight">
-            Trova la tua <span className="text-primary">casa ideale</span>
+      <section className="py-24 lg:py-36 bg-gradient-to-b from-[#fcfbf9] to-[#f5f4ed]">
+        <div className="container mx-auto px-6 lg:px-12 text-center max-w-4xl animate-fade-in-up">
+          <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-8 leading-tight font-medium">
+            Trova la tua <span className="text-primary italic font-normal">casa ideale</span>
           </h2>
-          <p className="text-muted-foreground text-lg leading-relaxed">
-            Bilocali, trilocali e quadrilocali disegnati per esigenze diverse. Le disponibilita delle singole pagine permettono di aprire ogni unita e visualizzarne planimetria, esterni e punti distintivi.
+          <p className="text-muted-foreground/90 text-lg font-light leading-relaxed">
+            Bilocali, trilocali e quadrilocali disegnati per esigenze diverse. Le disponibilità delle singole pagine permettono di aprire ogni unità e visualizzarne planimetria, esterni e punti distintivi.
           </p>
         </div>
       </section>
 
-      <section className="pb-20 lg:pb-28 bg-background">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="space-y-12 lg:space-y-20">
+      <section className="pb-24 lg:pb-36 bg-background">
+        <div className="container mx-auto px-6 lg:px-12">
+          <div className="space-y-24 lg:space-y-36">
             {apartments.map((apartment, index) => (
               <div
                 key={apartment.title}
-                className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center"
+                className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center"
               >
-                <div className={index % 2 === 1 ? "lg:order-2" : ""}>
-                  <Link href={apartment.href} className="block relative h-[350px] lg:h-[500px] rounded-3xl overflow-hidden group">
+                <div className={`lg:col-span-6 animate-fade-in-up ${index % 2 === 1 ? "lg:order-2" : ""}`}>
+                  <Link href={apartment.href} className="block relative h-[380px] lg:h-[520px] rounded-[36px] overflow-hidden shadow-xl border border-slate-200/50 group">
                     <Image
                       src={apartment.image}
                       alt={apartment.title}
                       fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
                       sizes="(max-width: 1024px) 100vw, 50vw"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-4 py-1.5 rounded-full text-xs font-medium tracking-wide">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    
+                    {/* Badge fluttuante disponibili */}
+                    <div className="absolute top-6 right-6 backdrop-blur-md bg-[#3e2d27]/90 border border-white/10 text-white px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase shadow-lg">
                       {apartment.available} disponibili
                     </div>
                   </Link>
                 </div>
 
-                <div className={index % 2 === 1 ? "lg:order-1" : ""}>
-                  <span className="inline-block text-primary text-sm tracking-[0.3em] uppercase mb-3 font-medium">
+                <div className={`lg:col-span-6 animate-fade-in-up ${index % 2 === 1 ? "lg:order-1" : ""}`}>
+                  <span className="inline-block text-primary text-[10px] tracking-[0.4em] uppercase mb-4 font-bold">
                     {apartment.subtitle}
                   </span>
-                  <h3 className="font-serif text-3xl md:text-4xl lg:text-5xl text-foreground mb-4">
+                  <h3 className="font-serif text-4xl md:text-5xl text-foreground mb-6 font-semibold">
                     {apartment.title}
                   </h3>
-                  <p className="text-muted-foreground text-lg leading-relaxed mb-6">
+                  <p className="text-muted-foreground/90 text-lg leading-relaxed mb-8 font-light">
                     {apartment.description}
                   </p>
-                  <div className="mb-8 border-y border-border py-5">
-                    <p className="text-sm text-muted-foreground uppercase tracking-wide mb-1">Superfici indicative</p>
-                    <p className="font-serif text-3xl text-foreground">{apartment.sqm}</p>
+                  
+                  {/* Grid dettagli affiancati */}
+                  <div className="grid grid-cols-2 gap-8 border-y border-slate-200/50 py-6 mb-8">
+                    <div>
+                      <p className="text-[10px] text-muted-foreground uppercase tracking-widest mb-1.5 font-bold">Superfici indicative</p>
+                      <p className="font-serif text-2xl md:text-3xl text-foreground font-medium">{apartment.sqm}</p>
+                    </div>
+                    <div>
+                      <p className="text-[10px] text-muted-foreground uppercase tracking-widest mb-1.5 font-bold">A partire da</p>
+                      <p className="font-serif text-2xl md:text-3xl text-foreground font-semibold">&euro; {apartment.priceFrom}</p>
+                    </div>
                   </div>
-                  <div className="mb-8">
-                    <p className="text-sm text-muted-foreground uppercase tracking-wide mb-1">A partire da</p>
-                    <p className="font-serif text-3xl text-foreground font-semibold">&euro; {apartment.priceFrom}</p>
-                  </div>
+
                   <Link
                     href={apartment.href}
-                    className="inline-flex items-center gap-3 bg-primary text-primary-foreground px-6 py-3 rounded-full text-sm font-medium tracking-wide uppercase transition-all duration-300 hover:bg-primary/90 hover:gap-4 hover:shadow-lg"
+                    className="inline-flex items-center gap-3 bg-primary text-primary-foreground px-8 py-4 rounded-full text-xs font-bold tracking-[0.15em] uppercase transition-all duration-300 hover:bg-primary/95 hover:gap-4 hover:shadow-2xl hover:-translate-y-0.5"
                   >
-                    Vedi disponibilita e planimetrie
+                    Vedi disponibilità e planimetrie
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
@@ -134,17 +144,17 @@ export default function TipologiePage() {
         </div>
       </section>
 
-      <section className="py-20 lg:py-28 bg-secondary">
-        <div className="container mx-auto px-4 lg:px-8 text-center">
-          <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-6 leading-tight">
-            Ogni unita racconta una casa diversa
+      <section className="py-24 lg:py-36 bg-gradient-to-b from-[#fbfbf9] to-[#f5f4ed]">
+        <div className="container mx-auto px-6 lg:px-12 text-center animate-fade-in-up">
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground mb-6 leading-tight font-medium">
+            Ogni unità racconta una casa diversa
           </h2>
-          <p className="text-muted-foreground text-lg leading-relaxed max-w-2xl mx-auto mb-10">
-            Apri una riga nella tabella delle disponibilita per vedere planimetria, spazi esterni e caratteristiche specifiche dell'appartamento.
+          <p className="text-muted-foreground/90 text-lg leading-relaxed max-w-2xl mx-auto mb-12 font-light">
+            Apri una riga nella tabella delle disponibilità per vedere planimetria, spazi esterni e caratteristiche specifiche dell'appartamento.
           </p>
           <Link
             href="/contatti"
-            className="inline-flex items-center justify-center px-8 py-4 bg-primary text-primary-foreground rounded-full text-sm font-medium tracking-wide uppercase transition-all duration-300 hover:bg-primary/90 hover:shadow-xl hover:-translate-y-1"
+            className="inline-flex items-center justify-center px-10 py-5 bg-primary text-primary-foreground rounded-full text-xs font-bold tracking-[0.2em] uppercase transition-all duration-300 hover:bg-primary/95 hover:shadow-2xl hover:-translate-y-1"
           >
             Contattaci
           </Link>

@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { Mail } from "lucide-react"
+import Logo from "@/components/Logo"
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -14,70 +15,80 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-foreground text-background">
-      <div className="container mx-auto px-4 lg:px-8 py-16 lg:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16">
-          <div>
-            <Link href="/" className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
-                <span className="text-primary-foreground font-serif text-2xl font-bold">B</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="font-serif text-2xl font-semibold tracking-wide text-background">
-                  Residenza Belvedere
-                </span>
-                <span className="text-xs tracking-widest uppercase text-background/60">
-                  Garbagnate Monastero
-                </span>
+    <footer className="bg-[#241a16] text-[#fcfbf9] border-t border-[#3e2d27]/20">
+      <div className="container mx-auto px-6 lg:px-12 py-20 lg:py-28">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-20">
+          
+          {/* Logo & Info column */}
+          <div className="md:col-span-7">
+            <Link href="/" className="inline-block mb-8 group">
+              <div className="h-20 flex items-center">
+                <Logo className="h-full w-auto text-white group-hover:scale-[1.02] transition-transform duration-500" />
               </div>
             </Link>
-            <p className="text-background/70 leading-relaxed mb-6 max-w-sm">
-              Residenze moderne nel verde di Garbagnate Monastero, pensate per chi cerca qualita, comfort e benessere quotidiano.
+            <p className="text-[#fcfbf9]/70 leading-relaxed mb-8 max-w-sm font-light text-base">
+              Residenze moderne nel verde di Garbagnate Monastero, pensate per chi cerca qualità, comfort e benessere quotidiano.
             </p>
-            <div className="space-y-3 text-background/70">
-              <a href="mailto:info@jcostruzioni.it" className="flex items-center gap-3 hover:text-primary transition-colors">
-                <Mail className="w-4 h-4" aria-hidden="true" />
-                info@jcostruzioni.it
+            <div className="space-y-3">
+              <a 
+                href="mailto:info@jcostruzioni.it" 
+                className="inline-flex items-center gap-3 text-[#fcfbf9]/60 hover:text-primary transition-colors duration-300 font-medium text-sm group"
+              >
+                <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:border-primary/30 transition-all duration-300">
+                  <Mail className="w-4 h-4 text-white group-hover:text-primary transition-colors duration-300" aria-hidden="true" />
+                </div>
+                <span>info@jcostruzioni.it</span>
               </a>
             </div>
           </div>
 
-          <div>
-            <h4 className="font-serif text-lg font-medium mb-5">Legale</h4>
-            <ul className="space-y-3">
+          {/* Links column */}
+          <div className="md:col-span-5 md:pl-12 lg:pl-20">
+            <h4 className="text-[10px] tracking-[0.4em] uppercase text-primary font-bold mb-6">
+              Legale
+            </h4>
+            <ul className="space-y-4">
               {footerLinks.legale.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-background/70 hover:text-primary transition-colors duration-300"
+                    className="text-sm text-[#fcfbf9]/60 hover:text-[#fcfbf9] hover:pl-2 transition-all duration-300 font-light flex items-center gap-2 group"
                   >
-                    {link.label}
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary scale-0 group-hover:scale-100 transition-transform duration-300"></span>
+                    <span>{link.label}</span>
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
+
         </div>
       </div>
 
-      <div className="border-t border-background/10">
-        <div className="container mx-auto px-4 lg:px-8 py-8">
+      {/* Collaboration banner */}
+      <div className="border-t border-white/5 bg-[#1a120f]/50">
+        <div className="container mx-auto px-6 lg:px-12 py-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <p className="text-background/50 text-sm">In collaborazione con:</p>
+            <p className="text-[#fcfbf9]/40 text-[10px] tracking-[0.3em] uppercase font-bold">
+              In collaborazione con:
+            </p>
             <div className="flex items-center gap-8 flex-wrap justify-center">
-              <span className="text-background/50 text-sm font-medium tracking-wider">J COSTRUZIONI</span>
+              <span className="text-[#fcfbf9]/60 text-xs font-semibold tracking-[0.25em] uppercase hover:text-primary transition-colors duration-300 cursor-default">
+                J COSTRUZIONI
+              </span>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="border-t border-background/10">
-        <div className="container mx-auto px-4 lg:px-8 py-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-background/50">
-            <p>&copy; {currentYear} Residenza Belvedere - Tutti i diritti riservati</p>
-            <p>
+      {/* Bottom copyrights */}
+      <div className="border-t border-white/5 bg-[#140e0c]/80">
+        <div className="container mx-auto px-6 lg:px-12 py-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[#fcfbf9]/40 font-light">
+            <p>&copy; {currentYear} Belvedere 35 - Tutti i diritti riservati</p>
+            <p className="tracking-wide">
               Realizzato con cura da{" "}
-              <a href="#" className="text-primary hover:underline">
+              <a href="#" className="text-primary hover:underline hover:text-primary/80 font-normal transition-colors duration-300">
                 Studio Digitale
               </a>
             </p>
