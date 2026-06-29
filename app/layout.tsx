@@ -31,6 +31,8 @@ export const viewport: Viewport = {
   initialScale: 1,
 }
 
+import FloatingContactButton from "@/components/FloatingContactButton"
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -40,6 +42,7 @@ export default function RootLayout({
     <html lang="it" className={`${cormorant.variable} ${montserrat.variable}`}>
       <body className="font-sans antialiased">
         {children}
+        <FloatingContactButton />
         <Script
           src="https://api.getnavi.dev/widget.js"
           data-key="navi_sk_live_e0f77edd77eab0c3626ffd6d5ebddcbdb4ba0ba4"

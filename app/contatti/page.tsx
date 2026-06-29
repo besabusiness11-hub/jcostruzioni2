@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
+import FaqSection from "@/components/FaqSection"
 import { Mail, MapPin, Clock, Send, MessageSquare } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
@@ -226,6 +227,7 @@ export default function ContattiPage() {
         </div>
       </section>
  
+      <FaqSection />
       <Footer />
     </main>
   )
