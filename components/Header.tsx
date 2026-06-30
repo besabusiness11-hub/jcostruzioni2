@@ -47,15 +47,7 @@ export default function Header() {
 
   const navLinks = [
     { href: "/il-progetto", label: "Il Progetto" },
-    { 
-      href: "/tipologie", 
-      label: "Tipologie",
-      submenu: [
-        { href: "/tipologie/bilocali", label: "Bilocali" },
-        { href: "/tipologie/trilocali", label: "Trilocali" },
-        { href: "/tipologie/quadrilocali", label: "Quadrilocali" },
-      ]
-    },
+    { href: "/tipologie", label: "Tipologie" },
     { 
       href: "/terrazzi-e-giardini", 
       label: "Il Verde",
@@ -63,6 +55,7 @@ export default function Header() {
         { href: "/terrazzi-e-giardini#terrazzi", label: "Terrazzi" },
         { href: "/terrazzi-e-giardini#giardini", label: "Giardini" },
         { href: "/terrazzi-e-giardini#parti-esterne", label: "Parti Esterne" },
+        { href: "/piscina", label: "Piscina" },
       ]
     },
     { href: "/contatti", label: "Contatti" },
@@ -75,41 +68,13 @@ export default function Header() {
           
           {/* NAVIGAZIONE SINISTRA (Desktop) - 2 Bottoni */}
           <div className="hidden lg:flex lg:col-span-3 items-center justify-start gap-8">
-            <Link href="/il-progetto" className="text-white hover:text-white/70 transition-colors uppercase tracking-[0.2em] text-[11px] font-medium">
+            <Link href="/il-progetto" className="text-white hover:text-white/70 transition-colors uppercase tracking-[0.2em] text-[13px] font-medium">
               Progetto
             </Link>
             
-            {/* Dropdown Tipologie */}
-            <div className="relative group">
-              <button className="text-white hover:text-white/70 transition-colors uppercase tracking-[0.2em] text-[11px] font-medium flex items-center gap-1.5 py-2">
-                Tipologie
-                <ChevronDown className="w-3.5 h-3.5 group-hover:rotate-180 transition-transform duration-300" />
-              </button>
-              
-              <div className="absolute left-0 top-full pt-2 w-52 opacity-0 invisible translate-y-3 pointer-events-none group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 ease-out z-50">
-                <div className="bg-gradient-to-br from-[#3e2d27]/95 to-[#241a16]/90 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_10px_30px_-5px_rgba(0,0,0,0.5)]">
-                  <div className="flex flex-col gap-1.5">
-                    <Link href="/tipologie" className="text-white/60 hover:text-white text-[10px] uppercase tracking-[0.15em] transition-all duration-300 py-2 px-3 hover:bg-white/10 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] rounded-xl font-medium flex items-center justify-between group/link">
-                      <span>Vedi Tutte</span>
-                      <span className="w-1.5 h-1.5 rounded-full bg-white/40 group-hover/link:bg-white group-hover/link:scale-125 transition-all duration-300"></span>
-                    </Link>
-                    <div className="h-[1px] bg-gradient-to-r from-transparent via-white/15 to-transparent my-1"></div>
-                    <Link href="/tipologie/bilocali" className="text-white/80 hover:text-white text-xs uppercase tracking-[0.1em] transition-all duration-300 py-2 px-3 hover:bg-white/10 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] rounded-xl flex items-center gap-2 group/item">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary opacity-0 group-hover/item:opacity-100 transition-opacity duration-300"></span>
-                      <span>Bilocali</span>
-                    </Link>
-                    <Link href="/tipologie/trilocali" className="text-white/80 hover:text-white text-xs uppercase tracking-[0.1em] transition-all duration-300 py-2 px-3 hover:bg-white/10 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] rounded-xl flex items-center gap-2 group/item">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary opacity-0 group-hover/item:opacity-100 transition-opacity duration-300"></span>
-                      <span>Trilocali</span>
-                    </Link>
-                    <Link href="/tipologie/quadrilocali" className="text-white/80 hover:text-white text-xs uppercase tracking-[0.1em] transition-all duration-300 py-2 px-3 hover:bg-white/10 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] rounded-xl flex items-center gap-2 group/item">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary opacity-0 group-hover/item:opacity-100 transition-opacity duration-300"></span>
-                      <span>Quadrilocali</span>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Link href="/tipologie" className="text-white hover:text-white/70 transition-colors uppercase tracking-[0.2em] text-[13px] font-medium py-2">
+              Tipologie
+            </Link>
           </div>
 
           {/* LOGO CENTRALE */}
@@ -123,7 +88,7 @@ export default function Header() {
           <div className="hidden lg:flex lg:col-span-3 items-center justify-end gap-8">
             {/* Dropdown Il Verde */}
             <div className="relative group">
-              <button className="text-white hover:text-white/70 transition-colors uppercase tracking-[0.2em] text-[11px] font-medium flex items-center gap-1.5 py-2">
+              <button className="text-white hover:text-white/70 transition-colors uppercase tracking-[0.2em] text-[13px] font-medium flex items-center gap-1.5 py-2">
                 Il Verde
                 <ChevronDown className="w-3.5 h-3.5 group-hover:rotate-180 transition-transform duration-300" />
               </button>
@@ -148,12 +113,16 @@ export default function Header() {
                       <span className="w-1.5 h-1.5 rounded-full bg-primary opacity-0 group-hover/item:opacity-100 transition-opacity duration-300"></span>
                       <span>Parti Esterne</span>
                     </Link>
+                    <Link href="/piscina" className="text-white/80 hover:text-white text-xs uppercase tracking-[0.1em] transition-all duration-300 py-2 px-3 hover:bg-white/10 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] rounded-xl flex items-center gap-2 group/item">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary opacity-0 group-hover/item:opacity-100 transition-opacity duration-300"></span>
+                      <span>Piscina</span>
+                    </Link>
                   </div>
                 </div>
               </div>
             </div>
 
-            <Link href="/contatti" className="text-white hover:text-white/70 transition-colors uppercase tracking-[0.2em] text-[11px] font-medium">
+            <Link href="/contatti" className="text-white hover:text-white/70 transition-colors uppercase tracking-[0.2em] text-[13px] font-medium">
               Contatti
             </Link>
           </div>

@@ -65,21 +65,7 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Collaboration banner */}
-      <div className="border-t border-white/5 bg-[#1a120f]/50">
-        <div className="container mx-auto px-6 lg:px-12 py-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <p className="text-[#fcfbf9]/40 text-[10px] tracking-[0.3em] uppercase font-bold">
-              In collaborazione con:
-            </p>
-            <div className="flex items-center gap-8 flex-wrap justify-center">
-              <span className="text-[#fcfbf9]/60 text-xs font-semibold tracking-[0.25em] uppercase hover:text-primary transition-colors duration-300 cursor-default">
-                J COSTRUZIONI
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
+
 
       {/* Bottom copyrights */}
       <div className="border-t border-white/5 bg-[#140e0c]/80">
@@ -88,8 +74,8 @@ export default function Footer() {
             <p>&copy; {currentYear} Belvedere 35 - Tutti i diritti riservati</p>
             <p className="tracking-wide">
               Realizzato con cura da{" "}
-              <a href="#" className="text-primary hover:underline hover:text-primary/80 font-normal transition-colors duration-300">
-                Studio Digitale
+              <a href="https://besaweb.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline hover:text-primary/80 font-normal transition-colors duration-300">
+                Besaweb.com
               </a>
             </p>
           </div>
