@@ -15,24 +15,19 @@ const apartmentsData = {
     subtitle: "Ideale per giovani coppie e professionisti",
     description: "Soluzioni compatte e funzionali, con distribuzioni curate e affacci pensati per dare luce agli ambienti quotidiani.",
     image: "/images/apartment-2rooms.jpg",
-    sqm: "55-65 mq",
-    priceFrom: "245.000",
-    available: 8,
+    sqm: "60-63 mq",
+    priceFrom: "215.000",
+    available: 3,
     features: [
       "Distribuzione degli spazi estremamente efficiente",
-      "Terrazzo loggiato profondo e vivibile",
+      "Terrazzo loggiato o giardino ad uso esclusivo",
       "Zona notte separata e silenziosa",
       "Ideale per investimento o prima casa"
     ],
     units: [
-      { name: "A1", floor: "Piano 1", sqm: 55, terrace: 8, price: "245.000", available: true, uniqueness: "Affaccio raccolto e distribuzione compatta per una gestione quotidiana semplice." },
-      { name: "A2", floor: "Piano 2", sqm: 58, terrace: 10, price: "258.000", available: true, uniqueness: "Zona giorno luminosa con terrazzo proporzionato alla vita all'aperto." },
-      { name: "A3", floor: "Piano 3", sqm: 60, terrace: 12, price: "275.000", available: true, uniqueness: "Piano alto e taglio regolare per massimizzare arredo e privacy." },
-      { name: "A4", floor: "Piano 4", sqm: 62, terrace: 15, price: "290.000", available: false, uniqueness: "Terrazzo piu ampio e affaccio elevato sulla corte verde." },
-      { name: "B1", floor: "Piano 1", sqm: 56, terrace: 8, price: "248.000", available: true, uniqueness: "Soluzione pratica con accesso comodo agli spazi comuni." },
-      { name: "B2", floor: "Piano 2", sqm: 59, terrace: 10, price: "262.000", available: true, uniqueness: "Bilocale equilibrato con ambienti facili da personalizzare." },
-      { name: "B3", floor: "Piano 3", sqm: 61, terrace: 12, price: "278.000", available: false, uniqueness: "Taglio luminoso con separazione netta tra zona giorno e notte." },
-      { name: "B4", floor: "Piano 4", sqm: 65, terrace: 18, price: "305.000", available: true, uniqueness: "Il bilocale piu generoso, con terrazzo profondo e massima vivibilita esterna." },
+      { name: "3B", floor: "Piano 1", sqm: 60, terrace: 17, price: "215.000", available: true, uniqueness: "Soluzione funzionale ed efficiente con un'ottima esposizione solare, ideale come investimento o prima casa." },
+      { name: "5A", floor: "Piano 1", sqm: 61, terrace: 19, price: "220.000", available: true, uniqueness: "Bilocale luminoso al primo piano con terrazzo abitabile coperto, perfetto per cene estive." },
+      { name: "2A", floor: "Piano Terra", sqm: 63, terrace: 19, garden: 62, price: "235.000", available: true, uniqueness: "Splendido bilocale al piano terra dotato di un ampio giardino privato di oltre 60 mq." },
     ]
   },
   trilocali: {
@@ -40,28 +35,21 @@ const apartmentsData = {
     subtitle: "La soluzione più richiesta",
     description: "Appartamenti equilibrati, con zona giorno luminosa e spazi flessibili per studio, famiglia e vita all'aperto.",
     image: "/images/apartment-3rooms.jpg",
-    sqm: "85-100 mq",
-    priceFrom: "365.000",
-    available: 12,
+    sqm: "104-129 mq",
+    priceFrom: "405.000",
+    available: 5,
     features: [
       "Living di ampio respiro con cucina a vista o abitabile",
       "Doppi servizi finestrati con finiture di pregio",
-      "Giardini privati al piano terra fino a 40 mq",
-      "Camere da letto matrimoniali e singole ampie"
+      "Giardini privati al piano terra fino a 300 mq",
+      "Terrazzi loggiati vivibili al primo piano"
     ],
     units: [
-      { name: "C1", floor: "Piano 1", sqm: 85, terrace: 15, price: "365.000", available: true, uniqueness: "Taglio efficiente con living aperto sul terrazzo." },
-      { name: "C2", floor: "Piano 2", sqm: 88, terrace: 18, price: "385.000", available: true, uniqueness: "Terrazzo profondo e zona notte raccolta per maggiore privacy." },
-      { name: "C3", floor: "Piano 3", sqm: 90, terrace: 20, price: "398.000", available: true, uniqueness: "Piano alto con affacci luminosi e distribuzione regolare." },
-      { name: "C4", floor: "Piano 4", sqm: 92, terrace: 25, price: "420.000", available: true, uniqueness: "Ampia superficie esterna per pranzi e relax all'aperto." },
-      { name: "D1", floor: "Piano 1", sqm: 86, terrace: 15, price: "368.000", available: false, uniqueness: "Soluzione equilibrata con accessi rapidi agli spazi comuni." },
-      { name: "D2", floor: "Piano 2", sqm: 89, terrace: 18, price: "388.000", available: true, uniqueness: "Zona studio flessibile e terrazzo vivibile." },
-      { name: "D3", floor: "Piano 3", sqm: 92, terrace: 22, price: "405.000", available: true, uniqueness: "Affaccio piu aperto e living pensato per ricevere." },
-      { name: "D4", floor: "Piano 4", sqm: 95, terrace: 28, price: "435.000", available: true, uniqueness: "Il trilocale piu panoramico, con esterno generoso." },
-      { name: "E1", floor: "Piano 1", sqm: 95, terrace: 12, garden: 40, price: "425.000", available: true, uniqueness: "Giardino privato ideale per chi desidera uno spazio verde quotidiano." },
-      { name: "E2", floor: "Piano 2", sqm: 98, terrace: 20, price: "418.000", available: false, uniqueness: "Superficie ampia e ambienti facilmente personalizzabili." },
-      { name: "E3", floor: "Piano 3", sqm: 100, terrace: 22, price: "438.000", available: true, uniqueness: "Taglio ampio con camere ben separate dalla zona giorno." },
-      { name: "E4", floor: "Piano 4", sqm: 100, terrace: 30, price: "458.000", available: false, uniqueness: "Grande terrazzo e vista piu aperta sulla corte." },
+      { name: "3A", floor: "Piano Terra", sqm: 114, terrace: 15, garden: 126, price: "405.000", available: true, uniqueness: "Spettacolare trilocale al piano terra con portico e un magnifico giardino ad angolo di 126 mq." },
+      { name: "6A", floor: "Piano 1", sqm: 104, terrace: 13, price: "455.000", available: true, uniqueness: "Trilocale al primo piano con eccellente esposizione solare e balcone loggiato, taglio moderno." },
+      { name: "1C", floor: "Piano Terra", sqm: 129, terrace: 29, garden: 240, price: "475.000", available: true, uniqueness: "Trilocale di testa con tripla esposizione ed immenso giardino privato, ideale per famiglie." },
+      { name: "2C", floor: "Piano Terra", sqm: 124, terrace: 45, garden: 309, price: "480.000", available: true, uniqueness: "Il trilocale con il giardino più grande del complesso: oltre 300 mq di area verde privata." },
+      { name: "1A", floor: "Piano Terra", sqm: 128, terrace: 40, garden: 253, price: "485.000", available: true, uniqueness: "Uno dei trilocali più prestigiosi di Belvedere 35, con giardino di 253 mq e portico coperto di 40 mq." },
     ]
   },
   quadrilocali: {
@@ -69,22 +57,21 @@ const apartmentsData = {
     subtitle: "Spazi generosi per la famiglia",
     description: "Soluzioni ampie con ambienti distinti, privacy e una relazione privilegiata con terrazzi o giardini privati.",
     image: "/images/apartment-4rooms.jpg",
-    sqm: "115-135 mq",
-    priceFrom: "485.000",
-    available: 6,
+    sqm: "124-151 mq",
+    priceFrom: "560.000",
+    available: 5,
     features: [
       "Salone triplo ad altissima luminosità",
-      "Giardini privati al piano terra fino a 60 mq",
-      "Terrazzo panoramico avvolgente",
-      "Suite padronale con cabina armadio dedicata"
+      "Giardini privati al piano terra fino a 300 mq",
+      "Terrazzo panoramico avvolgente fino a 70 mq",
+      "Suite padronale con cabina armadio o doppi servizi"
     ],
     units: [
-      { name: "F1", floor: "Piano 1", sqm: 115, terrace: 20, garden: 50, price: "485.000", available: true, uniqueness: "Giardino privato e zona giorno ampia per una vita familiare aperta verso l'esterno." },
-      { name: "F2", floor: "Piano 2", sqm: 118, terrace: 25, price: "498.000", available: true, uniqueness: "Terrazzo importante e ambienti ben separati tra zona giorno e notte." },
-      { name: "F3", floor: "Piano 3", sqm: 122, terrace: 30, price: "525.000", available: false, uniqueness: "Piano alto con terrazzo profondo e distribuzione molto regolare." },
-      { name: "G1", floor: "Piano 1", sqm: 125, terrace: 18, garden: 60, price: "545.000", available: true, uniqueness: "Il giardino piu ampio, pensato come estensione naturale del living." },
-      { name: "G2", floor: "Piano 2", sqm: 128, terrace: 28, price: "558.000", available: true, uniqueness: "Superficie generosa e terrazzo vivibile per pranzi all'aperto." },
-      { name: "G3", floor: "Piano 3", sqm: 135, terrace: 35, price: "595.000", available: true, uniqueness: "Il quadrilocale piu ampio, con affacci luminosi e grande terrazzo." },
+      { name: "3C", floor: "Piano 1", sqm: 129, terrace: 32, price: "560.000", available: true, uniqueness: "Luminoso quadrilocale all'ultimo piano caratterizzato da un terrazzo panoramico e un living spazioso." },
+      { name: "4C", floor: "Piano 1", sqm: 124, terrace: 45, price: "565.000", available: true, uniqueness: "Quadrilocale angolare al primo piano con uno splendido terrazzo loggiato di 45 mq." },
+      { name: "4A", floor: "Piano 1", sqm: 130, terrace: 43, price: "590.000", available: true, uniqueness: "Elegante quadrilocale al primo piano con terrazzo profondo ed ottima illuminazione naturale." },
+      { name: "1B", floor: "Piano Terra", sqm: 151, terrace: 71, garden: 299, price: "595.000", available: true, uniqueness: "Esclusivo quadrilocale al piano terra di generosa metratura, con un giardino privato perimetrale di 299 mq." },
+      { name: "2B", floor: "Piano 1", sqm: 151, terrace: 71, price: "700.000", available: true, uniqueness: "La residenza più prestigiosa del complesso: attico-quadrilocale di 151 mq con terrazza di 71 mq." },
     ]
   }
 }
