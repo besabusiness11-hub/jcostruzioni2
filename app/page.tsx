@@ -31,21 +31,21 @@ const features = [
 const apartments = [
   {
     title: "Bilocali",
-    image: "/images/apartment-2rooms.jpg",
-    sqm: "55-65 mq",
-    href: "/tipologie/bilocali",
+    image: "/images/interior-bilocale.jpg",
+    sqm: "60-63 mq",
+    href: "/tipologie?tab=bilocali",
   },
   {
     title: "Trilocali",
-    image: "/images/apartment-3rooms.jpg",
-    sqm: "85-100 mq",
-    href: "/tipologie/trilocali",
+    image: "/images/interior-trilocale.jpg",
+    sqm: "104-129 mq",
+    href: "/tipologie?tab=trilocali",
   },
   {
     title: "Quadrilocali",
-    image: "/images/apartment-4rooms.jpg",
-    sqm: "115-135 mq",
-    href: "/tipologie/quadrilocali",
+    image: "/images/interior-quadrilocale.jpg",
+    sqm: "124-151 mq",
+    href: "/tipologie?tab=quadrilocali",
   },
 ]
 

@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useRef } from "react"
+import React, { useState, useRef, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, Check, MapPin, Sparkles, Building, Trees, Maximize, Coins } from "lucide-react"
@@ -14,7 +14,7 @@ const apartmentsData = {
     title: "Bilocali",
     subtitle: "Ideale per giovani coppie e professionisti",
     description: "Soluzioni compatte e funzionali, con distribuzioni curate e affacci pensati per dare luce agli ambienti quotidiani.",
-    image: "/images/apartment-2rooms.jpg",
+    image: "/images/interior-bilocale.jpg",
     sqm: "60-63 mq",
     priceFrom: "215.000",
     available: 3,
@@ -34,7 +34,7 @@ const apartmentsData = {
     title: "Trilocali",
     subtitle: "La soluzione più richiesta",
     description: "Appartamenti equilibrati, con zona giorno luminosa e spazi flessibili per studio, famiglia e vita all'aperto.",
-    image: "/images/apartment-3rooms.jpg",
+    image: "/images/interior-trilocale.jpg",
     sqm: "104-129 mq",
     priceFrom: "405.000",
     available: 5,
@@ -56,7 +56,7 @@ const apartmentsData = {
     title: "Quadrilocali",
     subtitle: "Spazi generosi per la famiglia",
     description: "Soluzioni ampie con ambienti distinti, privacy e una relazione privilegiata con terrazzi o giardini privati.",
-    image: "/images/apartment-4rooms.jpg",
+    image: "/images/interior-quadrilocale.jpg",
     sqm: "124-151 mq",
     priceFrom: "560.000",
     available: 5,
@@ -82,6 +82,16 @@ export default function TipologieClient() {
   const [activeTab, setActiveTab] = useState<TabType>("bilocali")
   const explorerRef = useRef<HTMLDivElement>(null)
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search)
+      const tab = params.get("tab") as TabType
+      if (tab && ["bilocali", "trilocali", "quadrilocali"].includes(tab)) {
+        setActiveTab(tab)
+      }
+    }
+  }, [])
+
   const handleScrollToExplorer = (tab: TabType) => {
     setActiveTab(tab)
     setTimeout(() => {
@@ -99,7 +109,7 @@ export default function TipologieClient() {
       <section className="relative h-[70vh] min-h-[550px] flex items-end pb-20 md:pb-24 lg:pb-28 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image 
-            src="/images/apartment-3rooms.jpg" 
+            src="/images/interior-kitchen-sunset.jpg" 
             alt="Tipologie Abitative" 
             fill 
             className="object-cover scale-105" 

@@ -64,7 +64,7 @@ const energyFeatures = [
       <section className="relative h-[70vh] min-h-[500px] flex items-end pb-20 md:pb-24 lg:pb-28 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/project-detail.jpg"
+            src="/images/project-day-drone.jpg"
             alt="Belvedere 35 - Il Progetto"
             fill
             className="object-cover scale-105"
@@ -124,7 +124,7 @@ const energyFeatures = [
             </div>
             <div className="relative h-[450px] lg:h-[650px] rounded-[36px] overflow-hidden shadow-2xl border border-slate-200/50 group animate-fade-in-up">
               <Image
-                src="/images/interior-detail.jpg"
+                src="/images/interior-terrace.jpg"
                 alt="Interni di pregio"
                 fill
                 className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105"

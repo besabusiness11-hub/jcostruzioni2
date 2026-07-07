@@ -43,7 +43,7 @@ export default function PiscinaPage() {
       <section className="relative h-[85vh] min-h-[600px] flex items-end pb-24 md:pb-28 lg:pb-36 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image 
-            src="/images/pool-hero.png" 
+            src="/images/pool-sunset.jpg" 
             alt="Piscina Belvedere 35" 
             fill 
             className="object-cover scale-105" 
