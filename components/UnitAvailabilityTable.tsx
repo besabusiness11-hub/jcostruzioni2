@@ -1,8 +1,9 @@
 "use client"
 
-import { Fragment, useMemo, useState } from "react"
+import { Fragment, useMemo, useState, useEffect } from "react"
 import Image from "next/image"
-import { ChevronDown, ChevronLeft, ChevronRight, LayoutPanelTop, Sparkles, Trees } from "lucide-react"
+import { ChevronDown, ChevronLeft, ChevronRight, LayoutPanelTop, Sparkles, Trees, Maximize2, RotateCcw, X, ZoomIn, ZoomOut } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion"
 
 export interface UnitAvailability {
   name: string
@@ -24,6 +25,20 @@ interface UnitAvailabilityTableProps {
 export default function UnitAvailabilityTable({ units, typeLabel }: UnitAvailabilityTableProps) {
   const [openUnit, setOpenUnit] = useState<string | null>(null)
   const [slideByUnit, setSlideByUnit] = useState<Record<string, number>>({})
+  const [lightboxImage, setLightboxImage] = useState<{ src: string; title: string } | null>(null)
+  const [scale, setScale] = useState(1)
+
+  useEffect(() => {
+    if (lightboxImage) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
+    return () => {
+      document.body.style.overflow = ""
+    }
+  }, [lightboxImage])
+
   const showGarden = units.some((unit) => unit.garden)
   const columnCount = showGarden ? 8 : 7
 
@@ -140,15 +155,30 @@ export default function UnitAvailabilityTable({ units, typeLabel }: UnitAvailabi
                   <tr className="bg-gradient-to-b from-[#fbfbf9]/80 to-[#f5f4ed]/80 backdrop-blur-sm">
                     <td colSpan={columnCount} className="px-5 py-8">
                       <div id={panelId} className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] items-stretch">
-                        <div className="relative min-h-[300px] overflow-hidden rounded-[24px] bg-white border border-slate-100 shadow-inner flex items-center justify-center p-6">
+                        {/* Pulsante interattivo per aprire l'immagine in Lightbox con Zoom */}
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setScale(1)
+                            setLightboxImage({ src: activeSlide.image, title: activeSlide.title })
+                          }}
+                          className="relative min-h-[300px] overflow-hidden rounded-[24px] bg-white border border-slate-100 shadow-inner p-6 flex items-center justify-center cursor-zoom-in group/plan w-full text-left"
+                          title="Clicca per ingrandire la planimetria o l'immagine"
+                        >
                           <Image
                             src={activeSlide.image}
                             alt={activeSlide.title}
                             fill
-                            className="object-contain p-6 hover:scale-[1.02] transition-transform duration-500"
+                            className="object-contain p-6 transition-transform duration-500 group-hover/plan:scale-[1.02]"
                             sizes="(max-width: 1024px) 100vw, 620px"
                           />
-                        </div>
+                          <div className="absolute inset-0 bg-black/5 opacity-0 group-hover/plan:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <div className="bg-[#3e2d27]/95 border border-white/10 text-white px-5 py-2.5 rounded-full text-xs font-bold tracking-wider uppercase shadow-lg flex items-center gap-2 scale-90 group-hover/plan:scale-100 transition-all duration-300">
+                              <Maximize2 className="w-3.5 h-3.5 text-primary" />
+                              Ingrandisci e zoom
+                            </div>
+                          </div>
+                        </button>
 
                         <div className="flex flex-col justify-between rounded-[24px] bg-white p-8 border border-slate-100 shadow-md">
                           <div>
@@ -195,6 +225,99 @@ export default function UnitAvailabilityTable({ units, typeLabel }: UnitAvailabi
           })}
         </tbody>
       </table>
+
+      {/* LIGHTBOX CON ZOOM & PAN INTERATTIVO */}
+      <AnimatePresence>
+        {lightboxImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/95 backdrop-blur-xl z-[9999] flex flex-col justify-between"
+          >
+            {/* Header overlay */}
+            <div className="flex justify-between items-center px-6 py-4 border-b border-white/10 bg-black/40 backdrop-blur-md relative z-10">
+              <h3 className="text-white font-serif text-lg md:text-xl font-medium tracking-wide">
+                {lightboxImage.title}
+              </h3>
+              <button
+                type="button"
+                onClick={() => setLightboxImage(null)}
+                className="p-3 bg-white/10 hover:bg-white/20 border border-white/10 rounded-full text-white transition-all duration-300 cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Draggable/Zoomable Image Content */}
+            <div className="flex-1 w-full h-full relative overflow-hidden flex items-center justify-center bg-black/10">
+              <div className="absolute inset-0 flex items-center justify-center p-4">
+                <motion.div
+                  key={scale}
+                  drag={scale > 1}
+                  dragMomentum={true}
+                  dragElastic={0.15}
+                  dragConstraints={{
+                    left: -400 * (scale - 1),
+                    right: 400 * (scale - 1),
+                    top: -300 * (scale - 1),
+                    bottom: 300 * (scale - 1)
+                  }}
+                  animate={{ scale }}
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  className="relative w-full max-w-[90vw] h-[75vh] flex items-center justify-center cursor-grab active:cursor-grabbing"
+                  onDoubleClick={() => setScale(scale === 1 ? 2.5 : 1)}
+                >
+                  <Image
+                    src={lightboxImage.src}
+                    alt={lightboxImage.title}
+                    fill
+                    className="object-contain select-none pointer-events-none p-4"
+                    priority
+                  />
+                </motion.div>
+              </div>
+            </div>
+
+            {/* Bottom Control Bar */}
+            <div className="flex justify-center items-center gap-4 py-6 border-t border-white/10 bg-black/40 backdrop-blur-md relative z-10">
+              <button
+                type="button"
+                onClick={() => setScale(prev => Math.max(prev - 0.5, 1))}
+                disabled={scale <= 1}
+                className="p-3.5 bg-white/10 hover:bg-white/20 disabled:opacity-40 disabled:hover:bg-white/10 border border-white/10 rounded-full text-white transition-all duration-300 cursor-pointer"
+                title="Riduci zoom"
+              >
+                <ZoomOut className="w-5 h-5" />
+              </button>
+              
+              <div className="bg-white/10 border border-white/10 px-5 py-2.5 rounded-full text-xs font-bold text-white tracking-widest uppercase min-w-[80px] text-center">
+                {scale.toFixed(1)}x
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setScale(prev => Math.min(prev + 0.5, 4))}
+                disabled={scale >= 4}
+                className="p-3.5 bg-white/10 hover:bg-white/20 disabled:opacity-40 disabled:hover:bg-white/10 border border-white/10 rounded-full text-white transition-all duration-300 cursor-pointer"
+                title="Aumenta zoom"
+              >
+                <ZoomIn className="w-5 h-5" />
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setScale(1)}
+                disabled={scale === 1}
+                className="p-3.5 bg-white/10 hover:bg-white/20 disabled:opacity-40 disabled:hover:bg-white/10 border border-white/10 rounded-full text-white transition-all duration-300 cursor-pointer ml-2"
+                title="Ripristina zoom"
+              >
+                <RotateCcw className="w-5 h-5" />
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }

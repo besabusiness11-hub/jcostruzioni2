@@ -185,7 +185,7 @@ export default function Home() {
                 {/* Immagine Terrazza */}
                 <div className="relative h-80 lg:h-96 rounded-[32px] overflow-hidden shadow-lg border border-slate-200/50 hover:shadow-2xl transition-all duration-700 group hover:-translate-y-1">
                   <Image
-                    src="/images/terrace.jpg"
+                    src="/images/terrace-main.png"
                     alt="Terrazza"
                     fill
                     className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
@@ -198,7 +198,7 @@ export default function Home() {
                 {/* Immagine Giardino */}
                 <div className="relative h-80 lg:h-96 rounded-[32px] overflow-hidden shadow-lg border border-slate-200/50 hover:shadow-2xl transition-all duration-700 mt-12 group hover:-translate-y-1">
                   <Image
-                    src="/images/garden.jpg"
+                    src="/images/garden-main.png"
                     alt="Giardino"
                     fill
                     className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105"

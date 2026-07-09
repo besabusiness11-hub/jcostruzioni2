@@ -133,8 +133,8 @@ export default function PiscinaPage() {
             {/* Left image detail */}
             <div className="lg:col-span-6 relative h-[400px] lg:h-[550px] rounded-[36px] overflow-hidden shadow-2xl border border-slate-200/50">
               <Image 
-                src="/images/pool-detail.png" 
-                alt="Dettaglio Acqua Solarium" 
+                src="/images/pool-and-gardens.png" 
+                alt="Piscina e Aree Comuni" 
                 fill 
                 className="object-cover" 
                 sizes="(max-width: 1024px) 100vw, 50vw" 

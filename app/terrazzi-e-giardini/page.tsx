@@ -47,7 +47,7 @@ export default function TerrazziGiardiniPage() {
       <PageHero 
         title="Terrazzi, Giardini e Parti Esterne" 
         subtitle="Spazi esclusivi per vivere il verde e la piscina"
-        image="/images/project-detail.jpg"
+        image="/images/project-sunset-drone.jpg"
         imageAlt="Belvedere 35 Terrazzi e Giardini"
       />
 
@@ -89,13 +89,13 @@ export default function TerrazziGiardiniPage() {
             <div className="order-2 lg:order-1 animate-fade-in-up">
               <div className="grid grid-cols-2 gap-6 relative">
                 <div className="relative h-80 lg:h-96 rounded-[32px] overflow-hidden shadow-lg border border-slate-200/50 hover:shadow-2xl transition-all duration-700 group hover:-translate-y-1">
-                  <Image src="/images/terrace.jpg" alt="Terrazza moderna" fill className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105" sizes="(max-width: 1024px) 50vw, 25vw" />
+                  <Image src="/images/terrace-main.png" alt="Terrazza moderna" fill className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105" sizes="(max-width: 1024px) 50vw, 25vw" />
                   <div className="absolute bottom-4 left-4 bg-black/60 backdrop-blur-sm rounded-xl px-4 py-1.5">
                     <span className="text-white text-[10px] tracking-wider uppercase font-semibold">Terrazzi</span>
                   </div>
                 </div>
                 <div className="relative h-80 lg:h-96 rounded-[32px] overflow-hidden shadow-lg border border-slate-200/50 hover:shadow-2xl transition-all duration-700 mt-12 group hover:-translate-y-1">
-                  <Image src="/images/garden.jpg" alt="Giardino privato" fill className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105" sizes="(max-width: 1024px) 50vw, 25vw" />
+                  <Image src="/images/garden-main.png" alt="Giardino privato" fill className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105" sizes="(max-width: 1024px) 50vw, 25vw" />
                   <div className="absolute bottom-4 left-4 bg-black/60 backdrop-blur-sm rounded-xl px-4 py-1.5">
                     <span className="text-white text-[10px] tracking-wider uppercase font-semibold">Giardini</span>
                   </div>
@@ -150,7 +150,7 @@ export default function TerrazziGiardiniPage() {
             </div>
 
             <div className="relative h-96 lg:h-[500px] rounded-[36px] overflow-hidden shadow-2xl border border-slate-200/50 group animate-fade-in-up">
-              <Image src="/images/garden.jpg" alt="Giardino privato vista aerea" fill className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105" sizes="(max-width: 1024px) 100vw, 50vw" />
+              <Image src="/images/outdoor-lounge.png" alt="Giardino privato vista aerea" fill className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105" sizes="(max-width: 1024px) 100vw, 50vw" />
             </div>
             
           </div>
@@ -163,7 +163,7 @@ export default function TerrazziGiardiniPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
             
             <div className="relative h-96 lg:h-[520px] rounded-[36px] overflow-hidden shadow-2xl border border-slate-200/50 group animate-fade-in-up">
-              <Image src="/images/project-detail.jpg" alt="Parti esterne con area piscina" fill className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105" sizes="(max-width: 1024px) 100vw, 50vw" />
+              <Image src="/images/outdoor-vertical-1.png" alt="Parti esterne con area piscina" fill className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105" sizes="(max-width: 1024px) 100vw, 50vw" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-black/5" />
               <div className="absolute bottom-0 left-0 right-0 p-8 lg:p-12">
                 <p className="text-white/60 text-[10px] uppercase tracking-[0.3em] mb-2 font-bold">Parti esterne</p>
