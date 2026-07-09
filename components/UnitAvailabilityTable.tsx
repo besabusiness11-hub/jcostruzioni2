@@ -1,6 +1,7 @@
 "use client"
 
 import { Fragment, useMemo, useState, useEffect, useRef } from "react"
+import { createPortal } from "react-dom"
 import Image from "next/image"
 import { ChevronDown, ChevronLeft, ChevronRight, LayoutPanelTop, Sparkles, Trees, Maximize2, RotateCcw, X, ZoomIn, ZoomOut } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
@@ -42,14 +43,29 @@ export default function UnitAvailabilityTable({ units, typeLabel }: UnitAvailabi
     }
   }
 
+  const [mounted, setMounted] = useState(false)
+
   useEffect(() => {
+    setMounted(true)
+    return () => setMounted(false)
+  }, [])
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setLightboxImage(null)
+      }
+    }
+
     if (lightboxImage) {
       document.body.style.overflow = "hidden"
+      window.addEventListener("keydown", handleKeyDown)
     } else {
       document.body.style.overflow = ""
     }
     return () => {
       document.body.style.overflow = ""
+      window.removeEventListener("keydown", handleKeyDown)
     }
   }, [lightboxImage])
 
@@ -240,101 +256,111 @@ export default function UnitAvailabilityTable({ units, typeLabel }: UnitAvailabi
         </tbody>
       </table>
 
-      {/* LIGHTBOX CON ZOOM & PAN INTERATTIVO */}
-      <AnimatePresence>
-        {lightboxImage && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/95 backdrop-blur-xl z-[9999] flex flex-col justify-between"
-          >
-            {/* Header overlay */}
-            <div className="flex justify-between items-center px-6 py-4 border-b border-white/10 bg-black/40 backdrop-blur-md relative z-10">
-              <h3 className="text-white font-serif text-lg md:text-xl font-medium tracking-wide">
-                {lightboxImage.title}
-              </h3>
-              <button
-                type="button"
-                onClick={() => setLightboxImage(null)}
-                className="p-3 bg-white/10 hover:bg-white/20 border border-white/10 rounded-full text-white transition-all duration-300 cursor-pointer"
+      {mounted && typeof document !== "undefined" && createPortal(
+        <AnimatePresence>
+          {lightboxImage && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setLightboxImage(null)} // Click su sfondo scuro per chiudere
+              className="fixed inset-0 bg-black/95 backdrop-blur-xl z-[99999] flex flex-col justify-between select-none"
+            >
+              {/* Header overlay */}
+              <div 
+                onClick={(e) => e.stopPropagation()} // Evita la chiusura cliccando all'interno
+                className="flex justify-between items-center px-6 py-4 border-b border-white/10 bg-black/40 backdrop-blur-md relative z-10"
               >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            {/* Draggable/Zoomable Image Content */}
-            <div className="flex-1 w-full h-full relative overflow-hidden flex items-center justify-center bg-black/10">
-              <div className="absolute inset-0 flex items-center justify-center p-4">
-                <motion.div
-                  key={scale}
-                  drag={scale > 1}
-                  dragMomentum={true}
-                  dragElastic={0.15}
-                  dragConstraints={{
-                    left: -400 * (scale - 1),
-                    right: 400 * (scale - 1),
-                    top: -300 * (scale - 1),
-                    bottom: 300 * (scale - 1)
-                  }}
-                  animate={{ scale }}
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  className={`relative w-full max-w-[90vw] h-[75vh] flex items-center justify-center select-none ${
-                    scale === 1 ? "cursor-zoom-in" : "cursor-grab active:cursor-grabbing"
-                  }`}
-                  onPointerDown={handlePointerDown}
-                  onPointerUp={handlePointerUp}
+                <h3 className="text-white font-serif text-lg md:text-xl font-medium tracking-wide">
+                  {lightboxImage.title}
+                </h3>
+                <button
+                  type="button"
+                  onClick={() => setLightboxImage(null)}
+                  className="p-3 bg-white/10 hover:bg-white/20 border border-white/10 rounded-full text-white transition-all duration-300 cursor-pointer"
                 >
-                  <Image
-                    src={lightboxImage.src}
-                    alt={lightboxImage.title}
-                    fill
-                    className="object-contain select-none pointer-events-none p-4"
-                    priority
-                  />
-                </motion.div>
-              </div>
-            </div>
-
-            {/* Bottom Control Bar */}
-            <div className="flex justify-center items-center gap-4 py-6 border-t border-white/10 bg-black/40 backdrop-blur-md relative z-10">
-              <button
-                type="button"
-                onClick={() => setScale(prev => Math.max(prev - 0.5, 1))}
-                disabled={scale <= 1}
-                className="p-3.5 bg-white/10 hover:bg-white/20 disabled:opacity-40 disabled:hover:bg-white/10 border border-white/10 rounded-full text-white transition-all duration-300 cursor-pointer"
-                title="Riduci zoom"
-              >
-                <ZoomOut className="w-5 h-5" />
-              </button>
-              
-              <div className="bg-white/10 border border-white/10 px-5 py-2.5 rounded-full text-xs font-bold text-white tracking-widest uppercase min-w-[80px] text-center">
-                {scale.toFixed(1)}x
+                  <X className="w-5 h-5" />
+                </button>
               </div>
 
-              <button
-                type="button"
-                onClick={() => setScale(prev => Math.min(prev + 0.5, 4))}
-                disabled={scale >= 4}
-                className="p-3.5 bg-white/10 hover:bg-white/20 disabled:opacity-40 disabled:hover:bg-white/10 border border-white/10 rounded-full text-white transition-all duration-300 cursor-pointer"
-                title="Aumenta zoom"
-              >
-                <ZoomIn className="w-5 h-5" />
-              </button>
+              {/* Draggable/Zoomable Image Content */}
+              <div className="flex-1 w-full h-full relative overflow-hidden flex items-center justify-center bg-black/10">
+                <div className="absolute inset-0 flex items-center justify-center p-4">
+                  <motion.div
+                    key={scale}
+                    drag={scale > 1}
+                    dragMomentum={true}
+                    dragElastic={0.15}
+                    dragConstraints={{
+                      left: -400 * (scale - 1),
+                      right: 400 * (scale - 1),
+                      top: -300 * (scale - 1),
+                      bottom: 300 * (scale - 1)
+                    }}
+                    animate={{ scale }}
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    className={`relative w-full max-w-[90vw] h-[75vh] flex items-center justify-center select-none ${
+                      scale === 1 ? "cursor-zoom-in" : "cursor-grab active:cursor-grabbing"
+                    }`}
+                    onPointerDown={handlePointerDown}
+                    onPointerUp={handlePointerUp}
+                    onClick={(e) => e.stopPropagation()} // Evita la chiusura cliccando sull'immagine
+                  >
+                    <Image
+                      src={lightboxImage.src}
+                      alt={lightboxImage.title}
+                      fill
+                      className="object-contain select-none pointer-events-none p-4"
+                      priority
+                    />
+                  </motion.div>
+                </div>
+              </div>
 
-              <button
-                type="button"
-                onClick={() => setScale(1)}
-                disabled={scale === 1}
-                className="p-3.5 bg-white/10 hover:bg-white/20 disabled:opacity-40 disabled:hover:bg-white/10 border border-white/10 rounded-full text-white transition-all duration-300 cursor-pointer ml-2"
-                title="Ripristina zoom"
+              {/* Bottom Control Bar */}
+              <div 
+                onClick={(e) => e.stopPropagation()} // Evita la chiusura cliccando sulla barra
+                className="flex justify-center items-center gap-4 py-6 border-t border-white/10 bg-black/40 backdrop-blur-md relative z-10"
               >
-                <RotateCcw className="w-5 h-5" />
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                <button
+                  type="button"
+                  onClick={() => setScale(prev => Math.max(prev - 0.5, 1))}
+                  disabled={scale <= 1}
+                  className="p-3.5 bg-white/10 hover:bg-white/20 disabled:opacity-40 disabled:hover:bg-white/10 border border-white/10 rounded-full text-white transition-all duration-300 cursor-pointer"
+                  title="Riduci zoom"
+                >
+                  <ZoomOut className="w-5 h-5" />
+                </button>
+                
+                <div className="bg-white/10 border border-white/10 px-5 py-2.5 rounded-full text-xs font-bold text-white tracking-widest uppercase min-w-[80px] text-center">
+                  {scale.toFixed(1)}x
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setScale(prev => Math.min(prev + 0.5, 4))}
+                  disabled={scale >= 4}
+                  className="p-3.5 bg-white/10 hover:bg-white/20 disabled:opacity-40 disabled:hover:bg-white/10 border border-white/10 rounded-full text-white transition-all duration-300 cursor-pointer"
+                  title="Aumenta zoom"
+                >
+                  <ZoomIn className="w-5 h-5" />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setScale(1)}
+                  disabled={scale === 1}
+                  className="p-3.5 bg-white/10 hover:bg-white/20 disabled:opacity-40 disabled:hover:bg-white/10 border border-white/10 rounded-full text-white transition-all duration-300 cursor-pointer ml-2"
+                  title="Ripristina zoom"
+                >
+                  <RotateCcw className="w-5 h-5" />
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </div>
   )
 }

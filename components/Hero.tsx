@@ -72,7 +72,7 @@ export default function Hero() {
       >
         {/* DAY IMAGE (Base Layer) */}
         <Image
-          src="/images/hero-building.png"
+          src="/images/hero-building.png?v=4"
           alt="Belvedere 35 - Vista Diurna"
           fill
           className="object-cover"
@@ -86,7 +86,7 @@ export default function Hero() {
           style={{ clipPath: `polygon(${sliderPosition}% 0, 100% 0, 100% 100%, ${sliderPosition}% 100%)` }}
         >
           <Image
-            src="/images/hero-building-night.png"
+            src="/images/hero-building-night.png?v=4"
             alt="Belvedere 35 - Vista Notturna"
             fill
             className="object-cover"
