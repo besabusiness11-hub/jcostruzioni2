@@ -1,6 +1,6 @@
 "use client"
 
-import { Fragment, useMemo, useState, useEffect } from "react"
+import { Fragment, useMemo, useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import { ChevronDown, ChevronLeft, ChevronRight, LayoutPanelTop, Sparkles, Trees, Maximize2, RotateCcw, X, ZoomIn, ZoomOut } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
@@ -27,6 +27,20 @@ export default function UnitAvailabilityTable({ units, typeLabel }: UnitAvailabi
   const [slideByUnit, setSlideByUnit] = useState<Record<string, number>>({})
   const [lightboxImage, setLightboxImage] = useState<{ src: string; title: string } | null>(null)
   const [scale, setScale] = useState(1)
+  const pointerStart = useRef({ x: 0, y: 0 })
+
+  const handlePointerDown = (e: React.PointerEvent) => {
+    pointerStart.current = { x: e.clientX, y: e.clientY }
+  }
+
+  const handlePointerUp = (e: React.PointerEvent) => {
+    const dx = Math.abs(e.clientX - pointerStart.current.x)
+    const dy = Math.abs(e.clientY - pointerStart.current.y)
+    if (dx < 6 && dy < 6) {
+      // Clic pulito senza trascinamento
+      setScale(prev => (prev === 1 ? 2.5 : 1))
+    }
+  }
 
   useEffect(() => {
     if (lightboxImage) {
@@ -265,8 +279,11 @@ export default function UnitAvailabilityTable({ units, typeLabel }: UnitAvailabi
                   }}
                   animate={{ scale }}
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  className="relative w-full max-w-[90vw] h-[75vh] flex items-center justify-center cursor-grab active:cursor-grabbing"
-                  onDoubleClick={() => setScale(scale === 1 ? 2.5 : 1)}
+                  className={`relative w-full max-w-[90vw] h-[75vh] flex items-center justify-center select-none ${
+                    scale === 1 ? "cursor-zoom-in" : "cursor-grab active:cursor-grabbing"
+                  }`}
+                  onPointerDown={handlePointerDown}
+                  onPointerUp={handlePointerUp}
                 >
                   <Image
                     src={lightboxImage.src}
