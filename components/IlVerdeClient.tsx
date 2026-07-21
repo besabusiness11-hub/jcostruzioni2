@@ -58,11 +58,11 @@ export default function IlVerdeClient() {
         imageAlt="Belvedere 35 Il Verde e Piscina"
       />
 
-      {/* Tab Navigation Bar (in stile Tipologie - posizionata sotto l'Header fisso) */}
-      <section className="sticky top-[125px] md:top-[138px] z-30 bg-[#fcfbf9]/95 backdrop-blur-md border-b border-slate-200/60 py-3.5 shadow-sm transition-all duration-300">
+      {/* Tab Navigation Bar (in stile Dark Glass trasparente abbinato all'Header) */}
+      <section className="sticky top-[92px] md:top-[104px] z-30 bg-black/40 backdrop-blur-md border-b border-white/10 py-3 transition-all duration-300">
         <div className="container mx-auto px-6 lg:px-12">
           <div className="flex items-center justify-center">
-            <div className="inline-flex flex-wrap items-center justify-center gap-1 sm:gap-2 p-1.5 bg-slate-200/60 rounded-full border border-slate-300/40 backdrop-blur-sm">
+            <div className="inline-flex flex-wrap items-center justify-center gap-1 sm:gap-2 p-1.5 bg-black/50 rounded-full border border-white/15 backdrop-blur-md shadow-xl">
               {tabs.map((tab) => {
                 const isActive = activeTab === tab.id
                 return (
@@ -70,13 +70,13 @@ export default function IlVerdeClient() {
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
                     className={`relative px-4 sm:px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 ${
-                      isActive ? "text-white" : "text-muted-foreground hover:text-foreground"
+                      isActive ? "text-white" : "text-white/70 hover:text-white"
                     }`}
                   >
                     {isActive && (
                       <motion.div
                         layoutId="activeVerdeTab"
-                        className="absolute inset-0 bg-[#3e2d27] rounded-full shadow-md"
+                        className="absolute inset-0 bg-primary rounded-full shadow-md"
                         transition={{ type: "spring", stiffness: 400, damping: 30 }}
                       />
                     )}
