@@ -2,8 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
-import FaqSection from "@/components/FaqSection"
-import { Mail, MapPin, Clock, Send, MessageSquare } from "lucide-react"
+import { Mail, MapPin, Send, MessageSquare } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export const metadata: Metadata = {
@@ -173,31 +172,6 @@ export default function ContattiPage() {
  
                     <div className="flex gap-4">
                       <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mt-0.5">
-                        <Clock className="w-4 h-4 text-primary" />
-                      </div>
-                      <div className="flex-1">
-                        <p className="text-white/90 font-medium mb-2">Orari di apertura</p>
-                        <div className="space-y-1.5 font-light">
-                          <div className="flex justify-between text-sm">
-                            <span className="text-white/50">Lun - Ven</span>
-                            <span className="text-white/70">9:00 — 18:00</span>
-                          </div>
-                          <div className="flex justify-between text-sm">
-                            <span className="text-white/50">Sabato</span>
-                            <span className="text-white/70">10:00 — 16:00</span>
-                          </div>
-                          <div className="flex justify-between text-sm">
-                            <span className="text-white/50">Domenica</span>
-                            <span className="text-white/70">Su appuntamento</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
- 
-                    <div className="w-full h-px bg-white/10" />
- 
-                    <div className="flex gap-4">
-                      <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mt-0.5">
                         <Mail className="w-4 h-4 text-primary" />
                       </div>
                       <div>
@@ -227,7 +201,6 @@ export default function ContattiPage() {
         </div>
       </section>
  
-      <FaqSection />
       <Footer />
     </main>
   )

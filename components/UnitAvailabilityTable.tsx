@@ -87,20 +87,6 @@ export default function UnitAvailabilityTable({ units, typeLabel }: UnitAvailabi
               image: unit.planImage || "/images/floorplan-sample.jpg",
               icon: LayoutPanelTop,
             },
-            {
-              title: "Spazio esterno",
-              description: outdoorLabel,
-              image: unit.garden ? "/images/garden.jpg" : "/images/terrace.jpg",
-              icon: Trees,
-            },
-            {
-              title: "Carattere unico",
-              description:
-                unit.uniqueness ||
-                `Unita ${unit.name} pensata per offrire luce naturale, privacy e una relazione precisa con gli spazi esterni.`,
-              image: "/images/interior-detail.jpg",
-              icon: Sparkles,
-            },
           ]
 
           return acc
@@ -226,24 +212,26 @@ export default function UnitAvailabilityTable({ units, typeLabel }: UnitAvailabi
                             <p className="text-xs font-semibold tracking-wider text-muted-foreground">
                               {activeSlideIndex + 1} / {slides.length}
                             </p>
-                            <div className="flex gap-2.5">
-                              <button
-                                type="button"
-                                onClick={() => changeSlide(unit.name, -1)}
-                                aria-label={`Slide precedente per ${unit.name}`}
-                                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 text-foreground transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:border-primary"
-                              >
-                                <ChevronLeft className="h-5 w-5" aria-hidden="true" />
-                              </button>
-                              <button
-                                type="button"
-                                onClick={() => changeSlide(unit.name, 1)}
-                                aria-label={`Slide successiva per ${unit.name}`}
-                                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 text-foreground transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:border-primary"
-                              >
-                                <ChevronRight className="h-5 w-5" aria-hidden="true" />
-                              </button>
-                            </div>
+                            {slides.length > 1 && (
+                              <div className="flex gap-2.5">
+                                <button
+                                  type="button"
+                                  onClick={() => changeSlide(unit.name, -1)}
+                                  aria-label={`Slide precedente per ${unit.name}`}
+                                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 text-foreground transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:border-primary"
+                                >
+                                  <ChevronLeft className="h-5 w-5" aria-hidden="true" />
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => changeSlide(unit.name, 1)}
+                                  aria-label={`Slide successiva per ${unit.name}`}
+                                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 text-foreground transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:border-primary"
+                                >
+                                  <ChevronRight className="h-5 w-5" aria-hidden="true" />
+                                </button>
+                              </div>
+                            )}
                           </div>
                         </div>
                       </div>

@@ -9,7 +9,7 @@ const features = [
   {
     icon: Leaf,
     title: "Sostenibilità",
-    description: "Classe energetica A4 e impianti di ultima generazione",
+    description: "Classe energetica A e impianti di ultima generazione",
   },
   {
     icon: HomeIcon,

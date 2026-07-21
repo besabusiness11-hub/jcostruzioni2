@@ -14,7 +14,7 @@ const features = [
   {
     icon: Leaf,
     title: "Sostenibilità Ambientale",
-    description: "Classe energetica A4 con pannelli fotovoltaici, impianti geotermici e sistemi di recupero acque piovane per un impatto ambientale minimo.",
+    description: "Classe energetica A con pannelli fotovoltaici, impianti geotermici e sistemi di recupero acque piovane per un impatto ambientale minimo.",
   },
   {
     icon: HomeIcon,
@@ -52,7 +52,7 @@ const energyFeatures = [
   {
     icon: Snowflake,
     title: "Raffrescamento Estivo",
-    description: "Predisposizione per il raffrescamento degli ambienti durante la stagione estiva.",
+    description: "Impianto di raffrescamento estivo integrato di serie in tutte le soluzioni abitative.",
   },
 ]
 export default function IlProgettoPage() {
@@ -198,7 +198,7 @@ const energyFeatures = [
               </span>
               <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-6 leading-tight font-medium">
                 Classe Energetica
-                <span className="block text-primary italic font-normal mt-2">A4</span>
+                <span className="block text-primary italic font-normal mt-2">A</span>
               </h2>
               <p className="text-muted-foreground/90 text-lg leading-relaxed mb-6 font-light">
                 Belvedere 35 raggiunge alti standard di efficienza energetica grazie a 
@@ -223,8 +223,8 @@ const energyFeatures = [
             {[
               { value: "13", label: "Appartamenti" },
               { value: "3", label: "Tipologie" },
-              { value: "A4", label: "Classe Energetica" },
-              { value: "Dicembre 2027", label: "Consegna Prevista" },
+              { value: "A", label: "Classe Energetica" },
+              { value: "100%", label: "Comfort & Efficienza" },
             ].map((stat) => (
               <div key={stat.label} className="text-center group">
                 <div className="font-serif text-4xl lg:text-6xl text-primary mb-2 font-semibold tracking-tight transition-transform duration-500 group-hover:scale-110">

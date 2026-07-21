@@ -7,7 +7,7 @@ const features = [
   {
     icon: Leaf,
     title: "Sostenibilita",
-    description: "Classe energetica A4, fotovoltaico e impianti di ultima generazione per contenere consumi e impatto ambientale.",
+    description: "Classe energetica A, fotovoltaico e impianti di ultima generazione per contenere consumi e impatto ambientale.",
   },
   {
     icon: HomeIcon,
@@ -75,8 +75,8 @@ export default function ProjectSection() {
           {[
             { value: "13", label: "Appartamenti" },
             { value: "3", label: "Tipologie" },
-            { value: "A4", label: "Classe Energetica" },
-            { value: "2027", label: "Consegna" },
+            { value: "A", label: "Classe Energetica" },
+            { value: "100%", label: "Comfort" },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
               <div className="font-serif text-4xl lg:text-5xl text-primary font-semibold mb-2">

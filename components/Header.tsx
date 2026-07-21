@@ -48,16 +48,7 @@ export default function Header() {
   const navLinks = [
     { href: "/il-progetto", label: "Il Progetto" },
     { href: "/tipologie", label: "Tipologie" },
-    { 
-      href: "/terrazzi-e-giardini", 
-      label: "Il Verde",
-      submenu: [
-        { href: "/terrazzi-e-giardini#terrazzi", label: "Terrazzi" },
-        { href: "/terrazzi-e-giardini#giardini", label: "Giardini" },
-        { href: "/terrazzi-e-giardini#parti-esterne", label: "Parti Esterne" },
-        { href: "/piscina", label: "Piscina" },
-      ]
-    },
+    { href: "/il-verde", label: "Il Verde" },
     { href: "/contatti", label: "Contatti" },
   ]
 
@@ -86,41 +77,9 @@ export default function Header() {
 
           {/* NAVIGAZIONE DESTRA (Desktop) - 2 Bottoni */}
           <div className="hidden lg:flex lg:col-span-3 items-center justify-end gap-8">
-            {/* Dropdown Il Verde */}
-            <div className="relative group">
-              <button className="text-white hover:text-white/70 transition-colors uppercase tracking-[0.2em] text-[13px] font-medium flex items-center gap-1.5 py-2">
-                Il Verde
-                <ChevronDown className="w-3.5 h-3.5 group-hover:rotate-180 transition-transform duration-300" />
-              </button>
-              
-              <div className="absolute right-0 top-full pt-2 w-52 opacity-0 invisible translate-y-3 pointer-events-none group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 ease-out z-50">
-                <div className="bg-gradient-to-br from-[#3e2d27]/95 to-[#241a16]/90 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_10px_30px_-5px_rgba(0,0,0,0.5)]">
-                  <div className="flex flex-col gap-1.5 text-left">
-                    <Link href="/terrazzi-e-giardini" className="text-white/60 hover:text-white text-[10px] uppercase tracking-[0.15em] transition-all duration-300 py-2 px-3 hover:bg-white/10 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] rounded-xl font-medium flex items-center justify-between group/link">
-                      <span>Vedi Tutto</span>
-                      <span className="w-1.5 h-1.5 rounded-full bg-white/40 group-hover/link:bg-white group-hover/link:scale-125 transition-all duration-300"></span>
-                    </Link>
-                    <div className="h-[1px] bg-gradient-to-r from-transparent via-white/15 to-transparent my-1"></div>
-                    <Link href="/terrazzi-e-giardini#terrazzi" className="text-white/80 hover:text-white text-xs uppercase tracking-[0.1em] transition-all duration-300 py-2 px-3 hover:bg-white/10 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] rounded-xl flex items-center gap-2 group/item">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary opacity-0 group-hover/item:opacity-100 transition-opacity duration-300"></span>
-                      <span>Terrazzi</span>
-                    </Link>
-                    <Link href="/terrazzi-e-giardini#giardini" className="text-white/80 hover:text-white text-xs uppercase tracking-[0.1em] transition-all duration-300 py-2 px-3 hover:bg-white/10 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] rounded-xl flex items-center gap-2 group/item">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary opacity-0 group-hover/item:opacity-100 transition-opacity duration-300"></span>
-                      <span>Giardini</span>
-                    </Link>
-                    <Link href="/terrazzi-e-giardini#parti-esterne" className="text-white/80 hover:text-white text-xs uppercase tracking-[0.1em] transition-all duration-300 py-2 px-3 hover:bg-white/10 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] rounded-xl flex items-center gap-2 group/item">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary opacity-0 group-hover/item:opacity-100 transition-opacity duration-300"></span>
-                      <span>Parti Esterne</span>
-                    </Link>
-                    <Link href="/piscina" className="text-white/80 hover:text-white text-xs uppercase tracking-[0.1em] transition-all duration-300 py-2 px-3 hover:bg-white/10 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] rounded-xl flex items-center gap-2 group/item">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary opacity-0 group-hover/item:opacity-100 transition-opacity duration-300"></span>
-                      <span>Piscina</span>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Link href="/il-verde" className="text-white hover:text-white/70 transition-colors uppercase tracking-[0.2em] text-[13px] font-medium py-2">
+              Il Verde
+            </Link>
 
             <Link href="/contatti" className="text-white hover:text-white/70 transition-colors uppercase tracking-[0.2em] text-[13px] font-medium">
               Contatti

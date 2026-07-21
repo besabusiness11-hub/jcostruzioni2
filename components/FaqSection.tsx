@@ -5,12 +5,8 @@ import { Plus, Minus } from "lucide-react"
 
 const faqs = [
   {
-    question: "Quali sono i tempi di consegna previsti?",
-    answer: "La consegna degli appartamenti di Belvedere 35 è ufficialmente programmata per Dicembre 2027. Il cantiere procede secondo i tempi prestabiliti."
-  },
-  {
     question: "In quale classe energetica rientrano gli immobili?",
-    answer: "Tutti gli appartamenti del complesso sono realizzati in Classe Energetica A4, il massimo standard di efficienza sul mercato. Questo garantisce un abbattimento drastico dei costi di gestione e un comfort termico e acustico eccezionale."
+    answer: "Tutti gli appartamenti del complesso sono realizzati in Classe Energetica A, l'eccellenza in termini di efficienza sul mercato. Questo garantisce un abbattimento drastico dei costi di gestione e un comfort termico e acustico eccezionale."
   },
   {
     question: "C'è la possibilità di personalizzare le finiture interne?",

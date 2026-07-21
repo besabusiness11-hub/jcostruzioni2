@@ -6,6 +6,6 @@ export const metadata: Metadata = {
   description: "Scopri le aree verdi di Belvedere 35: terrazzi panoramici, giardini privati, parti esterne e la piscina condominiale riservata.",
 }
 
-export default function TerrazziGiardiniPage() {
+export default function IlVerdePage() {
   return <IlVerdeClient />
 }
