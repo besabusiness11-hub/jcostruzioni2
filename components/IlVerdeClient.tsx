@@ -59,7 +59,7 @@ export default function IlVerdeClient() {
       />
 
       {/* Tab Navigation Bar (in stile Tipologie - posizionata sotto l'Header fisso) */}
-      <section className="sticky top-[96px] md:top-[112px] z-30 bg-[#fcfbf9]/95 backdrop-blur-md border-b border-slate-200/60 py-3.5 shadow-sm transition-all duration-300">
+      <section className="sticky top-[125px] md:top-[138px] z-30 bg-[#fcfbf9]/95 backdrop-blur-md border-b border-slate-200/60 py-3.5 shadow-sm transition-all duration-300">
         <div className="container mx-auto px-6 lg:px-12">
           <div className="flex items-center justify-center">
             <div className="inline-flex flex-wrap items-center justify-center gap-1 sm:gap-2 p-1.5 bg-slate-200/60 rounded-full border border-slate-300/40 backdrop-blur-sm">

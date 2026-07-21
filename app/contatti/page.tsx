@@ -185,7 +185,7 @@ export default function ContattiPage() {
                 {/* Mappa */}
                 <div className="rounded-[36px] overflow-hidden h-64 border border-slate-200/50 shadow-md">
                   <iframe
-                    src="https://www.google.com/maps?q=Garbagnate%20Monastero%20LC&output=embed"
+                    src="https://www.google.com/maps?q=Garbagnate%20Monastero%20LC&t=h&z=14&output=embed"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
