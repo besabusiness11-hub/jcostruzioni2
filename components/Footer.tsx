@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Mail } from "lucide-react"
+import { Mail, Download } from "lucide-react"
 import Logo from "@/components/Logo"
 
 export default function Footer() {
@@ -45,9 +45,20 @@ export default function Footer() {
           {/* Links column */}
           <div className="md:col-span-5 md:pl-12 lg:pl-20">
             <h4 className="text-[10px] tracking-[0.4em] uppercase text-primary font-bold mb-6">
-              Legale
+              Documenti & Note
             </h4>
             <ul className="space-y-4">
+              <li>
+                <a
+                  href="/capitolato.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-[#fcfbf9]/80 hover:text-primary hover:pl-2 transition-all duration-300 font-medium flex items-center gap-2 group"
+                >
+                  <Download className="w-4 h-4 text-primary group-hover:scale-110 transition-transform duration-300" />
+                  <span>Scarica Capitolato (PDF)</span>
+                </a>
+              </li>
               {footerLinks.legale.map((link) => (
                 <li key={link.label}>
                   <Link

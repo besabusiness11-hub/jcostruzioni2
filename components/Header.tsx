@@ -75,8 +75,8 @@ export default function Header() {
             </Link>
           </div>
 
-          {/* NAVIGAZIONE DESTRA (Desktop) - 2 Bottoni */}
-          <div className="hidden lg:flex lg:col-span-3 items-center justify-end gap-8">
+          {/* NAVIGAZIONE DESTRA (Desktop) - 2 Bottoni + Capitolato */}
+          <div className="hidden lg:flex lg:col-span-3 items-center justify-end gap-6 xl:gap-8">
             <Link href="/il-verde" className="text-white hover:text-white/70 transition-colors uppercase tracking-[0.2em] text-[13px] font-medium py-2">
               Il Verde
             </Link>
@@ -84,6 +84,17 @@ export default function Header() {
             <Link href="/contatti" className="text-white hover:text-white/70 transition-colors uppercase tracking-[0.2em] text-[13px] font-medium">
               Contatti
             </Link>
+
+            <a
+              href="/capitolato.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/10 hover:bg-white/20 text-white transition-all text-xs font-medium uppercase tracking-[0.15em] backdrop-blur-sm shadow-sm hover:scale-105"
+              title="Apri e scarica il capitolato PDF"
+            >
+              <Download className="w-3.5 h-3.5 text-primary" />
+              <span>Capitolato</span>
+            </a>
           </div>
 
           {/* PULSANTE MENU MOBILE (Hamburger) */}
@@ -124,8 +135,10 @@ export default function Header() {
             ))}
 
             <div className="mt-6 flex flex-col gap-4">
-              <Button asChild className="rounded-full bg-white text-green-600 hover:bg-white/90 py-7 text-lg">
-                <a href="/capitolato.pdf" download><Download className="w-5 h-5 mr-2" /> Scarica Capitolato</a>
+              <Button asChild className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 py-7 text-base font-medium shadow-xl">
+                <a href="/capitolato.pdf" target="_blank" rel="noopener noreferrer">
+                  <Download className="w-5 h-5 mr-2" /> Scarica Capitolato (PDF)
+                </a>
               </Button>
             </div>
           </div>

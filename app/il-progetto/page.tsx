@@ -3,7 +3,7 @@ import Link from "next/link"
 import type { Metadata } from "next"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
-import { Leaf, HomeIcon, Sparkles, Building2, Sun, Thermometer, Zap, Snowflake, ArrowRight } from "lucide-react"
+import { Leaf, HomeIcon, Sparkles, Building2, Sun, Thermometer, Zap, Snowflake, ArrowRight, Download } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Il Progetto | Belvedere 35 - Garbagnate Monastero",
@@ -246,13 +246,22 @@ const energyFeatures = [
             Vieni a scoprire il tuo
             <span className="block text-primary italic font-normal mt-2">nuovo appartamento</span>
           </h2>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-12">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-6 justify-center items-center mt-12">
             <Link
               href="/tipologie"
               className="inline-flex items-center justify-center px-10 py-5 bg-primary text-primary-foreground rounded-full text-xs font-bold tracking-[0.2em] uppercase transition-all duration-300 hover:bg-primary/95 hover:shadow-2xl hover:-translate-y-1"
             >
               Scopri le Tipologie
             </Link>
+            <a
+              href="/capitolato.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-10 py-5 bg-background text-foreground border border-slate-200 rounded-full text-xs font-bold tracking-[0.2em] uppercase transition-all duration-300 hover:bg-accent hover:border-slate-300 hover:-translate-y-1 shadow-sm"
+            >
+              <Download className="w-4 h-4 text-primary" />
+              Scarica Capitolato (PDF)
+            </a>
             <Link
               href="/contatti"
               className="inline-flex items-center justify-center px-10 py-5 bg-background text-foreground border border-slate-200 rounded-full text-xs font-bold tracking-[0.2em] uppercase transition-all duration-300 hover:bg-accent hover:border-slate-300 hover:-translate-y-1"
