@@ -28,6 +28,7 @@ export const viewport: Viewport = {
   themeColor: "#4a7c59",
   width: "device-width",
   initialScale: 1,
+  viewportFit: "cover",
 }
 
 import FloatingContactButton from "@/components/FloatingContactButton"

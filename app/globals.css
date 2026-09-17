@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
 /* Nasconde la barra di scorrimento globale mantenendo lo scroll funzionante */
@@ -35,7 +35,7 @@ html::-webkit-scrollbar {
     --secondary: 45 30% 95%;
     --secondary-foreground: 150 10% 20%;
     --muted: 45 20% 96%;
-    --muted-foreground: 150 10% 45%;
+    --muted-foreground: 150 10% 34%;
     --accent: 150 25% 90%;
     --accent-foreground: 150 35% 25%;
     --destructive: 0 84.2% 60.2%;
@@ -150,4 +150,175 @@ html::-webkit-scrollbar {
 /* Stili helper per transizioni */
 .transition-luxury {
   transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  html {
+    scroll-padding-top: 7rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  h1, h2, h3 {
+    text-wrap: balance;
+    overflow-wrap: break-word;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  .grid > *, .flex > * {
+    min-width: 0;
+  }
+
+  a, button, input, select, textarea, summary {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  :where(a, button, input, select, textarea, summary):focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+  }
+
+  :where(a, button) > svg {
+    flex-shrink: 0;
+  }
+
+  input, select, textarea {
+    font-size: 1rem;
+  }
+
+  ::placeholder {
+    color: hsl(var(--muted-foreground));
+    opacity: 1;
+  }
+}
+
+@layer components {
+  .page-hero {
+    min-height: min(42rem, 78svh);
+    padding-top: calc(8rem + env(safe-area-inset-top));
+    padding-bottom: 3rem;
+  }
+
+  .site-header {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .mobile-navigation {
+    height: 100dvh;
+    padding-bottom: env(safe-area-inset-bottom);
+    animation: menu-enter 220ms ease-out;
+  }
+
+  .menu-topbar {
+    min-height: calc(5rem + env(safe-area-inset-top));
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .site-header > .container, main > section > .container, footer .container {
+    padding-left: max(var(--page-gutter, 1.25rem), env(safe-area-inset-left));
+    padding-right: max(var(--page-gutter, 1.25rem), env(safe-area-inset-right));
+  }
+
+  .contact-float {
+    right: max(1rem, env(safe-area-inset-right));
+    bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+
+  .plan-lightbox {
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+
+  @media (max-width: 1023px) {
+    .unit-table, .unit-table tbody {
+      display: block;
+    }
+
+    .unit-table-head {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    .unit-summary {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      padding: 1.25rem;
+      border: 1px solid hsl(var(--border));
+      border-radius: 0.75rem;
+      background: white;
+      margin-top: 1rem;
+    }
+
+    .unit-summary:first-child { margin-top: 0; }
+
+    .unit-summary td {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0;
+      gap: 0.25rem;
+    }
+
+    .unit-summary td[data-label]::before {
+      content: attr(data-label);
+      font-family: var(--font-sans), sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 500;
+      color: hsl(var(--muted-foreground));
+    }
+
+    .unit-action { grid-column: 1 / -1; }
+    .unit-detail, .unit-detail > td { display: block; }
+    .unit-detail { border-radius: 0 0 0.75rem 0.75rem; }
+  }
+
+  footer {
+    padding-bottom: calc(4rem + env(safe-area-inset-bottom));
+  }
+
+  footer li a {
+    min-height: 2.75rem;
+  }
+
+  main section a.inline-flex, footer a[href^="mailto:"] {
+    min-height: 2.75rem;
+  }
+
+  @media (min-width: 640px) {
+    :root { --page-gutter: 1.5rem; }
+    .page-hero {
+      min-height: max(32rem, 70svh);
+      padding-top: 10rem;
+      padding-bottom: 5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    :root { --page-gutter: 3rem; }
+    .page-hero { padding-bottom: 7rem; }
+    .contact-float { right: 2rem; bottom: 2rem; }
+    footer { padding-bottom: 0; }
+  }
+}
+
+@keyframes menu-enter {
+  from { opacity: 0; transform: translateY(-12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

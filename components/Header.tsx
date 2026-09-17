@@ -1,149 +1,128 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Menu, X, Download, ChevronDown } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import * as Dialog from "@radix-ui/react-dialog"
+import { ArrowUpRight, Download, Mail, Menu, X } from "lucide-react"
 import Logo from "@/components/Logo"
+import { CONTACT_EMAIL } from "@/lib/contact"
+
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/il-progetto", label: "Il Progetto" },
+  { href: "/tipologie", label: "Tipologie" },
+  { href: "/il-verde", label: "Il Verde" },
+  { href: "/terrazzi-e-giardini", label: "Terrazzi e giardini", secondary: true },
+  { href: "/piscina", label: "Piscina", secondary: true },
+  { href: "/contatti", label: "Contatti" },
+]
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const pathname = usePathname()
 
-  // 1. GESTIONE SCROLL DELLA NAVBAR
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-    window.addEventListener("scroll", handleScroll)
+    const handleScroll = () => setIsScrolled(window.scrollY > 24)
+    handleScroll()
+    window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  // 2. BLOCCA LO SCROLL DELLA PAGINA SOTTOSTANTE
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = "hidden"
-      document.body.style.height = "100%"
-    } else {
-      document.body.style.overflow = "unset"
-      document.body.style.height = "unset"
-    }
-    
-    return () => {
-      document.body.style.overflow = "unset"
-      document.body.style.height = "unset"
-    }
-  }, [isMobileMenuOpen])
+  useEffect(() => setIsMobileMenuOpen(false), [pathname])
 
-  // 3. SCROLL AL TOP AL CARICAMENTO E AL CAMBIO DI ROTTA
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.history.scrollRestoration = "manual"
-      window.scrollTo(0, 0)
+    const desktop = window.matchMedia("(min-width: 1024px)")
+    const closeOnDesktop = () => {
+      if (desktop.matches) setIsMobileMenuOpen(false)
     }
-  }, [pathname])
-
-  const navLinks = [
-    { href: "/il-progetto", label: "Il Progetto" },
-    { href: "/tipologie", label: "Tipologie" },
-    { href: "/il-verde", label: "Il Verde" },
-    { href: "/contatti", label: "Contatti" },
-  ]
+    desktop.addEventListener("change", closeOnDesktop)
+    return () => desktop.removeEventListener("change", closeOnDesktop)
+  }, [])
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? "bg-black/30 backdrop-blur-md py-4 shadow-md" : "bg-transparent py-6"}`}>
-      <div className="container mx-auto px-6 lg:px-12">
-        <div className="relative flex items-center justify-between lg:grid lg:grid-cols-7 lg:items-center">
-          
-          {/* NAVIGAZIONE SINISTRA (Desktop) - 2 Bottoni */}
-          <div className="hidden lg:flex lg:col-span-3 items-center justify-start gap-8">
-            <Link href="/il-progetto" className="text-white hover:text-white/70 transition-colors uppercase tracking-[0.2em] text-[13px] font-medium">
-              Progetto
+    <Dialog.Root open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+      <header className={'site-header fixed inset-x-0 top-0 z-50 transition-colors duration-300 ' + (isScrolled ? "bg-[#241a16]/95 shadow-sm" : "bg-gradient-to-b from-black/45 to-transparent")}>
+        <div className="container mx-auto px-5 sm:px-6 lg:px-12">
+          <div className="flex h-20 items-center justify-between sm:h-24 lg:grid lg:h-32 lg:grid-cols-7">
+            <nav aria-label="Navigazione principale, progetto" className="hidden lg:col-span-3 lg:flex items-center gap-8">
+              {navLinks.slice(1, 3).map((link) => (
+                <Link key={link.href} href={link.href} aria-current={pathname === link.href ? "page" : undefined} className="inline-flex min-h-11 items-center text-white hover:text-white/70 uppercase tracking-[0.2em] text-[13px] font-medium">
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+
+            <Link href="/" aria-label="Belvedere 35, pagina iniziale" className="inline-flex items-center lg:col-span-1 lg:justify-center">
+              <Logo className="h-14 w-auto sm:h-16 lg:h-24" />
             </Link>
-            
-            <Link href="/tipologie" className="text-white hover:text-white/70 transition-colors uppercase tracking-[0.2em] text-[13px] font-medium py-2">
-              Tipologie
-            </Link>
+
+            <nav aria-label="Navigazione principale, informazioni" className="hidden lg:col-span-3 lg:flex items-center justify-end gap-5 xl:gap-8">
+              {[navLinks[3], navLinks[6]].map((link) => (
+                <Link key={link.href} href={link.href} aria-current={pathname === link.href ? "page" : undefined} className="inline-flex min-h-11 items-center text-white hover:text-white/70 uppercase tracking-[0.2em] text-[13px] font-medium whitespace-nowrap">
+                  {link.label}
+                </Link>
+              ))}
+              <a href="/capitolato.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/30 px-4 text-xs font-medium uppercase tracking-wider text-white hover:bg-white/10">
+                <Download className="h-4 w-4 shrink-0" aria-hidden="true" />
+                Capitolato
+              </a>
+            </nav>
+
+            <Dialog.Trigger asChild>
+              <button type="button" aria-label="Apri menu di navigazione" className="flex h-12 items-center justify-center gap-2 rounded-full border border-white/30 bg-black/10 px-4 text-white lg:hidden">
+                <span className="text-xs font-semibold tracking-wider">Menu</span>
+                <Menu className="h-5 w-5" aria-hidden="true" />
+              </button>
+            </Dialog.Trigger>
           </div>
-
-          {/* LOGO CENTRALE */}
-          <div className="lg:col-span-1 flex justify-center z-[60]">
-            <Link href="/" className="flex items-center justify-center py-1">
-              <Logo scrolled={false} className="h-20 md:h-24 w-auto" />
-            </Link>
-          </div>
-
-          {/* NAVIGAZIONE DESTRA (Desktop) - 2 Bottoni + Capitolato */}
-          <div className="hidden lg:flex lg:col-span-3 items-center justify-end gap-6 xl:gap-8">
-            <Link href="/il-verde" className="text-white hover:text-white/70 transition-colors uppercase tracking-[0.2em] text-[13px] font-medium py-2">
-              Il Verde
-            </Link>
-
-            <Link href="/contatti" className="text-white hover:text-white/70 transition-colors uppercase tracking-[0.2em] text-[13px] font-medium">
-              Contatti
-            </Link>
-
-            <a
-              href="/capitolato.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/10 hover:bg-white/20 text-white transition-all text-xs font-medium uppercase tracking-[0.15em] backdrop-blur-sm shadow-sm hover:scale-105"
-              title="Apri e scarica il capitolato PDF"
-            >
-              <Download className="w-3.5 h-3.5 text-primary" />
-              <span>Capitolato</span>
-            </a>
-          </div>
-
-          {/* PULSANTE MENU MOBILE (Hamburger) */}
-          <div className="flex lg:hidden z-[60]">
-            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="p-2 text-white transition-all duration-300">
-              {isMobileMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
-            </button>
-          </div>
-
         </div>
-      </div>
+      </header>
 
-      {/* OVERLAY MENU MOBILE */}
-      <div className={`fixed top-0 left-0 right-0 bottom-0 transition-all duration-700 ease-in-out z-50 ${isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
-        <div className="absolute inset-0 bg-black/85 backdrop-blur-[40px]"></div>
-        
-        <nav className="relative min-h-screen w-full flex flex-col items-center overflow-y-auto">
-          <div className="flex flex-col gap-10 w-full max-w-sm text-center py-24 px-8 my-auto">
-            {navLinks.map((link) => (
-              <div key={link.href} className="flex flex-col items-center">
-                {link.submenu ? (
-                  <>
-                    <span className="text-xs uppercase tracking-[0.3em] text-white/40 mb-4">{link.label}</span>
-                    <div className="grid grid-cols-2 gap-x-8 gap-y-4">
-                      {link.submenu.map((sub) => (
-                        <Link key={sub.href} href={sub.href} onClick={() => setIsMobileMenuOpen(false)} className="text-white text-lg font-serif hover:text-white/60 transition-colors">
-                          {sub.label}
-                        </Link>
-                      ))}
-                    </div>
-                  </>
-                ) : (
-                  <Link href={link.href} onClick={() => setIsMobileMenuOpen(false)} className="text-white text-4xl md:text-5xl font-serif tracking-tight hover:opacity-50 transition-opacity">
-                    {link.label}
-                  </Link>
-                )}
-              </div>
-            ))}
-
-            <div className="mt-6 flex flex-col gap-4">
-              <Button asChild className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 py-7 text-base font-medium shadow-xl">
-                <a href="/capitolato.pdf" target="_blank" rel="noopener noreferrer">
-                  <Download className="w-5 h-5 mr-2" /> Scarica Capitolato (PDF)
-                </a>
-              </Button>
-            </div>
+      <Dialog.Portal>
+        <Dialog.Overlay className="fixed inset-0 z-[60] bg-black/50" />
+        <Dialog.Content aria-describedby={undefined} className="mobile-navigation fixed inset-0 z-[70] flex flex-col bg-[#241a16] text-[#fcfbf9]">
+          <Dialog.Title className="sr-only">Menu di navigazione</Dialog.Title>
+          <div className="menu-topbar flex shrink-0 items-center justify-between border-b border-white/10 px-5 sm:px-8">
+            <Dialog.Close asChild>
+              <Link href="/" aria-label="Belvedere 35, pagina iniziale">
+                <Logo className="h-14 w-auto" />
+              </Link>
+            </Dialog.Close>
+            <Dialog.Close asChild>
+              <button type="button" aria-label="Chiudi menu di navigazione" className="flex min-h-12 items-center gap-2 rounded-full border border-white/30 px-4">
+                <span className="text-xs font-semibold tracking-wider">Chiudi</span>
+                <X className="h-5 w-5" aria-hidden="true" />
+              </button>
+            </Dialog.Close>
           </div>
-        </nav>
-      </div>
-    </header>
+          <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 sm:px-8">
+            <nav aria-label="Navigazione mobile" className="mx-auto max-w-xl py-5">
+              {navLinks.map((link) => (
+                <Dialog.Close asChild key={link.href}>
+                  <Link href={link.href} aria-current={pathname === link.href ? "page" : undefined} className={'flex min-h-12 items-center justify-between gap-4 rounded-lg px-3 py-2 transition-colors hover:bg-white/10 ' + (pathname === link.href ? "bg-white/10 text-white " : "text-white/80 ") + (link.secondary ? "pl-7 text-base" : "font-serif text-[1.75rem] sm:text-3xl")}>
+                    {link.label}
+                    {!link.secondary && <ArrowUpRight className="h-4 w-4 shrink-0 text-white/50" aria-hidden="true" />}
+                  </Link>
+                </Dialog.Close>
+              ))}
+              <div className="mt-5 space-y-3 border-t border-white/15 pt-5">
+                <Dialog.Close asChild>
+                  <a href="/capitolato.pdf" target="_blank" rel="noopener noreferrer" className="flex min-h-12 items-center justify-center gap-3 rounded-full bg-primary px-4 py-3 text-sm font-semibold text-white">
+                    <Download className="h-4 w-4 shrink-0" aria-hidden="true" />
+                    Scarica capitolato (PDF)
+                  </a>
+                </Dialog.Close>
+                <a href={'mailto:' + CONTACT_EMAIL} className="flex min-h-12 items-center gap-3 px-3 text-sm text-white/80">
+                  <Mail className="h-4 w-4 shrink-0" aria-hidden="true" />
+                  <span className="min-w-0 break-words">{CONTACT_EMAIL}</span>
+                </a>
+              </div>
+            </nav>
+          </div>
+        </Dialog.Content>
+      </Dialog.Portal>
+    </Dialog.Root>
   )
 }

@@ -7,5 +7,5 @@ export const metadata: Metadata = {
 }
 
 export default function PiscinaPage() {
-  return <IlVerdeClient />
+  return <IlVerdeClient initialTab="piscina" />
 }

@@ -54,22 +54,22 @@ export default function Home() {
     <main className="min-h-screen bg-[#fcfbf9]">
       <Header />
       <Hero />
-      
+
       {/* Sezione Il Progetto (Project Preview) */}
-      <section className="py-24 lg:py-36 bg-gradient-to-b from-[#fbfbf9] to-[#f5f4ed] overflow-hidden">
-        <div className="container mx-auto px-6 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
-            
+      <section className="py-16 sm:py-24 lg:py-36 bg-gradient-to-b from-[#fbfbf9] to-[#f5f4ed] overflow-hidden">
+        <div className="container mx-auto px-5 sm:px-6 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-20 items-center">
+
             {/* Blocco di testo a sinistra */}
             <div className="lg:col-span-5 animate-fade-in-up">
               <span className="inline-block text-primary text-[10px] tracking-[0.4em] uppercase mb-4 font-bold">
                 Il Progetto
               </span>
-              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground mb-8 leading-tight font-medium">
+              <h2 className="font-serif text-[2rem] sm:text-4xl md:text-5xl lg:text-6xl text-foreground mb-8 leading-tight font-medium">
                 Una residenza esclusiva
                 <span className="block text-primary italic font-normal mt-2">dal cuore verde</span>
               </h2>
-              <p className="text-muted-foreground/90 text-lg leading-relaxed mb-10 font-light">
+              <p className="text-muted-foreground/90 text-base sm:text-lg leading-relaxed mb-10 font-light">
                 Il progetto nasce a Garbagnate Monastero con l&apos;obiettivo di creare un nuovo modo di vivere la casa:
                 moderno, luminoso e immerso nel verde. Il complesso sarà composto da appartamenti di nuova costruzione,
                 progettati con linee contemporanee, ampi terrazzi, giardini privati e spazi esterni pensati per garantire
@@ -84,14 +84,14 @@ export default function Home() {
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
               </Link>
             </div>
-            
+
             {/* Bento Grid a destra */}
             <div className="lg:col-span-7 animate-fade-in-up">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {features.map((feature, idx) => (
                   <div
                     key={feature.title}
-                    className="relative bg-background/60 backdrop-blur-sm border border-slate-200/40 rounded-3xl p-8 shadow-sm hover:shadow-xl hover:bg-background transition-all duration-500 hover:-translate-y-1.5 group"
+                    className="relative bg-background/60 backdrop-blur-sm border border-slate-200/40 rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-sm hover:shadow-xl hover:bg-background transition-all duration-500 hover:-translate-y-1.5 group"
                   >
                     <div className="w-14 h-14 bg-accent/40 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary group-hover:scale-110 transition-all duration-500">
                       <feature.icon className="w-6 h-6 text-primary group-hover:text-primary-foreground transition-colors duration-500" />
@@ -99,7 +99,7 @@ export default function Home() {
                     <h3 className="font-serif text-2xl text-foreground mb-3 font-semibold">
                       {feature.title}
                     </h3>
-                    <p className="text-muted-foreground/80 text-sm leading-relaxed font-light">
+                    <p className="text-muted-foreground text-base sm:text-sm leading-relaxed font-light">
                       {feature.description}
                     </p>
                   </div>
@@ -110,43 +110,43 @@ export default function Home() {
           </div>
         </div>
       </section>
- 
+
       {/* Sezione Tipologie Abitative (Typologies Preview) */}
-      <section className="py-24 lg:py-36 bg-background">
-        <div className="container mx-auto px-6 lg:px-12">
-          
+      <section className="py-16 sm:py-24 lg:py-36 bg-background">
+        <div className="container mx-auto px-5 sm:px-6 lg:px-12">
+
           {/* Header centrato */}
-          <div className="text-center max-w-3xl mx-auto mb-20 animate-fade-in-up">
+          <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-20 animate-fade-in-up">
             <span className="inline-block text-primary text-[10px] tracking-[0.4em] uppercase mb-4 font-bold">
               Tipologie Abitative
             </span>
-            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground mb-8 leading-tight font-medium">
+            <h2 className="font-serif text-[2rem] sm:text-4xl md:text-5xl lg:text-6xl text-foreground mb-8 leading-tight font-medium">
               Ambienti unici,
               <span className="block text-primary italic font-normal mt-2">curati, sofisticati</span>
             </h2>
-            <p className="text-muted-foreground/90 text-lg font-light leading-relaxed">
-              Bilocali, trilocali e quadrilocali disegnati per soddisfare 
+            <p className="text-muted-foreground/90 text-base sm:text-lg font-light leading-relaxed">
+              Bilocali, trilocali e quadrilocali disegnati per soddisfare
               le più attente e preziose esigenze abitative del vivere moderno, con planimetrie dedicate per ogni appartamento.
             </p>
           </div>
- 
+
           {/* Griglia delle tipologie */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 animate-fade-in-up">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 animate-fade-in-up">
             {apartments.map((apt) => (
               <Link
                 key={apt.title}
                 href={apt.href}
-                className="group relative h-[480px] rounded-[32px] overflow-hidden border border-slate-100 shadow-sm hover:shadow-2xl transition-all duration-700"
+                className="group relative h-[360px] sm:h-[420px] lg:h-[480px] sm:last:col-span-2 lg:last:col-span-1 rounded-2xl sm:rounded-[32px] overflow-hidden border border-slate-100 shadow-sm hover:shadow-2xl transition-all duration-700"
               >
                 <Image
                   src={apt.image || "/placeholder.svg"}
                   alt={apt.title}
                   fill
                   className="object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
-                  sizes="(max-width: 768px) 100vw, 33vw"
+                  sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/10 group-hover:via-black/20 transition-all duration-700" />
-                
+
                 {/* Metratura in vetro */}
                 <div className="absolute top-6 right-6 backdrop-blur-md bg-white/15 border border-white/20 rounded-full px-4 py-1.5 shadow-lg">
                   <span className="text-white text-xs font-semibold tracking-wider uppercase">{apt.sqm}</span>
@@ -162,47 +162,47 @@ export default function Home() {
               </Link>
             ))}
           </div>
- 
+
           <div className="text-center mt-16">
             <Link
               href="/tipologie"
-              className="inline-flex items-center justify-center px-10 py-5 bg-primary text-primary-foreground rounded-full text-xs font-bold tracking-[0.2em] uppercase transition-all duration-550 hover:bg-primary/95 hover:shadow-2xl hover:-translate-y-1"
+              className="inline-flex items-center justify-center w-full sm:w-auto px-5 sm:px-10 py-4 sm:py-5 bg-primary text-primary-foreground rounded-full text-xs font-bold tracking-[0.2em] uppercase transition-all duration-550 hover:bg-primary/95 hover:shadow-2xl hover:-translate-y-1"
             >
               Vedi tutte le tipologie
             </Link>
           </div>
         </div>
       </section>
- 
+
       {/* Sezione Spazi Esterni (Outdoor Preview) */}
-      <section className="py-24 lg:py-36 bg-gradient-to-b from-[#fbfbf9] to-[#f5f4ed]">
-        <div className="container mx-auto px-6 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-            
+      <section className="py-16 sm:py-24 lg:py-36 bg-gradient-to-b from-[#fbfbf9] to-[#f5f4ed]">
+        <div className="container mx-auto px-5 sm:px-6 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-16 lg:gap-24 items-center">
+
             {/* Composizione asimmetrica a sinistra */}
             <div className="order-2 lg:order-1 animate-fade-in-up">
-              <div className="grid grid-cols-2 gap-6 relative">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 relative">
                 {/* Immagine Terrazza */}
-                <div className="relative h-80 lg:h-96 rounded-[32px] overflow-hidden shadow-lg border border-slate-200/50 hover:shadow-2xl transition-all duration-700 group hover:-translate-y-1">
+                <div className="relative h-64 sm:h-80 lg:h-96 rounded-2xl sm:rounded-[32px] overflow-hidden shadow-lg border border-slate-200/50 hover:shadow-2xl transition-all duration-700 group hover:-translate-y-1">
                   <Image
                     src="/images/terrace-main.png"
                     alt="Terrazza"
                     fill
                     className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
-                    sizes="(max-width: 1024px) 50vw, 25vw"
+                    sizes="(max-width: 639px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   />
                   <div className="absolute bottom-4 left-4 bg-black/60 backdrop-blur-sm rounded-xl px-4 py-1.5">
                     <span className="text-white text-[10px] tracking-wider uppercase font-semibold">Terrazzi</span>
                   </div>
                 </div>
                 {/* Immagine Giardino */}
-                <div className="relative h-80 lg:h-96 rounded-[32px] overflow-hidden shadow-lg border border-slate-200/50 hover:shadow-2xl transition-all duration-700 mt-12 group hover:-translate-y-1">
+                <div className="relative h-64 sm:h-80 lg:h-96 rounded-2xl sm:rounded-[32px] overflow-hidden shadow-lg border border-slate-200/50 hover:shadow-2xl transition-all duration-700 sm:mt-12 group hover:-translate-y-1">
                   <Image
                     src="/images/garden-main.png"
                     alt="Giardino"
                     fill
                     className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
-                    sizes="(max-width: 1024px) 50vw, 25vw"
+                    sizes="(max-width: 639px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   />
                   <div className="absolute bottom-4 left-4 bg-black/60 backdrop-blur-sm rounded-xl px-4 py-1.5">
                     <span className="text-white text-[10px] tracking-wider uppercase font-semibold">Giardini</span>
@@ -210,17 +210,17 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            
+
             {/* Blocco di testo a destra */}
             <div className="order-1 lg:order-2 animate-fade-in-up">
               <span className="inline-block text-primary text-[10px] tracking-[0.4em] uppercase mb-4 font-bold">
                 Spazi Esterni
               </span>
-              <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-6 leading-tight font-medium">
+              <h2 className="font-serif text-[2rem] sm:text-4xl md:text-5xl text-foreground mb-6 leading-tight font-medium">
                 Terrazzi, giardini
                 <span className="block text-primary italic font-normal mt-2">esclusivi</span>
               </h2>
-              <p className="text-muted-foreground/90 text-lg leading-relaxed mb-10 font-light">
+              <p className="text-muted-foreground/90 text-base sm:text-lg leading-relaxed mb-10 font-light">
                 Spazi esterni accoglienti e riservati, pensati per vivere la casa anche all&apos;aperto e valorizzati dalla
                 presenza della piscina condominiale.
               </p>
@@ -232,38 +232,38 @@ export default function Home() {
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform duration-300" />
               </Link>
             </div>
-            
+
           </div>
         </div>
       </section>
- 
+
       {/* Sezione Contatti (Contact CTA) */}
-      <section className="py-24 lg:py-36 bg-gradient-to-b from-white to-[#fcfbf9] overflow-hidden relative">
+      <section className="py-16 sm:py-24 lg:py-36 bg-gradient-to-b from-white to-[#fcfbf9] overflow-hidden relative">
         {/* Glow ambientali in background */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl pointer-events-none" />
-        
-        <div className="container mx-auto px-6 lg:px-12 relative z-10 animate-fade-in-up">
-          <div className="bg-[#3e2d27] text-white rounded-[48px] p-12 lg:p-24 text-center shadow-2xl relative overflow-hidden border border-white/10">
+
+        <div className="container mx-auto px-5 sm:px-6 lg:px-12 relative z-10 animate-fade-in-up">
+          <div className="bg-[#3e2d27] text-white rounded-2xl sm:rounded-[48px] p-6 sm:p-12 lg:p-24 text-center shadow-2xl relative overflow-hidden border border-white/10">
             {/* Gradiente radiale per effetto di luce speculare interna */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/15 via-transparent to-transparent pointer-events-none" />
-            
-            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-6 font-medium leading-tight max-w-3xl mx-auto">
+
+            <h2 className="font-serif text-[2rem] sm:text-4xl md:text-5xl lg:text-6xl mb-6 font-medium leading-tight max-w-3xl mx-auto">
               Contattaci per maggiori informazioni
             </h2>
-            <p className="text-white/80 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-light leading-relaxed">
-              Chiedi un appuntamento dedicato con un responsabile commerciale 
+            <p className="text-white/80 text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-12 font-light leading-relaxed">
+              Chiedi un appuntamento dedicato con un responsabile commerciale
               per scoprire tutto su Belvedere 35.
             </p>
             <Link
               href="/contatti"
-              className="inline-flex items-center justify-center px-10 py-5 bg-primary text-primary-foreground hover:bg-primary/95 rounded-full text-xs font-bold tracking-[0.2em] uppercase transition-all duration-300 hover:shadow-2xl hover:-translate-y-1"
+              className="inline-flex items-center justify-center w-full sm:w-auto px-5 sm:px-10 py-4 sm:py-5 bg-primary text-primary-foreground hover:bg-primary/95 rounded-full text-xs font-bold tracking-[0.2em] uppercase transition-all duration-300 hover:shadow-2xl hover:-translate-y-1"
             >
               Richiedi Informazioni
             </Link>
           </div>
         </div>
       </section>
- 
+
       <Footer />
     </main>
   )

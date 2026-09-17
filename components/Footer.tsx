@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { Mail, Download } from "lucide-react"
 import Logo from "@/components/Logo"
+import { CONTACT_EMAIL } from "@/lib/contact"
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -16,9 +17,9 @@ export default function Footer() {
 
   return (
     <footer className="bg-[#241a16] text-[#fcfbf9] border-t border-[#3e2d27]/20">
-      <div className="container mx-auto px-6 lg:px-12 py-20 lg:py-28">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-20">
-          
+      <div className="container mx-auto px-5 sm:px-6 lg:px-12 py-20 lg:py-28">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 sm:gap-12 lg:gap-20">
+
           {/* Logo & Info column */}
           <div className="md:col-span-7">
             <Link href="/" className="inline-block mb-8 group">
@@ -30,14 +31,14 @@ export default function Footer() {
               Residenze moderne nel verde di Garbagnate Monastero, pensate per chi cerca qualità, comfort e benessere quotidiano.
             </p>
             <div className="space-y-3">
-              <a 
-                href="mailto:info@jcostruzioni.it" 
-                className="inline-flex items-center gap-3 text-[#fcfbf9]/60 hover:text-primary transition-colors duration-300 font-medium text-sm group"
+              <a
+                href={`mailto:${CONTACT_EMAIL}`}
+                className="inline-flex max-w-full items-center gap-3 text-[#fcfbf9]/60 hover:text-primary transition-colors duration-300 font-medium text-sm group focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
               >
-                <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:border-primary/30 transition-all duration-300">
+                <div className="w-9 h-9 shrink-0 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:border-primary/30 transition-all duration-300">
                   <Mail className="w-4 h-4 text-white group-hover:text-primary transition-colors duration-300" aria-hidden="true" />
                 </div>
-                <span>info@jcostruzioni.it</span>
+                <span className="min-w-0 break-words">{CONTACT_EMAIL}</span>
               </a>
             </div>
           </div>
@@ -80,7 +81,7 @@ export default function Footer() {
 
       {/* Bottom copyrights */}
       <div className="border-t border-white/5 bg-[#140e0c]/80">
-        <div className="container mx-auto px-6 lg:px-12 py-8">
+        <div className="container mx-auto px-5 sm:px-6 lg:px-12 py-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[#fcfbf9]/40 font-light">
             <p>&copy; {currentYear} Belvedere 35 - Tutti i diritti riservati</p>
             <p className="tracking-wide">

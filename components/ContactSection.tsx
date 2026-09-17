@@ -4,6 +4,7 @@ import React, { useState } from "react"
 import { CheckCircle, Clock, Mail, MapPin, Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { CONTACT_EMAIL } from "@/lib/contact"
 
 export default function ContactSection() {
   const [isSubmitted, setIsSubmitted] = useState(false)
@@ -31,7 +32,8 @@ export default function ContactSection() {
     {
       icon: Mail,
       title: "Email",
-      content: "info@besaweb.com",
+      content: CONTACT_EMAIL,
+      href: `mailto:${CONTACT_EMAIL}`,
     },
     {
       icon: Clock,
@@ -62,9 +64,18 @@ export default function ContactSection() {
                   <div className="w-12 h-12 bg-accent rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-primary transition-colors duration-300">
                     <info.icon className="w-5 h-5 text-primary group-hover:text-primary-foreground transition-colors duration-300" />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <h4 className="font-medium text-foreground mb-1">{info.title}</h4>
-                    <p className="text-muted-foreground">{info.content}</p>
+                    {info.href ? (
+                      <a
+                        href={info.href}
+                        className="break-words text-muted-foreground hover:underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+                      >
+                        {info.content}
+                      </a>
+                    ) : (
+                      <p className="text-muted-foreground">{info.content}</p>
+                    )}
                   </div>
                 </div>
               ))}
