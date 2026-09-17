@@ -10,6 +10,7 @@ export interface UnitAvailability {
   floor: string
   sqm: number
   terrace: number
+  terraceLabel?: string
   garden?: number
   price: string
   available: boolean
@@ -48,7 +49,7 @@ export default function UnitAvailabilityTable({ units, typeLabel }: UnitAvailabi
           <caption className="sr-only">Unità disponibili con planimetrie dedicate per {typeLabel}</caption>
           <thead className="unit-table-head">
             <tr className="border-b border-slate-200/60">
-              {["Unità", "Piano", "Superficie", "Terrazzo", ...(showGarden ? ["Giardino"] : []), "Prezzo", "Stato", "Planimetria"].map((heading) => (
+              {["Unità", "Piano", "Superficie", "Spazio esterno", ...(showGarden ? ["Giardino"] : []), "Prezzo", "Stato", "Planimetria"].map((heading) => (
                 <th scope="col" key={heading} className="px-3 py-5 text-left text-[10px] uppercase tracking-wider text-primary font-bold">{heading}</th>
               ))}
             </tr>
@@ -63,7 +64,7 @@ export default function UnitAvailabilityTable({ units, typeLabel }: UnitAvailabi
                     <td role="cell" data-label="Unità" className="px-3 py-5 font-serif text-2xl text-foreground font-semibold">{unit.name}</td>
                     <td role="cell" data-label="Piano" className="px-3 py-5 text-sm text-foreground">{unit.floor}</td>
                     <td role="cell" data-label="Superficie" className="px-3 py-5 text-sm text-foreground">{unit.sqm} mq</td>
-                    <td role="cell" data-label="Terrazzo" className="px-3 py-5 text-sm text-foreground">{unit.terrace} mq</td>
+                    <td role="cell" data-label="Spazio esterno" className="px-3 py-5 text-sm text-foreground"><span className="block">{unit.terrace} mq</span><span className="mt-1 block text-[10px] uppercase tracking-wider text-muted-foreground">{unit.terraceLabel || "Terrazzo"}</span></td>
                     {showGarden && <td role="cell" data-label="Giardino" className="px-3 py-5 text-sm text-foreground">{unit.garden ? unit.garden + " mq" : "—"}</td>}
                     <td role="cell" data-label="Prezzo" className="px-3 py-5 font-serif text-xl text-foreground font-semibold">&euro; {unit.price}</td>
                     <td role="cell" data-label="Stato" className="px-3 py-5">

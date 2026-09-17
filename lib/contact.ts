@@ -1,1 +1,1 @@
-export const CONTACT_EMAIL = "pittarellaalessandro@virgilio.it"
+export const CONTACT_EMAIL = "info@studionuovacasa.com"

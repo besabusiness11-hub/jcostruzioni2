@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { motion, useReducedMotion } from "framer-motion"
@@ -48,6 +48,22 @@ const features = [
 export default function IlVerdeClient({ initialTab = "tutti" }: { initialTab?: string }) {
   const [activeTab, setActiveTab] = useState(initialTab)
   const reducedMotion = useReducedMotion()
+  const scrollAfterTabChange = useRef(false)
+
+  useEffect(() => {
+    if (!scrollAfterTabChange.current || activeTab === "tutti") return
+    scrollAfterTabChange.current = false
+    document.getElementById(activeTab)?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" })
+  }, [activeTab, reducedMotion])
+
+  const handleTabChange = (tabId: string) => {
+    if (tabId === activeTab) {
+      document.getElementById(tabId)?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" })
+      return
+    }
+    scrollAfterTabChange.current = tabId !== "tutti"
+    setActiveTab(tabId)
+  }
 
   return (
     <main className="min-h-screen bg-[#fcfbf9]">
@@ -69,8 +85,10 @@ export default function IlVerdeClient({ initialTab = "tutti" }: { initialTab?: s
                 return (
                   <button
                     key={tab.id}
-                    onClick={() => setActiveTab(tab.id)}
+                    type="button"
+                    onClick={() => handleTabChange(tab.id)}
                     aria-pressed={isActive}
+                    aria-controls={tab.id === "tutti" ? undefined : tab.id}
                     className={`relative min-h-12 px-3 sm:px-6 py-3 rounded-full text-sm font-semibold transition-colors duration-300 ${tab.id === "tutti" ? "col-span-2" : ""} ${
                       isActive ? "text-white" : "text-muted-foreground hover:text-foreground"
                     }`}

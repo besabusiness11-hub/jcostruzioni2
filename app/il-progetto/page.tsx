@@ -3,7 +3,7 @@ import Link from "next/link"
 import type { Metadata } from "next"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
-import { Leaf, HomeIcon, Sparkles, Building2, Sun, Thermometer, Zap, Snowflake, ArrowRight, Download } from "lucide-react"
+import { Leaf, Sparkles, Building2, Sun, Thermometer, ArrowRight, Download } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Il Progetto | Belvedere 35 - Garbagnate Monastero",
@@ -14,17 +14,12 @@ const features = [
   {
     icon: Leaf,
     title: "Sostenibilità Ambientale",
-    description: "Classe energetica A con pannelli fotovoltaici, impianti geotermici e sistemi di recupero acque piovane per un impatto ambientale minimo.",
-  },
-  {
-    icon: HomeIcon,
-    title: "Domotica",
-    description: "Soluzioni intelligenti per una gestione semplice e moderna della casa, con predisposizioni per comfort, luci e clima.",
+    description: "Classe energetica A con pannelli fotovoltaici per un impatto ambientale minimo.",
   },
   {
     icon: Sparkles,
     title: "Finiture Premium",
-    description: "Materiali di pregio italiani selezionati, pavimenti in parquet massello, infissi in alluminio a taglio termico e dettagli artigianali.",
+    description: "Materiali di pregio italiani selezionati, pavimenti in parquet, infissi in legno a taglio termico e dettagli artigianali.",
   },
   {
     icon: Building2,
@@ -43,16 +38,6 @@ const energyFeatures = [
     icon: Thermometer,
     title: "Riscaldamento a Pavimento",
     description: "Sistema radiante a bassa temperatura per il massimo comfort con consumi ridotti.",
-  },
-  {
-    icon: Zap,
-    title: "Domotica Integrata",
-    description: "Controllo intelligente di luci, clima e sicurezza da smartphone e tablet.",
-  },
-  {
-    icon: Snowflake,
-    title: "Raffrescamento Estivo",
-    description: "Impianto di raffrescamento estivo integrato di serie in tutte le soluzioni abitative.",
   },
 ]
 export default function IlProgettoPage() {
@@ -150,7 +135,7 @@ const energyFeatures = [
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 animate-fade-in-up">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 animate-fade-in-up">
             {features.map((feature) => (
               <div
                 key={feature.title}

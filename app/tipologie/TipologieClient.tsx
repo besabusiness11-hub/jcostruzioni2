@@ -12,68 +12,68 @@ import { motion, useReducedMotion } from "framer-motion"
 const apartmentsData = {
   bilocali: {
     title: "Bilocali",
-    subtitle: "Ideale per giovani coppie e professionisti",
-    description: "Soluzioni compatte e funzionali, con distribuzioni curate e affacci pensati per dare luce agli ambienti quotidiani.",
+    subtitle: "Soluzioni compatte e luminose",
+    description: "Tre appartamenti tra piano terra e primo piano, con portici o terrazzi e planimetrie dedicate.",
     image: "/images/interior-bilocale.jpg",
     sqm: "60-63 mq",
     priceFrom: "215.000",
     available: 3,
     features: [
-      "Distribuzione degli spazi estremamente efficiente",
-      "Terrazzo loggiato o giardino ad uso esclusivo",
-      "Zona notte separata e silenziosa",
-      "Ideale per investimento o prima casa"
+      "Piano terra con portico e giardino privato",
+      "Primo piano con terrazzo abitabile",
+      "Zona giorno luminosa e distribuzioni funzionali",
+      "Planimetria dedicata per ogni unità",
     ],
     units: [
-      { name: "3B", floor: "Piano 1", sqm: 60, terrace: 17, price: "215.000", available: true, planImage: "/images/planimetrie/appartamento-01.webp", uniqueness: "Soluzione funzionale ed efficiente con un'ottima esposizione solare, ideale come investimento o prima casa." },
-      { name: "5A", floor: "Piano 1", sqm: 61, terrace: 19, price: "220.000", available: true, planImage: "/images/planimetrie/appartamento-02.webp", uniqueness: "Bilocale luminoso al primo piano con terrazzo abitabile coperto, perfetto per cene estive." },
-      { name: "2A", floor: "Piano Terra", sqm: 63, terrace: 19, garden: 62, price: "235.000", available: true, planImage: "/images/planimetrie/appartamento-03.webp", uniqueness: "Splendido bilocale al piano terra dotato di un ampio giardino privato di oltre 60 mq." },
-    ]
+      { name: "2", floor: "Piano Terra", sqm: 63.38, terrace: 18.9, terraceLabel: "Portico", garden: 62.22, price: "235.000", available: true, planImage: "/images/planimetrie/appartamento-02.webp", uniqueness: "Bilocale al piano terra con portico e giardino privato." },
+      { name: "8", floor: "Piano 1", sqm: 61.17, terrace: 18.9, terraceLabel: "Terrazzo", price: "220.000", available: true, planImage: "/images/planimetrie/appartamento-08.webp", uniqueness: "Bilocale al primo piano con terrazzo privato." },
+      { name: "10", floor: "Piano 1", sqm: 59.6, terrace: 17.26, terraceLabel: "Terrazzo", price: "215.000", available: true, planImage: "/images/planimetrie/appartamento-10.webp", uniqueness: "Bilocale al primo piano con terrazzo privato." },
+    ],
   },
   trilocali: {
     title: "Trilocali",
-    subtitle: "La soluzione più richiesta",
-    description: "Appartamenti equilibrati, con zona giorno luminosa e spazi flessibili per studio, famiglia e vita all'aperto.",
+    subtitle: "Spazi versatili per la vita quotidiana",
+    description: "Quattro trilocali con giardini al piano terra o spazi esterni esclusivi al primo piano.",
     image: "/images/interior-trilocale.jpg",
     sqm: "104-129 mq",
     priceFrom: "405.000",
-    available: 5,
+    available: 4,
     features: [
-      "Living di ampio respiro con cucina a vista o abitabile",
-      "Doppi servizi finestrati con finiture di pregio",
-      "Giardini privati al piano terra fino a 300 mq",
-      "Terrazzi loggiati vivibili al primo piano"
+      "Piano terra con portico e giardino privato",
+      "Primo piano con terrazzo, solarium e gazebo",
+      "Zona giorno luminosa e spazi ben distribuiti",
+      "Planimetria dedicata per ogni unità",
     ],
     units: [
-      { name: "3A", floor: "Piano Terra", sqm: 114, terrace: 15, garden: 126, price: "405.000", available: true, planImage: "/images/planimetrie/appartamento-04.webp", uniqueness: "Spettacolare trilocale al piano terra con portico e un magnifico giardino ad angolo di 126 mq." },
-      { name: "6A", floor: "Piano 1", sqm: 104, terrace: 13, price: "455.000", available: true, planImage: "/images/planimetrie/appartamento-05.webp", uniqueness: "Trilocale al primo piano con eccellente esposizione solare e balcone loggiato, taglio moderno." },
-      { name: "1C", floor: "Piano Terra", sqm: 129, terrace: 29, garden: 240, price: "475.000", available: true, planImage: "/images/planimetrie/appartamento-06.webp", uniqueness: "Trilocale di testa con tripla esposizione ed immenso giardino privato, ideale per famiglie." },
-      { name: "2C", floor: "Piano Terra", sqm: 124, terrace: 45, garden: 309, price: "480.000", available: true, planImage: "/images/planimetrie/appartamento-07.webp", uniqueness: "Il trilocale con il giardino più grande del complesso: oltre 300 mq di area verde privata." },
-      { name: "1A", floor: "Piano Terra", sqm: 128, terrace: 40, garden: 253, price: "485.000", available: true, planImage: "/images/planimetrie/appartamento-08.webp", uniqueness: "Uno dei trilocali più prestigiosi di Belvedere 35, con giardino di 253 mq e portico coperto di 40 mq." },
-    ]
+      { name: "3", floor: "Piano Terra", sqm: 114.25, terrace: 15.1, terraceLabel: "Portico", garden: 126.31, price: "405.000", available: true, planImage: "/images/planimetrie/appartamento-03.webp", uniqueness: "Trilocale al piano terra con portico e giardino privato." },
+      { name: "6", floor: "Piano Terra", sqm: 124.1, terrace: 45.2, terraceLabel: "Portico", garden: 308.6, price: "480.000", available: true, planImage: "/images/planimetrie/appartamento-06.webp", uniqueness: "Trilocale al piano terra con ampio portico e giardino privato." },
+      { name: "9", floor: "Piano 1", sqm: 103.5, terrace: 13.2, terraceLabel: "Terrazzo", price: "465.000", available: true, planImage: "/images/planimetrie/appartamento-09.webp", uniqueness: "Trilocale al primo piano con terrazzo, gazebo e solarium." },
+      { name: "13", floor: "Piano 1", sqm: 129, terrace: 31.7, terraceLabel: "Terrazzo", price: "565.000", available: true, planImage: "/images/planimetrie/appartamento-13.webp", uniqueness: "Trilocale al primo piano con terrazzo, gazebo e solarium." },
+    ],
   },
   quadrilocali: {
     title: "Quadrilocali",
     subtitle: "Spazi generosi per la famiglia",
-    description: "Soluzioni ampie con ambienti distinti, privacy e una relazione privilegiata con terrazzi o giardini privati.",
+    description: "Sei quadrilocali con giardini, portici o ampi spazi esterni al primo piano.",
     image: "/images/interior-quadrilocale.jpg",
     sqm: "124-151 mq",
-    priceFrom: "560.000",
-    available: 5,
+    priceFrom: "475.000",
+    available: 6,
     features: [
-      "Salone triplo ad altissima luminosità",
-      "Giardini privati al piano terra fino a 300 mq",
-      "Terrazzo panoramico avvolgente fino a 70 mq",
-      "Suite padronale con cabina armadio o doppi servizi"
+      "Piano terra con portico e giardino privato",
+      "Primo piano con terrazzo, solarium e gazebo",
+      "Ambienti ampi e distribuzioni dedicate",
+      "Planimetria dedicata per ogni unità",
     ],
     units: [
-      { name: "3C", floor: "Piano 1", sqm: 129, terrace: 32, price: "560.000", available: true, planImage: "/images/planimetrie/appartamento-09.webp", uniqueness: "Luminoso quadrilocale all'ultimo piano caratterizzato da un terrazzo panoramico e un living spazioso." },
-      { name: "4C", floor: "Piano 1", sqm: 124, terrace: 45, price: "565.000", available: true, planImage: "/images/planimetrie/appartamento-10.webp", uniqueness: "Quadrilocale angolare al primo piano con uno splendido terrazzo loggiato di 45 mq." },
-      { name: "4A", floor: "Piano 1", sqm: 130, terrace: 43, price: "590.000", available: true, planImage: "/images/planimetrie/appartamento-11.webp", uniqueness: "Elegante quadrilocale al primo piano con terrazzo profondo ed ottima illuminazione naturale." },
-      { name: "1B", floor: "Piano Terra", sqm: 151, terrace: 71, garden: 299, price: "595.000", available: true, planImage: "/images/planimetrie/appartamento-12.webp", uniqueness: "Esclusivo quadrilocale al piano terra di generosa metratura, con un giardino privato perimetrale di 299 mq." },
-      { name: "2B", floor: "Piano 1", sqm: 151, terrace: 71, price: "700.000", available: true, planImage: "/images/planimetrie/appartamento-13.webp", uniqueness: "La residenza più prestigiosa del complesso: attico-quadrilocale di 151 mq con terrazza di 71 mq." },
-    ]
-  }
+      { name: "1", floor: "Piano Terra", sqm: 128.34, terrace: 39.74, terraceLabel: "Portico", garden: 253, price: "485.000", available: true, planImage: "/images/planimetrie/appartamento-01.webp", uniqueness: "Quadrilocale al piano terra con portico e giardino privato." },
+      { name: "4", floor: "Piano Terra", sqm: 150.93, terrace: 71.21, terraceLabel: "Portico", garden: 298.5, price: "595.000", available: true, planImage: "/images/planimetrie/appartamento-04.webp", uniqueness: "Quadrilocale al piano terra con ampio portico e giardino privato." },
+      { name: "5", floor: "Piano Terra", sqm: 129.1, terrace: 28.7, terraceLabel: "Portico", garden: 240.3, price: "475.000", available: true, planImage: "/images/planimetrie/appartamento-05.webp", uniqueness: "Quadrilocale al piano terra con portico e giardino privato." },
+      { name: "7", floor: "Piano 1", sqm: 129.59, terrace: 42.81, terraceLabel: "Terrazzo", price: "595.000", available: true, planImage: "/images/planimetrie/appartamento-07.webp", uniqueness: "Quadrilocale al primo piano con terrazzo, gazebo e solarium." },
+      { name: "11", floor: "Piano 1", sqm: 150.99, terrace: 70.5, terraceLabel: "Terrazzo", price: "710.000", available: true, planImage: "/images/planimetrie/appartamento-11.webp", uniqueness: "Quadrilocale al primo piano con terrazzo, gazebo e solarium." },
+      { name: "12", floor: "Piano 1", sqm: 124.2, terrace: 45.1, terraceLabel: "Terrazzo", price: "570.000", available: true, planImage: "/images/planimetrie/appartamento-12.webp", uniqueness: "Quadrilocale al primo piano con terrazzo, gazebo e solarium." },
+    ],
+  },
 }
 
 type TabType = "bilocali" | "trilocali" | "quadrilocali"
