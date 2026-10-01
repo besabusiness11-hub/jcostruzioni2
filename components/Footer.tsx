@@ -1,96 +1,66 @@
 import Link from "next/link"
-import { Mail, Download } from "lucide-react"
+import { Download, Mail, MapPin, Phone } from "lucide-react"
 import Logo from "@/components/Logo"
-import { CONTACT_EMAIL } from "@/lib/contact"
+import { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_PHONE_HREF } from "@/lib/contact"
+
+const contactLinkClass = "group flex flex-col items-center gap-3 text-center transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#9dbb9e]"
+const footerLinkClass = "transition-colors hover:text-[#9dbb9e] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#9dbb9e]"
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear()
-
-  const footerLinks = {
-    legale: [
-      { label: "Privacy Policy", href: "#" },
-      { label: "Cookie Policy", href: "#" },
-      { label: "Termini e Condizioni", href: "#" },
-      { label: "Note Legali", href: "#" },
-    ],
-  }
-
   return (
-    <footer className="bg-[#241a16] text-[#fcfbf9] border-t border-[#3e2d27]/20">
-      <div className="container mx-auto px-5 sm:px-6 lg:px-12 py-20 lg:py-28">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 sm:gap-12 lg:gap-20">
-
-          {/* Logo & Info column */}
-          <div className="md:col-span-7">
-            <Link href="/" className="inline-block mb-8 group">
-              <div className="h-20 flex items-center">
-                <Logo className="h-full w-auto text-white group-hover:scale-[1.02] transition-transform duration-500" />
-              </div>
-            </Link>
-            <p className="text-[#fcfbf9]/70 leading-relaxed mb-8 max-w-sm font-light text-base">
-              Residenze moderne nel verde di Garbagnate Monastero, pensate per chi cerca qualità, comfort e benessere quotidiano.
-            </p>
-            <div className="space-y-3">
-              <a
-                href={`mailto:${CONTACT_EMAIL}`}
-                className="inline-flex max-w-full items-center gap-3 text-[#fcfbf9]/60 hover:text-primary transition-colors duration-300 font-medium text-sm group focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
-              >
-                <div className="w-9 h-9 shrink-0 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:border-primary/30 transition-all duration-300">
-                  <Mail className="w-4 h-4 text-white group-hover:text-primary transition-colors duration-300" aria-hidden="true" />
-                </div>
-                <span className="min-w-0 break-words">{CONTACT_EMAIL}</span>
-              </a>
-            </div>
-          </div>
-
-          {/* Links column */}
-          <div className="md:col-span-5 md:pl-12 lg:pl-20">
-            <h4 className="text-[10px] tracking-[0.4em] uppercase text-primary font-bold mb-6">
-              Documenti & Note
-            </h4>
-            <ul className="space-y-4">
-              <li>
-                <a
-                  href="/capitolato.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-[#fcfbf9]/80 hover:text-primary hover:pl-2 transition-all duration-300 font-medium flex items-center gap-2 group"
-                >
-                  <Download className="w-4 h-4 text-primary group-hover:scale-110 transition-transform duration-300" />
-                  <span>Scarica Capitolato (PDF)</span>
-                </a>
-              </li>
-              {footerLinks.legale.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-[#fcfbf9]/60 hover:text-[#fcfbf9] hover:pl-2 transition-all duration-300 font-light flex items-center gap-2 group"
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary scale-0 group-hover:scale-100 transition-transform duration-300"></span>
-                    <span>{link.label}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
+    <footer className="border-t border-[#9dbb9e]/35 bg-[#241a16] pb-24 pt-20 text-[#fcfbf9] sm:pt-24 lg:pb-12">
+      <div className="container mx-auto px-5 sm:px-6 lg:px-12">
+        <div className="text-center">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#9dbb9e]">Vivere il verde, ogni giorno</p>
+          <Link href="/" aria-label="Belvedere 35, pagina iniziale" className="mx-auto mt-4 inline-flex rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#9dbb9e]">
+            <Logo className="h-24 w-auto sm:h-28" />
+          </Link>
+          <p className="mx-auto mt-5 max-w-md text-sm leading-relaxed text-white/70">
+            Residenze contemporanee a Garbagnate Monastero, tra architettura, comfort e natura.
+          </p>
         </div>
-      </div>
 
+        <section className="mt-12 grid gap-9 border-b border-white/20 pb-12 md:grid-cols-3 md:gap-8" aria-label="Recapiti">
+          <a href="https://www.google.com/maps/search/?api=1&query=Garbagnate+Monastero+LC" target="_blank" rel="noopener noreferrer" className={contactLinkClass}>
+            <MapPin size={30} strokeWidth={1.4} className="text-[#9dbb9e]" aria-hidden="true" />
+            <span>
+              <span className="block text-[11px] font-semibold uppercase tracking-[0.16em] text-[#9dbb9e]">Dove siamo</span>
+              <span className="mt-2 block text-sm leading-relaxed text-white/90">Garbagnate Monastero<br />Provincia di Lecco</span>
+            </span>
+          </a>
+          <a href={CONTACT_PHONE_HREF} className={contactLinkClass}>
+            <Phone size={30} strokeWidth={1.4} className="text-[#9dbb9e]" aria-hidden="true" />
+            <span>
+              <span className="block text-[11px] font-semibold uppercase tracking-[0.16em] text-[#9dbb9e]">Telefono</span>
+              <span className="mt-2 block text-sm leading-relaxed text-white/90">{CONTACT_PHONE}</span>
+            </span>
+          </a>
+          <a href={`mailto:${CONTACT_EMAIL}`} className={contactLinkClass}>
+            <Mail size={30} strokeWidth={1.4} className="text-[#9dbb9e]" aria-hidden="true" />
+            <span>
+              <span className="block text-[11px] font-semibold uppercase tracking-[0.16em] text-[#9dbb9e]">Email</span>
+              <span className="mt-2 block break-all text-sm leading-relaxed text-white/90">{CONTACT_EMAIL}</span>
+            </span>
+          </a>
+        </section>
 
+        <section className="border-b border-white/20 py-12 text-center" aria-labelledby="footer-explore-title">
+          <h2 id="footer-explore-title" className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#9dbb9e]">Esplora Belvedere 35</h2>
+          <nav aria-label="Link utili" className="mt-7 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 text-sm text-white/85">
+            <Link href="/il-progetto" className={footerLinkClass}>Il Progetto</Link>
+            <Link href="/tipologie" className={footerLinkClass}>Tipologie</Link>
+            <Link href="/il-verde" className={footerLinkClass}>Il Verde</Link>
+            <Link href="/contatti" className={footerLinkClass}>Contatti</Link>
+            <a href="/capitolato.pdf" target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-2 ${footerLinkClass}`}>
+              <Download size={15} aria-hidden="true" /> Capitolato
+            </a>
+          </nav>
+        </section>
 
-      {/* Bottom copyrights */}
-      <div className="border-t border-white/5 bg-[#140e0c]/80">
-        <div className="container mx-auto px-5 sm:px-6 lg:px-12 py-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[#fcfbf9]/40 font-light">
-            <p>&copy; {currentYear} Belvedere 35 - Tutti i diritti riservati</p>
-            <p className="tracking-wide">
-              Realizzato con cura da{" "}
-              <a href="https://besaweb.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline hover:text-primary/80 font-normal transition-colors duration-300">
-                Besaweb.com
-              </a>
-            </p>
-          </div>
+        <div className="pt-7 text-center text-xs leading-relaxed text-white/55">
+          <p>Le immagini, i render e le planimetrie presenti sul sito sono illustrativi e non costituiscono elemento contrattuale.</p>
+          <p className="mt-5">© {new Date().getFullYear()} Belvedere 35. Tutti i diritti riservati.</p>
+          <p className="mt-2">Realizzato con cura da <a href="https://besaweb.com" target="_blank" rel="noopener noreferrer" className={footerLinkClass}>Besaweb.com</a></p>
         </div>
       </div>
     </footer>

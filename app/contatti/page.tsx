@@ -2,9 +2,10 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
-import { Mail, MapPin, Send, MessageSquare } from "lucide-react"
+import { Mail, MapPin, Phone, Send, MessageSquare } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { CONTACT_EMAIL } from "@/lib/contact"
+import { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_PHONE_HREF } from "@/lib/contact"
+import ContactMailtoForm from "@/components/ContactMailtoForm"
 
 export const metadata: Metadata = {
   title: "Contatti | Belvedere 35 - Garbagnate Monastero",
@@ -60,18 +61,26 @@ export default function ContattiPage() {
                 Compila il modulo e ti ricontatteremo al più presto per fornirti tutte le informazioni necessarie.
               </p>
 
-              <div className="mb-8 rounded-xl border border-primary/20 bg-white p-4">
-                <p className="mb-1 text-sm text-muted-foreground">Preferisci scriverci direttamente?</p>
-                <a href={"mailto:" + CONTACT_EMAIL} className="inline-flex min-h-11 items-center break-all text-sm font-semibold text-primary underline underline-offset-4">{CONTACT_EMAIL}</a>
+              <div className="mb-8 grid gap-4 sm:grid-cols-2">
+                <div className="rounded-xl border border-primary/20 bg-white p-4">
+                  <p className="mb-1 text-sm text-muted-foreground">Preferisci chiamarci?</p>
+                  <a href={CONTACT_PHONE_HREF} className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-primary underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+                    <Phone className="h-4 w-4 shrink-0" aria-hidden="true" /> Chiama {CONTACT_PHONE}
+                  </a>
+                </div>
+                <div className="min-w-0 rounded-xl border border-primary/20 bg-white p-4">
+                  <p className="mb-1 text-sm text-muted-foreground">Preferisci scriverci?</p>
+                  <a href={`mailto:${CONTACT_EMAIL}`} className="inline-flex min-h-11 items-center break-all text-sm font-semibold text-primary underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">{CONTACT_EMAIL}</a>
+                </div>
               </div>
 
-              <form className="space-y-6 sm:space-y-8">
+              <ContactMailtoForm>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="group">
                     <label htmlFor="first-name" className="block text-sm font-semibold text-foreground mb-2">
                       Nome *
                     </label>
-                    <input id="first-name" autoComplete="given-name"
+                    <input id="first-name" name="first-name" autoComplete="given-name"
                       type="text"
                       required
                       className="w-full px-0 py-3 bg-transparent border-0 border-b border-slate-300 focus:border-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary text-foreground text-lg placeholder:text-muted-foreground transition-colors duration-300 font-light"
@@ -82,7 +91,7 @@ export default function ContattiPage() {
                     <label htmlFor="last-name" className="block text-sm font-semibold text-foreground mb-2">
                       Cognome *
                     </label>
-                    <input id="last-name" autoComplete="family-name"
+                    <input id="last-name" name="last-name" autoComplete="family-name"
                       type="text"
                       required
                       className="w-full px-0 py-3 bg-transparent border-0 border-b border-slate-300 focus:border-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary text-foreground text-lg placeholder:text-muted-foreground transition-colors duration-300 font-light"
@@ -96,7 +105,7 @@ export default function ContattiPage() {
                     <label htmlFor="contact-email" className="block text-sm font-semibold text-foreground mb-2">
                       Email *
                     </label>
-                    <input id="contact-email" autoComplete="email" inputMode="email"
+                    <input id="contact-email" name="contact-email" autoComplete="email" inputMode="email"
                       type="email"
                       required
                       className="w-full px-0 py-3 bg-transparent border-0 border-b border-slate-300 focus:border-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary text-foreground text-lg placeholder:text-muted-foreground transition-colors duration-300 font-light"
@@ -107,7 +116,7 @@ export default function ContattiPage() {
                     <label htmlFor="contact-phone" className="block text-sm font-semibold text-foreground mb-2">
                       Telefono
                     </label>
-                    <input id="contact-phone" autoComplete="tel" inputMode="tel"
+                    <input id="contact-phone" name="contact-phone" autoComplete="tel" inputMode="tel"
                       type="tel"
                       className="w-full px-0 py-3 bg-transparent border-0 border-b border-slate-300 focus:border-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary text-foreground text-lg placeholder:text-muted-foreground transition-colors duration-300 font-light"
                       placeholder="+39 333 000 0000"
@@ -119,7 +128,7 @@ export default function ContattiPage() {
                   <label htmlFor="contact-typology" className="block text-sm font-semibold text-foreground mb-2">
                     Tipologia di interesse
                   </label>
-                  <select id="contact-typology" className="w-full px-0 py-3 bg-transparent border-0 border-b border-slate-300 focus:border-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary text-foreground text-lg transition-colors duration-300 cursor-pointer font-light">
+                  <select id="contact-typology" name="contact-typology" className="w-full px-0 py-3 bg-transparent border-0 border-b border-slate-300 focus:border-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary text-foreground text-lg transition-colors duration-300 cursor-pointer font-light">
                     <option value="">Seleziona una tipologia</option>
                     <option value="bilocale">Bilocale</option>
                     <option value="trilocale">Trilocale</option>
@@ -131,7 +140,7 @@ export default function ContattiPage() {
                   <label htmlFor="contact-message" className="block text-sm font-semibold text-foreground mb-2">
                     Messaggio *
                   </label>
-                  <textarea id="contact-message"
+                  <textarea id="contact-message" name="contact-message"
                     required
                     rows={4}
                     className="w-full px-0 py-3 bg-transparent border-0 border-b border-slate-300 focus:border-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary text-foreground text-lg placeholder:text-muted-foreground resize-y transition-colors duration-300 font-light"
@@ -154,7 +163,7 @@ export default function ContattiPage() {
                   <Send className="w-4 h-4 mr-3 group-hover:translate-x-0.5 transition-transform" />
                   Invia Messaggio
                 </Button>
-              </form>
+              </ContactMailtoForm>
             </div>
 
             {/* Destra: Blocco Informazioni */}
@@ -174,6 +183,18 @@ export default function ContattiPage() {
                       <div>
                         <p className="text-white/90 font-medium">Garbagnate Monastero</p>
                         <p className="text-white/50 text-sm font-light">Provincia di Lecco (LC)</p>
+                      </div>
+                    </div>
+
+                    <div className="w-full h-px bg-white/10" />
+
+                    <div className="flex gap-4">
+                      <div className="w-9 h-9 shrink-0 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mt-0.5">
+                        <Phone className="w-4 h-4 text-primary" aria-hidden="true" />
+                      </div>
+                      <div>
+                        <a href={CONTACT_PHONE_HREF} className="text-white/90 font-medium hover:underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary">{CONTACT_PHONE}</a>
+                        <p className="text-white/50 text-sm font-light">Chiamaci direttamente</p>
                       </div>
                     </div>
 

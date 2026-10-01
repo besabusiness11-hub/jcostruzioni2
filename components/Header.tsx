@@ -4,9 +4,9 @@ import { useEffect, useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import * as Dialog from "@radix-ui/react-dialog"
-import { ArrowUpRight, Download, Mail, Menu, X } from "lucide-react"
+import { ArrowUpRight, Download, Mail, Menu, Phone, X } from "lucide-react"
 import Logo from "@/components/Logo"
-import { CONTACT_EMAIL } from "@/lib/contact"
+import { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_PHONE_HREF } from "@/lib/contact"
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -108,6 +108,10 @@ export default function Header() {
                 </Dialog.Close>
               ))}
               <div className="mt-5 space-y-3 border-t border-white/15 pt-5">
+                <a href={CONTACT_PHONE_HREF} className="flex min-h-12 items-center justify-center gap-3 rounded-full border border-white/30 px-4 py-3 text-sm font-semibold text-white">
+                  <Phone className="h-4 w-4 shrink-0" aria-hidden="true" />
+                  Chiama {CONTACT_PHONE}
+                </a>
                 <Dialog.Close asChild>
                   <a href="/capitolato.pdf" target="_blank" rel="noopener noreferrer" className="flex min-h-12 items-center justify-center gap-3 rounded-full bg-primary px-4 py-3 text-sm font-semibold text-white">
                     <Download className="h-4 w-4 shrink-0" aria-hidden="true" />

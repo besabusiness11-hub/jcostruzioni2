@@ -29,8 +29,8 @@ export default function Hero() {
         className="absolute inset-0 z-0 select-none pointer-events-none lg:scale-110"
       >
         <Image
-          src="/images/hero-building.png?v=4"
-          alt="Belvedere 35 - Residenze moderne a Garbagnate Monastero"
+          src="/images/project-day-drone.jpg"
+          alt="Vista dall'alto del progetto Belvedere 35 a Garbagnate Monastero"
           fill
           className="object-cover object-[55%_center] lg:object-center"
           priority
