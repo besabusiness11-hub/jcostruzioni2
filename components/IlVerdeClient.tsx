@@ -7,7 +7,7 @@ import { motion, useReducedMotion } from "framer-motion"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import PageHero from "@/components/PageHero"
-import { ArrowRight, Flower, Leaf, Sun, Waves, Wind, Shield, Sparkles } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 
 const tabs = [
   { id: "tutti", label: "Tutti gli Spazi" },
@@ -19,29 +19,16 @@ const tabs = [
 
 const features = [
   {
-    icon: Flower,
-    title: "Giardini Privati",
-    description: "Spazi verdi esclusivi con piante selezionate e design paesaggistico, perfetti per coltivare la tua oasi personale.",
+    title: "Giardini privati",
+    description: "Uno spazio verde esterno riservato ad alcune unità abitative.",
   },
   {
-    icon: Wind,
-    title: "Terrazze Panoramiche",
-    description: "Terrazzi ampi e luminosi con viste suggestive sul verde e sulle montagne, ideali per cene e momenti di relax.",
+    title: "Terrazzi",
+    description: "Superfici all’aperto collegate agli appartamenti.",
   },
   {
-    icon: Sun,
-    title: "Esposizione Ottimale",
-    description: "Spazi esterni posizionati per massimizzare l'esposizione solare e garantire comfort in ogni stagione.",
-  },
-  {
-    icon: Leaf,
-    title: "Sostenibilità Verde",
-    description: "Materiali ecologici e piante autoctone per aree esterne curate e a basso impatto ambientale.",
-  },
-  {
-    icon: Waves,
-    title: "Piscina e Relax",
-    description: "Una zona acqua riservata valorizza le parti esterne e completa l'esperienza residenziale nei mesi più caldi.",
+    title: "Piscina condominiale",
+    description: "Uno spazio comune per i residenti, inserito nell’area verde.",
   },
 ]
 
@@ -66,7 +53,7 @@ export default function IlVerdeClient({ initialTab = "tutti" }: { initialTab?: s
   }
 
   return (
-    <main className="min-h-screen bg-[#fcfbf9]">
+    <main className="min-h-screen bg-[#f7faf9]">
       <Header />
       <PageHero
         title={initialTab === "piscina" ? "La Piscina" : "Il Verde & Le Aree Esterne"}
@@ -76,7 +63,7 @@ export default function IlVerdeClient({ initialTab = "tutti" }: { initialTab?: s
       />
 
       {/* Tab Navigation Bar (Statica nel flusso della pagina, senza scorrimento sticky) */}
-      <section className="bg-[#fcfbf9] border-b border-slate-200/60 py-6">
+      <section className="bg-[#f7faf9] border-b border-slate-200/60 py-6">
         <div className="container mx-auto px-5 sm:px-6 lg:px-12">
           <div className="flex items-center justify-center">
             <div role="group" aria-label="Filtra gli spazi esterni" className="grid w-full grid-cols-2 gap-1 rounded-2xl border border-slate-300/40 bg-slate-200/60 p-1.5 sm:flex sm:w-auto sm:flex-wrap sm:justify-center sm:gap-2 sm:rounded-full">
@@ -96,7 +83,7 @@ export default function IlVerdeClient({ initialTab = "tutti" }: { initialTab?: s
                     {isActive && (
                       <motion.div
                         layoutId="activeVerdeTab"
-                        className="absolute inset-0 bg-[#3e2d27] rounded-full shadow-md"
+                        className="absolute inset-0 bg-[#1b3941] rounded-full shadow-md"
                         transition={{ duration: reducedMotion ? 0 : 0.2 }}
                       />
                     )}
@@ -110,7 +97,7 @@ export default function IlVerdeClient({ initialTab = "tutti" }: { initialTab?: s
       </section>
 
       {/* Panoramica Caratteristiche */}
-      <section className="py-16 lg:py-24 bg-gradient-to-b from-[#fcfbf9] to-[#f5f4ed]">
+      <section className="py-16 lg:py-24 bg-gradient-to-b from-[#f7faf9] to-[#edf4f2]">
         <div className="container mx-auto px-5 sm:px-6 lg:px-12">
           <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16 animate-fade-in-up">
             <span className="inline-block text-primary text-[10px] tracking-[0.4em] uppercase mb-4 font-bold">
@@ -121,18 +108,15 @@ export default function IlVerdeClient({ initialTab = "tutti" }: { initialTab?: s
               <span className="block text-primary italic font-normal mt-2">all'aria aperta</span>
             </h2>
             <p className="text-muted-foreground/90 text-base sm:text-lg font-light leading-relaxed">
-              Ogni dettaglio è stato progettato per offrire spazi esterni straordinari, dalla privacy dei giardini alla grande piscina comune.
+              Il progetto comprende giardini privati, terrazzi e una piscina condominiale inserita nell’area verde.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 gap-8 border-t border-[#122b32]/20 pt-8 md:grid-cols-3 md:gap-10">
             {features.map((feature) => (
-              <div key={feature.title} className="relative bg-background/60 backdrop-blur-sm border border-slate-200/40 rounded-3xl p-6 shadow-sm hover:shadow-xl hover:bg-background transition-all duration-500 hover:-translate-y-1.5 group">
-                <div className="w-12 h-12 bg-accent/40 rounded-2xl flex items-center justify-center mb-5 group-hover:bg-primary group-hover:scale-110 transition-all duration-500">
-                  <feature.icon className="w-6 h-6 text-primary group-hover:text-primary-foreground transition-colors duration-500" aria-hidden="true" />
-                </div>
-                <h3 className="font-serif text-xl text-foreground mb-2 font-semibold">{feature.title}</h3>
-                <p className="text-muted-foreground text-base sm:text-sm leading-relaxed font-light">{feature.description}</p>
+              <div key={feature.title} className="border-l-2 border-primary/50 pl-5">
+                <h3 className="font-serif text-xl font-semibold text-foreground">{feature.title}</h3>
+                <p className="mt-3 text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
               </div>
             ))}
           </div>
@@ -146,13 +130,13 @@ export default function IlVerdeClient({ initialTab = "tutti" }: { initialTab?: s
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-16 lg:gap-24 items-center">
               <div className="order-2 lg:order-1 animate-fade-in-up">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 relative">
-                  <div className="relative h-64 sm:h-80 lg:h-96 rounded-2xl sm:rounded-[32px] overflow-hidden shadow-lg border border-slate-200/50 hover:shadow-2xl transition-all duration-700 group hover:-translate-y-1">
+                  <div className="relative h-64 sm:h-80 lg:h-96 rounded-2xl sm:rounded-2xl overflow-hidden shadow-lg border border-slate-200/50 hover:shadow-2xl transition-all duration-700 group hover:-translate-y-1">
                     <Image src="/images/terrace-main.png" alt="Terrazza moderna" fill className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105" sizes="(max-width: 639px) 100vw, (max-width: 1024px) 50vw, 25vw" />
                     <div className="absolute bottom-4 left-4 bg-black/60 backdrop-blur-sm rounded-xl px-4 py-1.5">
                       <span className="text-white text-[10px] tracking-wider uppercase font-semibold">Terrazzi</span>
                     </div>
                   </div>
-                  <div className="relative h-64 sm:h-80 lg:h-96 rounded-2xl sm:rounded-[32px] overflow-hidden shadow-lg border border-slate-200/50 hover:shadow-2xl transition-all duration-700 sm:mt-12 group hover:-translate-y-1">
+                  <div className="relative h-64 sm:h-80 lg:h-96 rounded-2xl sm:rounded-2xl overflow-hidden shadow-lg border border-slate-200/50 hover:shadow-2xl transition-all duration-700 sm:mt-12 group hover:-translate-y-1">
                     <Image src="/images/outdoor-lounge.png" alt="Relax in terrazzo" fill className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105" sizes="(max-width: 639px) 100vw, (max-width: 1024px) 50vw, 25vw" />
                     <div className="absolute bottom-4 left-4 bg-black/60 backdrop-blur-sm rounded-xl px-4 py-1.5">
                       <span className="text-white text-[10px] tracking-wider uppercase font-semibold">Area Living</span>
@@ -187,7 +171,7 @@ export default function IlVerdeClient({ initialTab = "tutti" }: { initialTab?: s
 
       {/* SEZIONE GIARDINI */}
       {(activeTab === "tutti" || activeTab === "giardini") && (
-        <section id="giardini" className="py-16 sm:py-24 lg:py-32 bg-gradient-to-b from-[#fbfbf9] to-[#f5f4ed] border-t border-slate-200/40">
+        <section id="giardini" className="py-16 sm:py-24 lg:py-32 bg-gradient-to-b from-[#f7faf9] to-[#edf4f2] border-t border-slate-200/40">
           <div className="container mx-auto px-5 sm:px-6 lg:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-16 lg:gap-24 items-center">
               <div className="animate-fade-in-up">
@@ -210,7 +194,7 @@ export default function IlVerdeClient({ initialTab = "tutti" }: { initialTab?: s
                 </Link>
               </div>
 
-              <div className="relative h-72 sm:h-96 lg:h-[500px] rounded-2xl sm:rounded-[36px] overflow-hidden shadow-2xl border border-slate-200/50 group animate-fade-in-up">
+              <div className="relative h-72 sm:h-96 lg:h-[500px] rounded-2xl sm:rounded-2xl overflow-hidden shadow-2xl border border-slate-200/50 group animate-fade-in-up">
                 <Image src="/images/garden-main.png" alt="Giardino privato vista estiva" fill className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105" sizes="(max-width: 1024px) 100vw, 50vw" />
               </div>
             </div>
@@ -223,7 +207,7 @@ export default function IlVerdeClient({ initialTab = "tutti" }: { initialTab?: s
         <section id="parti-esterne" className="py-16 sm:py-24 lg:py-32 bg-background border-t border-slate-200/40">
           <div className="container mx-auto px-5 sm:px-6 lg:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-16 lg:gap-24 items-center">
-              <div className="relative h-72 sm:h-96 lg:h-[520px] rounded-2xl sm:rounded-[36px] overflow-hidden shadow-2xl border border-slate-200/50 group animate-fade-in-up">
+              <div className="relative h-72 sm:h-96 lg:h-[520px] rounded-2xl sm:rounded-2xl overflow-hidden shadow-2xl border border-slate-200/50 group animate-fade-in-up">
                 <Image src="/images/outdoor-vertical-1.png" alt="Camminamenti e parti esterne" fill className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105" sizes="(max-width: 1024px) 100vw, 50vw" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-black/5" />
                 <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-8 lg:p-12">
@@ -258,49 +242,46 @@ export default function IlVerdeClient({ initialTab = "tutti" }: { initialTab?: s
 
       {/* SEZIONE PISCINA */}
       {(activeTab === "tutti" || activeTab === "piscina") && (
-        <section id="piscina" className="py-16 sm:py-24 lg:py-32 bg-gradient-to-b from-[#241a16] to-[#120d0b] text-white border-t border-white/10">
+        <section data-header-theme="dark" id="piscina" className="py-16 sm:py-24 lg:py-32 bg-gradient-to-b from-[#122b32] to-[#0b2027] text-white border-t border-white/10">
           <div className="container mx-auto px-5 sm:px-6 lg:px-12">
             <div className="max-w-3xl mb-10 sm:mb-16 animate-fade-in-up">
-              <span className="inline-block text-primary text-[10px] tracking-[0.4em] uppercase mb-4 font-bold">
+              <span className="inline-block text-[#9ddbd2] text-[10px] tracking-[0.4em] uppercase mb-4 font-bold">
                 04 / Piscina Condominiale
               </span>
               <h2 className="font-serif text-[2rem] sm:text-4xl md:text-6xl text-white mb-6 font-medium leading-tight">
                 La piscina riservata
-                <span className="block text-primary italic font-normal mt-2">il cuore azzurro di Belvedere 35</span>
+                <span className="block text-[#9ddbd2] italic font-normal mt-2">il cuore azzurro di Belvedere 35</span>
               </h2>
               <p className="text-white/70 text-base sm:text-lg font-light leading-relaxed">
-                Situata al centro dell'area verde, la grande piscina è riservata agli appartamenti di Belvedere 35 per offrire momenti indimenticabili di svago e benessere estivo.
+                La piscina condominiale si trova al centro dell’area verde ed è riservata ai residenti di Belvedere 35.
               </p>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16">
-              <div className="lg:col-span-8 relative h-[280px] sm:h-[450px] lg:h-[550px] rounded-2xl sm:rounded-[36px] overflow-hidden shadow-2xl border border-white/10 group">
+              <div className="lg:col-span-8 relative h-[280px] sm:h-[450px] lg:h-[550px] rounded-2xl sm:rounded-2xl overflow-hidden shadow-2xl border border-white/10 group">
                 <Image src="/images/pool-and-gardens.png" alt="Piscina principale di Belvedere 35" fill className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105" sizes="(max-width: 1024px) 100vw, 66vw" />
               </div>
-              <div className="lg:col-span-4 space-y-6">
-                <div className="bg-white/5 border border-white/10 rounded-3xl p-6 backdrop-blur-md">
-                  <Waves className="w-8 h-8 text-primary mb-3" />
-                  <h4 className="font-serif text-xl font-semibold text-white mb-2">Zona Solarium</h4>
-                  <p className="text-white/60 text-sm font-light leading-relaxed">Ampia pavimentazione prendisole con lettini e sdraio dedicate.</p>
-                </div>
-                <div className="bg-white/5 border border-white/10 rounded-3xl p-6 backdrop-blur-md">
-                  <Shield className="w-8 h-8 text-primary mb-3" />
-                  <h4 className="font-serif text-xl font-semibold text-white mb-2">Accesso Riservato</h4>
-                  <p className="text-white/60 text-sm font-light leading-relaxed">Ingresso protetto ed esclusivo per i soli residenti del complesso.</p>
-                </div>
-                <div className="bg-white/5 border border-white/10 rounded-3xl p-6 backdrop-blur-md">
-                  <Sparkles className="w-8 h-8 text-primary mb-3" />
-                  <h4 className="font-serif text-xl font-semibold text-white mb-2">Filtrazione Naturale</h4>
-                  <p className="text-white/60 text-sm font-light leading-relaxed">Impianti di circolazione dell'acqua di ultima generazione senza odori aggressivi.</p>
-                </div>
-              </div>
+              <ul className="lg:col-span-4 divide-y divide-white/20 border-y border-white/20">
+                <li className="py-6">
+                  <h3 className="font-serif text-2xl font-semibold text-white">Zona solarium</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-white/75">Una zona prendisole accanto alla piscina condominiale.</p>
+                </li>
+                <li className="py-6">
+                  <h3 className="font-serif text-2xl font-semibold text-white">Accesso riservato</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-white/75">La piscina è destinata ai residenti del complesso.</p>
+                </li>
+                <li className="py-6">
+                  <h3 className="font-serif text-2xl font-semibold text-white">Nel verde</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-white/75">Lo spazio si trova al centro dell’area verde comune.</p>
+                </li>
+              </ul>
             </div>
           </div>
         </section>
       )}
 
       {/* CTA Section */}
-      <section className="py-16 sm:py-24 lg:py-32 bg-gradient-to-b from-[#fbfbf9] to-[#f5f4ed]">
+      <section className="py-16 sm:py-24 lg:py-32 bg-gradient-to-b from-[#f7faf9] to-[#edf4f2]">
         <div className="container mx-auto px-5 sm:px-6 lg:px-12 text-center animate-fade-in-up">
           <h2 className="font-serif text-[2rem] sm:text-4xl md:text-5xl lg:text-6xl text-foreground mb-8 leading-tight font-medium">
             Vuoi scoprire dal vivo gli spazi esterni?

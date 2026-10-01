@@ -102,7 +102,7 @@ export default function UnitAvailabilityTable({ units, typeLabel }: UnitAvailabi
                             className="relative flex aspect-[4/3] w-full items-end justify-center overflow-hidden rounded-xl border border-slate-200 bg-white p-3"
                           >
                             <Image src={unit.planImage || "/images/floorplan-sample.jpg"} alt={"Planimetria " + unit.name} fill className="object-contain p-4 pb-14" sizes="(max-width: 1023px) 100vw, 620px" />
-                            <span className="relative inline-flex min-h-11 items-center gap-2 rounded-full bg-[#3e2d27] px-4 py-2 text-xs font-semibold text-white">
+                            <span className="relative inline-flex min-h-11 items-center gap-2 rounded-full bg-[#1b3941] px-4 py-2 text-xs font-semibold text-white">
                               <Maximize2 className="h-4 w-4" aria-hidden="true" />
                               Ingrandisci planimetria
                             </span>

@@ -14,18 +14,14 @@ export const metadata: Metadata = {
 
 export default function ContattiPage() {
   return (
-    <main className="min-h-screen bg-[#fcfbf9]">
+    <main className="min-h-screen bg-[#f7faf9]">
       <Header />
 
       {/* Hero Section - Minimal & Modern */}
-      <section className="page-hero relative flex items-end bg-gradient-to-b from-[#241a16] to-[#120d0b] overflow-hidden">
-        {/* Glow ambientali in background */}
-        <div className="absolute top-20 right-0 w-[600px] h-[600px] bg-primary/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#3e2d27]/20 rounded-full blur-3xl pointer-events-none" />
-
+      <section data-header-theme="dark" className="page-hero relative flex items-end bg-gradient-to-b from-[#122b32] to-[#0b2027] overflow-hidden">
         <div className="relative z-10 container mx-auto px-5 sm:px-6 lg:px-12">
           <div className="max-w-3xl">
-            <span className="inline-block text-primary text-[10px] tracking-[0.4em] uppercase mb-6 font-bold">
+            <span className="inline-block text-[#9ddbd2] text-[10px] tracking-[0.4em] uppercase mb-6 font-bold">
               Contatti
             </span>
             <h1 className="font-serif text-[2.5rem] sm:text-5xl md:text-7xl lg:text-8xl text-white font-medium leading-[0.95] mb-8">
@@ -44,7 +40,7 @@ export default function ContattiPage() {
       </section>
 
       {/* Form + Info Section */}
-      <section className="py-16 sm:py-24 lg:py-36 bg-gradient-to-b from-[#fcfbf9] to-[#f5f4ed]">
+      <section className="py-16 sm:py-24 lg:py-36 bg-gradient-to-b from-[#f7faf9] to-[#edf4f2]">
         <div className="container mx-auto px-5 sm:px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 xl:gap-24">
 
@@ -170,15 +166,14 @@ export default function ContattiPage() {
             <div className="lg:col-span-5 animate-fade-in-up">
               <div className="lg:sticky lg:top-32 space-y-8">
                 {/* Info Card */}
-                <div className="bg-[#3e2d27] rounded-2xl sm:rounded-[36px] p-6 sm:p-10 text-white shadow-2xl relative overflow-hidden border border-white/5">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/15 via-transparent to-transparent pointer-events-none" />
+                <div className="bg-[#1b3941] rounded-2xl p-6 sm:p-10 text-white relative overflow-hidden">
 
                   <h3 className="font-serif text-3xl mb-8 font-semibold relative z-10">Dove trovarci</h3>
 
                   <div className="space-y-6 relative z-10">
                     <div className="flex gap-4">
                       <div className="w-9 h-9 shrink-0 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mt-0.5">
-                        <MapPin className="w-4 h-4 text-primary" aria-hidden="true" />
+                        <MapPin className="w-4 h-4 text-[#9ddbd2]" aria-hidden="true" />
                       </div>
                       <div>
                         <p className="text-white/90 font-medium">Garbagnate Monastero</p>
@@ -190,7 +185,7 @@ export default function ContattiPage() {
 
                     <div className="flex gap-4">
                       <div className="w-9 h-9 shrink-0 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mt-0.5">
-                        <Phone className="w-4 h-4 text-primary" aria-hidden="true" />
+                        <Phone className="w-4 h-4 text-[#9ddbd2]" aria-hidden="true" />
                       </div>
                       <div>
                         <a href={CONTACT_PHONE_HREF} className="text-white/90 font-medium hover:underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary">{CONTACT_PHONE}</a>
@@ -202,7 +197,7 @@ export default function ContattiPage() {
 
                     <div className="flex gap-4">
                       <div className="w-9 h-9 shrink-0 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mt-0.5">
-                        <Mail className="w-4 h-4 text-primary" aria-hidden="true" />
+                        <Mail className="w-4 h-4 text-[#9ddbd2]" aria-hidden="true" />
                       </div>
                       <div className="min-w-0">
                         <a
@@ -218,7 +213,7 @@ export default function ContattiPage() {
                 </div>
 
                 {/* Mappa */}
-                <div className="rounded-2xl sm:rounded-[36px] overflow-hidden h-64 border border-slate-200/50 shadow-md">
+                <div className="rounded-2xl sm:rounded-2xl overflow-hidden h-64 border border-slate-200/50 shadow-md">
                   <iframe
                     src="https://www.google.com/maps?q=Garbagnate%20Monastero%20LC&t=h&z=14&output=embed"
                     width="100%"

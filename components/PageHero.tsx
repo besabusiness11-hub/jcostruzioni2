@@ -10,7 +10,7 @@ interface PageHeroProps {
 
 export default function PageHero({ title, subtitle, description, image = "/images/project-detail.jpg", imageAlt = "Belvedere 35" }: PageHeroProps) {
   return (
-    <section className="page-hero relative flex items-end overflow-hidden">
+    <section data-header-theme="dark" className="page-hero relative flex items-end overflow-hidden">
       <div className="absolute inset-0 z-0">
         <Image src={image} alt={imageAlt} fill className="object-cover" priority sizes="100vw" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/85" />

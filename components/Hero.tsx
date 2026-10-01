@@ -22,7 +22,7 @@ export default function Hero() {
   const animate = isDesktop && !reducedMotion
 
   return (
-    <section aria-label="Belvedere 35, nuove residenze a Garbagnate Monastero" className="relative min-h-[75svh] sm:min-h-[90svh] lg:min-h-screen overflow-hidden">
+    <section data-header-theme="dark" aria-label="Belvedere 35, nuove residenze a Garbagnate Monastero" className="relative min-h-[75svh] sm:min-h-[90svh] lg:min-h-screen overflow-hidden">
       <h1 className="sr-only">Belvedere 35, nuove residenze a Garbagnate Monastero</h1>
       <motion.div
         style={{ y: animate ? yTranslation : 0, opacity: animate ? opacityFade : 1 }}

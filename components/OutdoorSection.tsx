@@ -48,7 +48,7 @@ export default function OutdoorSection() {
         {/* Image Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 mb-16">
           {/* Large Image - Terrace */}
-          <div className="relative h-80 lg:h-[500px] rounded-3xl overflow-hidden group">
+          <div className="relative h-80 lg:h-[500px] rounded-2xl overflow-hidden group">
             <Image
               src="/images/terrace.jpg"
               alt="Terrazza panoramica"
@@ -64,7 +64,7 @@ export default function OutdoorSection() {
           </div>
 
           {/* Large Image - Garden */}
-          <div className="relative h-80 lg:h-[500px] rounded-3xl overflow-hidden group">
+          <div className="relative h-80 lg:h-[500px] rounded-2xl overflow-hidden group">
             <Image
               src="/images/garden.jpg"
               alt="Giardino privato"

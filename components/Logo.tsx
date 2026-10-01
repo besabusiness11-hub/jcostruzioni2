@@ -6,9 +6,9 @@ interface LogoProps {
 }
 
 export default function Logo({ className = "h-16", scrolled = false }: LogoProps) {
-  // Colore del logo: bianco su trasparente (non scrolled), marrone scuro su scrolled
-  const color = scrolled ? "text-[#3e2d27]" : "text-white"
-  const strokeColor = scrolled ? "#3e2d27" : "#ffffff"
+  // Il logo resta leggibile sia sulle immagini scure sia sulle sezioni chiare.
+  const color = scrolled ? "text-[#1b3941]" : "text-white"
+  const strokeColor = scrolled ? "#1b3941" : "#ffffff"
 
   return (
     <svg

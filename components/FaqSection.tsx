@@ -26,7 +26,7 @@ export default function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
-    <section className="py-24 lg:py-36 bg-[#fcfbf9] border-t border-slate-200/50">
+    <section className="py-24 lg:py-36 bg-[#f7faf9] border-t border-slate-200/50">
       <div className="container mx-auto px-6 lg:px-12">
         <div className="max-w-4xl mx-auto">
           
@@ -50,7 +50,7 @@ export default function FaqSection() {
               return (
                 <div
                   key={index}
-                  className={`bg-white/40 border border-slate-200/30 rounded-[24px] overflow-hidden transition-all duration-500 shadow-sm hover:shadow-md hover:bg-white/60 ${
+                  className={`bg-white/40 border border-slate-200/30 rounded-2xl overflow-hidden transition-all duration-500 shadow-sm hover:shadow-md hover:bg-white/60 ${
                     isOpen ? "bg-white/80 border-slate-200/60" : ""
                   }`}
                 >

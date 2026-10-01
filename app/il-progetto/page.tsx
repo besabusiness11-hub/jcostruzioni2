@@ -42,11 +42,11 @@ const energyFeatures = [
 ]
 export default function IlProgettoPage() {
   return (
-    <main className="min-h-screen bg-[#fcfbf9]">
+    <main className="min-h-screen bg-[#f7faf9]">
       <Header />
 
       {/* Hero Section */}
-      <section className="page-hero relative flex items-end overflow-hidden">
+      <section data-header-theme="dark" className="page-hero relative flex items-end overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/project-day-drone.jpg"
@@ -60,7 +60,7 @@ const energyFeatures = [
         </div>
 
         <div className="relative z-10 container mx-auto px-5 sm:px-6 lg:px-12 text-left">
-          <span className="inline-block text-primary text-[10px] tracking-[0.4em] uppercase mb-4 font-bold">
+          <span className="inline-block text-[#9ddbd2] text-[10px] tracking-[0.4em] uppercase mb-4 font-bold">
             Belvedere 35
           </span>
           <h1 className="font-serif text-[2.5rem] sm:text-5xl md:text-7xl lg:text-8xl text-white font-medium leading-[1.1] mb-6">
@@ -76,7 +76,7 @@ const energyFeatures = [
       </section>
 
       {/* Introduction */}
-      <section className="py-16 sm:py-24 lg:py-36 bg-gradient-to-b from-[#fcfbf9] to-[#f5f4ed]">
+      <section className="py-16 sm:py-24 lg:py-36 bg-gradient-to-b from-[#f7faf9] to-[#edf4f2]">
         <div className="container mx-auto px-5 sm:px-6 lg:px-12">
           <div className="grid lg:grid-cols-2 gap-10 sm:gap-16 lg:gap-24 items-center">
             <div className="animate-fade-in-up">
@@ -107,7 +107,7 @@ const energyFeatures = [
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform duration-300" />
               </Link>
             </div>
-            <div className="relative h-[280px] sm:h-[450px] lg:h-[650px] rounded-2xl sm:rounded-[36px] overflow-hidden shadow-2xl border border-slate-200/50 group animate-fade-in-up">
+            <div className="relative h-[280px] sm:h-[450px] lg:h-[650px] rounded-2xl sm:rounded-2xl overflow-hidden shadow-2xl border border-slate-200/50 group animate-fade-in-up">
               <Image
                 src="/images/interior-terrace.jpg"
                 alt="Interni di pregio"
@@ -139,7 +139,7 @@ const energyFeatures = [
             {features.map((feature) => (
               <div
                 key={feature.title}
-                className="relative bg-background/60 backdrop-blur-sm border border-slate-200/40 rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-sm hover:shadow-xl hover:bg-background transition-all duration-500 hover:-translate-y-1.5 group"
+                className="relative bg-background/60 backdrop-blur-sm border border-slate-200/40 rounded-2xl sm:rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-xl hover:bg-background transition-all duration-500 hover:-translate-y-1.5 group"
               >
                 <div className="w-14 h-14 bg-accent/40 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary group-hover:scale-110 transition-all duration-500">
                   <feature.icon className="w-7 h-7 text-primary group-hover:text-primary-foreground transition-colors duration-500" />
@@ -157,13 +157,13 @@ const energyFeatures = [
       </section>
 
       {/* Energy Section */}
-      <section className="py-16 sm:py-24 lg:py-36 bg-gradient-to-b from-[#fbfbf9] to-[#f5f4ed]">
+      <section className="py-16 sm:py-24 lg:py-36 bg-gradient-to-b from-[#f7faf9] to-[#edf4f2]">
         <div className="container mx-auto px-5 sm:px-6 lg:px-12">
           <div className="grid lg:grid-cols-2 gap-10 sm:gap-16 lg:gap-24 items-center">
             <div className="order-2 lg:order-1 animate-fade-in-up">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 {energyFeatures.map((feature) => (
-                  <div key={feature.title} className="group relative bg-white/50 backdrop-blur-sm border border-slate-200/30 rounded-3xl p-6 hover:shadow-lg hover:bg-white transition-all duration-500">
+                  <div key={feature.title} className="group relative bg-white/50 backdrop-blur-sm border border-slate-200/30 rounded-2xl p-6 hover:shadow-lg hover:bg-white transition-all duration-500">
                     <div className="w-12 h-12 bg-accent/40 rounded-xl flex items-center justify-center mb-4 group-hover:bg-primary group-hover:scale-110 transition-all duration-500">
                       <feature.icon className="w-6 h-6 text-primary group-hover:text-primary-foreground transition-colors duration-500" />
                     </div>
@@ -201,8 +201,7 @@ const energyFeatures = [
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 bg-[#3e2d27] relative overflow-hidden border-t border-b border-white/5">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent pointer-events-none" />
+      <section data-header-theme="dark" className="py-20 bg-[#1b3941] relative overflow-hidden border-t border-b border-white/5">
         <div className="container mx-auto px-5 sm:px-6 lg:px-12 relative z-10 animate-fade-in-up">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
             {[
@@ -212,10 +211,10 @@ const energyFeatures = [
               { value: "100%", label: "Comfort & Efficienza" },
             ].map((stat) => (
               <div key={stat.label} className="text-center group">
-                <div className="font-serif text-4xl lg:text-6xl text-primary mb-2 font-semibold tracking-tight transition-transform duration-500 group-hover:scale-110">
+                <div className="font-serif text-4xl lg:text-6xl text-[#9ddbd2] mb-2 font-semibold tracking-tight transition-transform duration-500 group-hover:scale-110">
                   {stat.value}
                 </div>
-                <div className="text-[#fcfbf9]/60 text-xs tracking-[0.2em] uppercase font-medium">
+                <div className="text-[#f7faf9]/60 text-xs tracking-[0.2em] uppercase font-medium">
                   {stat.label}
                 </div>
               </div>
@@ -225,7 +224,7 @@ const energyFeatures = [
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 sm:py-24 lg:py-36 bg-gradient-to-b from-[#fbfbf9] to-[#f5f4ed]">
+      <section className="py-16 sm:py-24 lg:py-36 bg-gradient-to-b from-[#f7faf9] to-[#edf4f2]">
         <div className="container mx-auto px-5 sm:px-6 lg:px-12 text-center animate-fade-in-up">
           <h2 className="font-serif text-[2rem] sm:text-4xl md:text-5xl lg:text-6xl text-foreground mb-8 leading-tight font-medium">
             Vieni a scoprire il tuo

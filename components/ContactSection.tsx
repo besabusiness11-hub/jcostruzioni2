@@ -82,7 +82,7 @@ export default function ContactSection() {
             </div>
           </div>
 
-          <div className="bg-secondary rounded-3xl p-8 lg:p-10">
+          <div className="bg-secondary rounded-2xl p-8 lg:p-10">
             {isSubmitted ? (
               <div className="h-full flex flex-col items-center justify-center text-center py-12">
                 <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-6">

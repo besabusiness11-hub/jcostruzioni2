@@ -103,11 +103,11 @@ export default function TipologieClient() {
   const activeData = apartmentsData[activeTab]
 
   return (
-    <main className="min-h-screen bg-[#fcfbf9]">
+    <main className="min-h-screen bg-[#f7faf9]">
       <Header />
 
       {/* HERO SECTION */}
-      <section className="page-hero relative flex items-end overflow-hidden">
+      <section data-header-theme="dark" className="page-hero relative flex items-end overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/interior-kitchen-sunset.jpg"
@@ -121,7 +121,7 @@ export default function TipologieClient() {
         </div>
 
         <div className="relative z-10 container mx-auto px-5 sm:px-6 lg:px-12 text-left">
-          <span className="inline-block text-primary text-[10px] tracking-[0.4em] uppercase mb-4 font-bold">
+          <span className="inline-block text-[#9ddbd2] text-[10px] tracking-[0.4em] uppercase mb-4 font-bold">
             Belvedere 35
           </span>
           <h1 className="font-serif text-[2.5rem] sm:text-5xl md:text-7xl lg:text-8xl text-white font-medium leading-[1.1] mb-6">
@@ -136,7 +136,7 @@ export default function TipologieClient() {
       </section>
 
       {/* CONCEPT SECTION */}
-      <section className="py-16 sm:py-24 lg:py-36 bg-gradient-to-b from-[#fcfbf9] to-[#f5f4ed]">
+      <section className="py-16 sm:py-24 lg:py-36 bg-gradient-to-b from-[#f7faf9] to-[#edf4f2]">
         <div className="container mx-auto px-5 sm:px-6 lg:px-12 text-center max-w-4xl">
           <h2 className="font-serif text-[2rem] sm:text-4xl md:text-5xl text-foreground mb-8 leading-tight font-medium">
             Trova la tua <span className="text-primary italic font-normal">casa ideale</span>
@@ -162,7 +162,7 @@ export default function TipologieClient() {
                   <div className={`lg:col-span-6 ${index % 2 === 1 ? "lg:order-2" : ""}`}>
                     <button
                       onClick={() => handleScrollToExplorer(key)}
-                      className="w-full text-left block relative h-[280px] sm:h-[380px] lg:h-[520px] rounded-2xl sm:rounded-[36px] overflow-hidden shadow-xl border border-slate-200/50 group cursor-pointer"
+                      className="w-full text-left block relative h-[280px] sm:h-[380px] lg:h-[520px] rounded-2xl sm:rounded-2xl overflow-hidden shadow-xl border border-slate-200/50 group cursor-pointer"
                     >
                       <Image
                         src={item.image}
@@ -173,7 +173,7 @@ export default function TipologieClient() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                      <div className="absolute top-6 right-6 backdrop-blur-md bg-[#3e2d27]/90 border border-white/10 text-white px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase shadow-lg">
+                      <div className="absolute top-6 right-6 backdrop-blur-md bg-[#1b3941]/90 border border-white/10 text-white px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase shadow-lg">
                         {item.available} disponibili
                       </div>
                     </button>
@@ -218,7 +218,7 @@ export default function TipologieClient() {
       </section>
 
       {/* EXPLORER SECTON (TAB INTERACTIVE) */}
-      <section ref={explorerRef} id="disponibilita" className="py-16 sm:py-24 lg:py-36 bg-gradient-to-b from-[#fcfbf9] to-[#f5f4ed] border-t border-slate-200/30 scroll-mt-24 lg:scroll-mt-32">
+      <section ref={explorerRef} id="disponibilita" className="py-16 sm:py-24 lg:py-36 bg-gradient-to-b from-[#f7faf9] to-[#edf4f2] border-t border-slate-200/30 scroll-mt-24 lg:scroll-mt-32">
         <div className="container mx-auto px-5 sm:px-6 lg:px-12">
           {/* Header explorer */}
           <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
@@ -248,13 +248,13 @@ export default function TipologieClient() {
                     className={`relative min-h-14 rounded-xl sm:rounded-full px-1 sm:px-4 py-3 text-[11px] sm:text-sm font-semibold transition-colors duration-300 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 cursor-pointer ${
                       isActive
                         ? "text-white"
-                        : "text-[#3e2d27]/70 hover:text-[#3e2d27]"
+                        : "text-[#1b3941]/70 hover:text-[#1b3941]"
                     }`}
                   >
                     {isActive && (
                       <motion.div
                         layoutId="activeTabIndicator"
-                        className="absolute inset-0 bg-[#3e2d27] rounded-xl sm:rounded-full z-0"
+                        className="absolute inset-0 bg-[#1b3941] rounded-xl sm:rounded-full z-0"
                         transition={{ duration: reducedMotion ? 0 : 0.2 }}
                       />
                     )}
@@ -275,7 +275,7 @@ export default function TipologieClient() {
           {/* ACTIVE TAB SUMMARY BLOCK */}
           <div id="riepilogo-tipologia" className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-stretch mb-8 sm:mb-16">
             {/* Left box details */}
-            <div className="lg:col-span-7 bg-white p-5 sm:p-8 lg:p-12 rounded-2xl sm:rounded-[32px] border border-slate-200/40 flex flex-col justify-between">
+            <div className="lg:col-span-7 bg-white p-5 sm:p-8 lg:p-12 rounded-2xl sm:rounded-2xl border border-slate-200/40 flex flex-col justify-between">
               <div>
                 <div className="flex items-center gap-3 mb-6">
                   <span className="p-3 bg-primary/10 text-primary rounded-2xl">
@@ -327,7 +327,7 @@ export default function TipologieClient() {
             </div>
 
             {/* Right box visual preview */}
-            <div className="lg:col-span-5 relative min-h-[250px] sm:min-h-[350px] rounded-2xl sm:rounded-[32px] overflow-hidden">
+            <div className="lg:col-span-5 relative min-h-[250px] sm:min-h-[350px] rounded-2xl sm:rounded-2xl overflow-hidden">
               <Image
                 src={activeData.image}
                 alt={`${activeData.title} Preview`}
@@ -335,7 +335,7 @@ export default function TipologieClient() {
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 400px"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#241a16]/80 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#122b32]/80 via-transparent to-transparent" />
               <div className="absolute bottom-8 left-8 right-8 text-white">
                 <p className="text-[9px] text-white/70 uppercase tracking-widest mb-1.5 font-bold">Progetto Belvedere 35</p>
                 <h4 className="font-serif text-2xl font-semibold">Residenze di Prestigio</h4>
@@ -344,15 +344,14 @@ export default function TipologieClient() {
           </div>
 
           {/* TABLE OF UNITS */}
-          <div className="bg-white rounded-2xl sm:rounded-[36px] overflow-hidden shadow-2xl border border-slate-200/30">
+          <div className="bg-white rounded-2xl sm:rounded-2xl overflow-hidden shadow-2xl border border-slate-200/30">
             <UnitAvailabilityTable key={activeTab} units={activeData.units} typeLabel={activeData.title} />
           </div>
         </div>
       </section>
 
       {/* CTA SECTION */}
-      <section className="py-16 sm:py-24 lg:py-36 bg-[#3e2d27] text-[#fcfbf9] relative overflow-hidden border-t border-white/5">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/15 via-transparent to-transparent pointer-events-none" />
+      <section data-header-theme="dark" className="py-16 sm:py-24 lg:py-36 bg-[#1b3941] text-[#f7faf9] relative overflow-hidden border-t border-white/5">
         <div className="container mx-auto px-5 sm:px-6 lg:px-12 text-center relative z-10">
           <h2 className="font-serif text-[2rem] sm:text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight font-medium">
             Desideri maggiori informazioni?

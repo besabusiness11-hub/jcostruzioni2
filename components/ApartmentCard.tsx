@@ -22,7 +22,7 @@ export default function ApartmentCard({
   href = "#",
 }: ApartmentCardProps) {
   return (
-    <Link href={href} className="group relative bg-background rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 block">
+    <Link href={href} className="group relative bg-background rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 block">
       {/* Image Container */}
       <div className="relative h-72 lg:h-80 overflow-hidden">
         <Image

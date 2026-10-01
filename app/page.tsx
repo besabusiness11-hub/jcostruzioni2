@@ -3,28 +3,24 @@ import Hero from "@/components/Hero"
 import Footer from "@/components/Footer"
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight, Leaf, HomeIcon, Sparkles, Building2 } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 
 const features = [
   {
-    icon: Leaf,
-    title: "Sostenibilità",
-    description: "Classe energetica A e impianti di ultima generazione",
+    title: "Classe energetica A",
+    description: "Efficienza energetica prevista dal progetto.",
   },
   {
-    icon: HomeIcon,
-    title: "Domotica",
-    description: "Predisposizioni intelligenti per una casa pratica, moderna e connessa",
+    title: "Predisposizione domotica",
+    description: "Controllo delle funzioni principali della casa.",
   },
   {
-    icon: Sparkles,
-    title: "Finiture Premium",
-    description: "Materiali di pregio selezionati",
+    title: "Finiture",
+    description: "Materiali descritti nel capitolato.",
   },
   {
-    icon: Building2,
-    title: "Design Italiano",
-    description: "Architettura contemporanea d'eccellenza",
+    title: "Architettura",
+    description: "Linee contemporanee e spazi esterni integrati.",
   },
 ]
 
@@ -51,12 +47,12 @@ const apartments = [
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#fcfbf9]">
+    <main className="min-h-screen bg-[#f7faf9]">
       <Header />
       <Hero />
 
       {/* Sezione Il Progetto (Project Preview) */}
-      <section className="py-16 sm:py-24 lg:py-36 bg-gradient-to-b from-[#fbfbf9] to-[#f5f4ed] overflow-hidden">
+      <section className="py-16 sm:py-24 lg:py-36 bg-gradient-to-b from-[#f7faf9] to-[#edf4f2] overflow-hidden">
         <div className="container mx-auto px-5 sm:px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-20 items-center">
 
@@ -85,23 +81,13 @@ export default function Home() {
               </Link>
             </div>
 
-            {/* Bento Grid a destra */}
+            {/* Dettagli del progetto */}
             <div className="lg:col-span-7 animate-fade-in-up">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {features.map((feature, idx) => (
-                  <div
-                    key={feature.title}
-                    className="relative bg-background/60 backdrop-blur-sm border border-slate-200/40 rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-sm hover:shadow-xl hover:bg-background transition-all duration-500 hover:-translate-y-1.5 group"
-                  >
-                    <div className="w-14 h-14 bg-accent/40 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary group-hover:scale-110 transition-all duration-500">
-                      <feature.icon className="w-6 h-6 text-primary group-hover:text-primary-foreground transition-colors duration-500" />
-                    </div>
-                    <h3 className="font-serif text-2xl text-foreground mb-3 font-semibold">
-                      {feature.title}
-                    </h3>
-                    <p className="text-muted-foreground text-base sm:text-sm leading-relaxed font-light">
-                      {feature.description}
-                    </p>
+              <div className="grid grid-cols-1 gap-x-10 sm:grid-cols-2">
+                {features.map((feature) => (
+                  <div key={feature.title} className="border-t border-[#122b32]/20 py-6 sm:py-8">
+                    <h3 className="font-serif text-2xl font-semibold text-foreground">{feature.title}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{feature.description}</p>
                   </div>
                 ))}
               </div>
@@ -136,7 +122,7 @@ export default function Home() {
               <Link
                 key={apt.title}
                 href={apt.href}
-                className="group relative h-[360px] sm:h-[420px] lg:h-[480px] sm:last:col-span-2 lg:last:col-span-1 rounded-2xl sm:rounded-[32px] overflow-hidden border border-slate-100 shadow-sm hover:shadow-2xl transition-all duration-700"
+                className="group relative h-[360px] sm:h-[420px] lg:h-[480px] sm:last:col-span-2 lg:last:col-span-1 rounded-2xl sm:rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-2xl transition-all duration-700"
               >
                 <Image
                   src={apt.image || "/placeholder.svg"}
@@ -175,7 +161,7 @@ export default function Home() {
       </section>
 
       {/* Sezione Spazi Esterni (Outdoor Preview) */}
-      <section className="py-16 sm:py-24 lg:py-36 bg-gradient-to-b from-[#fbfbf9] to-[#f5f4ed]">
+      <section className="py-16 sm:py-24 lg:py-36 bg-gradient-to-b from-[#f7faf9] to-[#edf4f2]">
         <div className="container mx-auto px-5 sm:px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-16 lg:gap-24 items-center">
 
@@ -183,7 +169,7 @@ export default function Home() {
             <div className="order-2 lg:order-1 animate-fade-in-up">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 relative">
                 {/* Immagine Terrazza */}
-                <div className="relative h-64 sm:h-80 lg:h-96 rounded-2xl sm:rounded-[32px] overflow-hidden shadow-lg border border-slate-200/50 hover:shadow-2xl transition-all duration-700 group hover:-translate-y-1">
+                <div className="relative h-64 sm:h-80 lg:h-96 rounded-2xl sm:rounded-2xl overflow-hidden shadow-lg border border-slate-200/50 hover:shadow-2xl transition-all duration-700 group hover:-translate-y-1">
                   <Image
                     src="/images/terrace-main.png"
                     alt="Terrazza"
@@ -196,7 +182,7 @@ export default function Home() {
                   </div>
                 </div>
                 {/* Immagine Giardino */}
-                <div className="relative h-64 sm:h-80 lg:h-96 rounded-2xl sm:rounded-[32px] overflow-hidden shadow-lg border border-slate-200/50 hover:shadow-2xl transition-all duration-700 sm:mt-12 group hover:-translate-y-1">
+                <div className="relative h-64 sm:h-80 lg:h-96 rounded-2xl sm:rounded-2xl overflow-hidden shadow-lg border border-slate-200/50 hover:shadow-2xl transition-all duration-700 sm:mt-12 group hover:-translate-y-1">
                   <Image
                     src="/images/garden-main.png"
                     alt="Giardino"
@@ -238,14 +224,9 @@ export default function Home() {
       </section>
 
       {/* Sezione Contatti (Contact CTA) */}
-      <section className="py-16 sm:py-24 lg:py-36 bg-gradient-to-b from-white to-[#fcfbf9] overflow-hidden relative">
-        {/* Glow ambientali in background */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl pointer-events-none" />
-
+      <section className="py-16 sm:py-24 lg:py-36 bg-gradient-to-b from-white to-[#f7faf9] overflow-hidden relative">
         <div className="container mx-auto px-5 sm:px-6 lg:px-12 relative z-10 animate-fade-in-up">
-          <div className="bg-[#3e2d27] text-white rounded-2xl sm:rounded-[48px] p-6 sm:p-12 lg:p-24 text-center shadow-2xl relative overflow-hidden border border-white/10">
-            {/* Gradiente radiale per effetto di luce speculare interna */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/15 via-transparent to-transparent pointer-events-none" />
+          <div data-header-theme="dark" className="bg-[#1b3941] text-white rounded-2xl p-6 sm:p-12 lg:p-24 text-center relative overflow-hidden">
 
             <h2 className="font-serif text-[2rem] sm:text-4xl md:text-5xl lg:text-6xl mb-6 font-medium leading-tight max-w-3xl mx-auto">
               Contattaci per maggiori informazioni
