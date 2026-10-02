@@ -206,6 +206,19 @@ html::-webkit-scrollbar {
     padding-top: env(safe-area-inset-top);
   }
 
+  .header-on-dark {
+    color: #fff;
+    text-shadow: 0 1px 3px rgb(0 0 0 / 80%);
+  }
+
+  .header-on-light {
+    color: #122b32;
+    text-shadow: 0 1px 3px rgb(255 255 255 / 90%);
+  }
+
+  .header-on-dark svg { filter: drop-shadow(0 1px 2px rgb(0 0 0 / 75%)); }
+  .header-on-light svg { filter: drop-shadow(0 1px 2px rgb(255 255 255 / 90%)); }
+
   .footer-arch {
     margin-top: 6rem;
     overflow: hidden;
@@ -309,6 +322,10 @@ html::-webkit-scrollbar {
       padding-top: 10rem;
       padding-bottom: 5rem;
     }
+  }
+
+  @media (max-width: 1023px) {
+    .site-header > .container { max-width: none; }
   }
 
   @media (min-width: 1024px) {

@@ -18,19 +18,43 @@ const navLinks = [
   { href: "/contatti", label: "Contatti" },
 ]
 
+type HeaderSurfaces = { left: boolean; center: boolean; right: boolean }
+
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isDesktop, setIsDesktop] = useState(false)
+  const [darkSurfaces, setDarkSurfaces] = useState<HeaderSurfaces>({ left: true, center: true, right: true })
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const pathname = usePathname()
 
   useEffect(() => {
-    const updateHeader = () => setIsScrolled(window.scrollY > 24)
+    const updateHeader = () => {
+      setIsScrolled(window.scrollY > 24)
+      const y = Math.min(window.innerHeight - 1, window.innerWidth >= 1024 ? 54 : 38)
+      const isDarkAt = (x: number) => {
+        const surface = document.elementsFromPoint(x, y)
+          .filter((element) => !element.closest(".site-header") && !element.closest(".mobile-navigation"))
+          .map((element) => element.closest<HTMLElement>("[data-header-theme]"))
+          .find((element) => element !== null)
+        return surface?.dataset.headerTheme === "dark"
+      }
+      const width = window.innerWidth
+      setIsDesktop(width >= 1024)
+      const next = {
+        left: isDarkAt(width >= 1024 ? width * 0.17 : 52),
+        center: isDarkAt(width / 2),
+        right: isDarkAt(width >= 1024 ? width * 0.83 : width - 52),
+      }
+      setDarkSurfaces((current) => current.left === next.left && current.center === next.center && current.right === next.right ? current : next)
+    }
     updateHeader()
     const frame = window.requestAnimationFrame(updateHeader)
     window.addEventListener("scroll", updateHeader, { passive: true })
+    window.addEventListener("resize", updateHeader)
     return () => {
       window.cancelAnimationFrame(frame)
       window.removeEventListener("scroll", updateHeader)
+      window.removeEventListener("resize", updateHeader)
     }
   }, [pathname])
 
@@ -45,37 +69,41 @@ export default function Header() {
     return () => desktop.removeEventListener("change", closeOnDesktop)
   }, [])
 
+  const leftInk = darkSurfaces.left ? "header-on-dark" : "header-on-light"
+  const logoInk = (isDesktop ? darkSurfaces.center : darkSurfaces.left) ? "header-on-dark" : "header-on-light"
+  const rightInk = darkSurfaces.right ? "header-on-dark" : "header-on-light"
+
   return (
     <Dialog.Root open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-      <header className={`site-header fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${isScrolled ? "bg-transparent text-[#122b32]" : "bg-gradient-to-b from-black/45 to-transparent text-white"}`}>
+      <header className="site-header fixed inset-x-0 top-0 z-50 bg-transparent">
         <div className="container mx-auto px-5 sm:px-6 lg:px-12">
           <div className={`flex items-center justify-between transition-[height] duration-300 lg:grid lg:grid-cols-7 ${isScrolled ? "h-16 lg:h-20" : "h-20 sm:h-24 lg:h-32"}`}>
-            <nav aria-label="Navigazione principale, progetto" className={`hidden lg:col-span-3 lg:flex items-center gap-8 ${isScrolled ? "w-fit rounded-full bg-[#f7faf9]/90 px-4 shadow-sm backdrop-blur-md" : ""}`}>
+            <nav aria-label="Navigazione principale, progetto" className={`hidden lg:col-span-3 lg:flex items-center gap-8 ${leftInk}`}>
               {navLinks.slice(1, 3).map((link) => (
-                <Link key={link.href} href={link.href} aria-current={pathname === link.href ? "page" : undefined} className="inline-flex min-h-11 items-center text-current hover:opacity-70 uppercase tracking-[0.2em] text-[13px] font-medium">
+                <Link key={link.href} href={link.href} aria-current={pathname === link.href ? "page" : undefined} className="inline-flex min-h-11 items-center text-current hover:opacity-70 uppercase tracking-[0.2em] text-[13px] font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current">
                   {link.label}
                 </Link>
               ))}
             </nav>
 
-            <Link href="/" aria-label="Belvedere 35, pagina iniziale" className={`inline-flex items-center lg:col-span-1 lg:justify-center ${isScrolled ? "w-fit rounded-full bg-[#f7faf9]/90 px-3 shadow-sm backdrop-blur-md lg:justify-self-center" : ""}`}>
-              <Logo className={isScrolled ? "h-12 w-auto lg:h-16" : "h-14 w-auto sm:h-16 lg:h-24"} scrolled={isScrolled} />
+            <Link href="/" aria-label="Belvedere 35, pagina iniziale" className={`inline-flex items-center lg:col-span-1 lg:justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current ${logoInk}`}>
+              <Logo className={isScrolled ? "h-12 w-auto lg:h-16" : "h-14 w-auto sm:h-16 lg:h-24"} scrolled={logoInk === "header-on-light"} />
             </Link>
 
-            <nav aria-label="Navigazione principale, informazioni" className={`hidden lg:col-span-3 lg:flex items-center justify-end gap-5 xl:gap-8 ${isScrolled ? "rounded-full bg-[#f7faf9]/90 pl-4 shadow-sm backdrop-blur-md" : ""}`}>
+            <nav aria-label="Navigazione principale, informazioni" className={`hidden lg:col-span-3 lg:flex items-center justify-end gap-5 xl:gap-8 ${rightInk}`}>
               {[navLinks[3], navLinks[6]].map((link) => (
-                <Link key={link.href} href={link.href} aria-current={pathname === link.href ? "page" : undefined} className="inline-flex min-h-11 items-center text-current hover:opacity-70 uppercase tracking-[0.2em] text-[13px] font-medium whitespace-nowrap">
+                <Link key={link.href} href={link.href} aria-current={pathname === link.href ? "page" : undefined} className="inline-flex min-h-11 items-center text-current hover:opacity-70 uppercase tracking-[0.2em] text-[13px] font-medium whitespace-nowrap focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current">
                   {link.label}
                 </Link>
               ))}
-              <a href="/capitolato.pdf" target="_blank" rel="noopener noreferrer" className={`inline-flex min-h-11 items-center gap-2 rounded-full border px-4 text-xs font-medium uppercase tracking-wider text-current ${isScrolled ? "border-[#122b32]/35 hover:bg-[#122b32]/5" : "border-white/45 hover:bg-white/10"}`}>
+              <a href="/capitolato.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 rounded-full border border-current px-4 text-xs font-medium uppercase tracking-wider text-current hover:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current">
                 <Download className="h-4 w-4 shrink-0" aria-hidden="true" />
                 Capitolato
               </a>
             </nav>
 
             <Dialog.Trigger asChild>
-              <button type="button" aria-label="Apri menu di navigazione" className={`flex min-h-11 items-center justify-center gap-2 rounded-full border px-4 text-current lg:hidden ${isScrolled ? "border-[#122b32]/20 bg-[#f7faf9]/90 shadow-sm backdrop-blur-md hover:bg-[#f7faf9]" : "border-white/45 bg-black/10 hover:bg-black/20"}`}>
+              <button type="button" aria-label="Apri menu di navigazione" className={`flex min-h-11 items-center justify-center gap-2 rounded-full border border-current bg-transparent px-4 hover:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current lg:hidden ${rightInk}`}>
                 <span className="text-xs font-semibold tracking-wider">Menu</span>
                 <Menu className="h-5 w-5" aria-hidden="true" />
               </button>
