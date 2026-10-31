@@ -151,7 +151,7 @@ export default function ContattiPage() {
                   </label>
                   <label htmlFor="contact-privacy" id="contact-privacy-label" className="min-h-11 cursor-pointer text-muted-foreground text-sm leading-relaxed">
                     Acconsento al trattamento dei miei dati personali ai sensi del GDPR.
-                    Leggi la nostra <a href="#" className="text-primary underline underline-offset-2">Privacy Policy</a>.
+                    Leggi la nostra <a href="/privacy" className="text-primary underline underline-offset-2">Privacy Policy</a>.
                   </label>
                 </div>
 

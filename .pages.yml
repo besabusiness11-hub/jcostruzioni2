@@ -1,0 +1,67 @@
+# Configurazione del pannello contenuti Pages CMS (https://app.pagescms.org)
+media:
+  input: public/images
+  output: /images
+
+content:
+  - name: tipologie
+    label: Appartamenti e planimetrie
+    type: file
+    path: content/tipologie.json
+    fields:
+      - name: bilocali
+        label: Bilocali
+        type: object
+        fields: &tipologia
+          - { name: title, label: Titolo, type: string }
+          - { name: subtitle, label: Sottotitolo, type: string }
+          - { name: description, label: Descrizione, type: text }
+          - { name: image, label: Immagine, type: image }
+          - { name: sqm, label: Superfici (es. 60-63 mq), type: string }
+          - { name: priceFrom, label: Prezzo a partire da (es. 215.000), type: string }
+          - { name: features, label: Caratteristiche, type: string, list: true }
+          - name: units
+            label: Unità
+            type: object
+            list: true
+            fields:
+              - { name: name, label: Numero appartamento, type: string }
+              - { name: floor, label: Piano, type: select, options: { values: ["Piano Terra", "Piano 1"] } }
+              - { name: sqm, label: Superficie interna (mq), type: number }
+              - { name: terrace, label: Spazio esterno (mq), type: number }
+              - { name: terraceLabel, label: Tipo di spazio esterno, type: select, options: { values: ["Portico", "Terrazzo"] } }
+              - { name: garden, label: Giardino (mq, vuoto se assente), type: number }
+              - { name: price, label: Prezzo (es. 235.000), type: string }
+              - name: stato
+                label: Disponibilità
+                type: select
+                options: { values: [ { value: disponibile, label: Disponibile }, { value: riservato, label: Riservato }, { value: venduto, label: Venduto } ] }
+              - { name: planImage, label: Planimetria, type: image }
+              - { name: uniqueness, label: Descrizione breve, type: text }
+      - { name: trilocali, label: Trilocali, type: object, fields: *tipologia }
+      - { name: quadrilocali, label: Quadrilocali, type: object, fields: *tipologia }
+
+  - name: faq
+    label: Domande frequenti
+    type: file
+    path: content/faq.json
+    fields:
+      - name: faqs
+        label: Domande
+        type: object
+        list: true
+        fields:
+          - { name: question, label: Domanda, type: string }
+          - { name: answer, label: Risposta, type: text }
+
+  - name: contatti
+    label: Contatti
+    type: file
+    path: content/contatti.json
+    fields:
+      - { name: email, label: Email per le richieste, type: string }
+      - { name: telefono, label: Telefono (come appare sul sito), type: string }
+      - { name: telefonoInternazionale, label: Telefono con prefisso (es. +39031850008), type: string }
+      - { name: localita, label: Località, type: string }
+      - { name: titolarePrivacy, label: Titolare del trattamento (privacy), type: string }
+      - { name: emailPrivacy, label: Email privacy, type: string }

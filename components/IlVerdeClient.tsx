@@ -58,7 +58,7 @@ export default function IlVerdeClient({ initialTab = "tutti" }: { initialTab?: s
       <PageHero
         title={initialTab === "piscina" ? "La Piscina" : "Il Verde & Le Aree Esterne"}
         subtitle="Un'esperienza abitativa immersa nella natura: Terrazzi, Giardini, Parti Esterne e Piscina"
-        image="/images/project-sunset-drone.jpg"
+        image="/images/project-sunset-drone.webp"
         imageAlt="Belvedere 35 Il Verde e Piscina"
       />
 
@@ -131,13 +131,13 @@ export default function IlVerdeClient({ initialTab = "tutti" }: { initialTab?: s
               <div className="order-2 lg:order-1 animate-fade-in-up">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 relative">
                   <div className="relative h-64 sm:h-80 lg:h-96 rounded-2xl sm:rounded-2xl overflow-hidden shadow-lg border border-slate-200/50 hover:shadow-2xl transition-all duration-700 group hover:-translate-y-1">
-                    <Image src="/images/terrace-main.png" alt="Terrazza moderna" fill className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105" sizes="(max-width: 639px) 100vw, (max-width: 1024px) 50vw, 25vw" />
+                    <Image src="/images/terrace-main.webp" alt="Terrazza moderna" fill className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105" sizes="(max-width: 639px) 100vw, (max-width: 1024px) 50vw, 25vw" />
                     <div className="absolute bottom-4 left-4 bg-black/60 backdrop-blur-sm rounded-xl px-4 py-1.5">
                       <span className="text-white text-[10px] tracking-wider uppercase font-semibold">Terrazzi</span>
                     </div>
                   </div>
                   <div className="relative h-64 sm:h-80 lg:h-96 rounded-2xl sm:rounded-2xl overflow-hidden shadow-lg border border-slate-200/50 hover:shadow-2xl transition-all duration-700 sm:mt-12 group hover:-translate-y-1">
-                    <Image src="/images/outdoor-lounge.png" alt="Relax in terrazzo" fill className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105" sizes="(max-width: 639px) 100vw, (max-width: 1024px) 50vw, 25vw" />
+                    <Image src="/images/outdoor-lounge.webp" alt="Relax in terrazzo" fill className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105" sizes="(max-width: 639px) 100vw, (max-width: 1024px) 50vw, 25vw" />
                     <div className="absolute bottom-4 left-4 bg-black/60 backdrop-blur-sm rounded-xl px-4 py-1.5">
                       <span className="text-white text-[10px] tracking-wider uppercase font-semibold">Area Living</span>
                     </div>
@@ -195,7 +195,7 @@ export default function IlVerdeClient({ initialTab = "tutti" }: { initialTab?: s
               </div>
 
               <div className="relative h-72 sm:h-96 lg:h-[500px] rounded-2xl sm:rounded-2xl overflow-hidden shadow-2xl border border-slate-200/50 group animate-fade-in-up">
-                <Image src="/images/garden-main.png" alt="Giardino privato vista estiva" fill className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105" sizes="(max-width: 1024px) 100vw, 50vw" />
+                <Image src="/images/garden-main.webp" alt="Giardino privato vista estiva" fill className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105" sizes="(max-width: 1024px) 100vw, 50vw" />
               </div>
             </div>
           </div>
@@ -208,7 +208,7 @@ export default function IlVerdeClient({ initialTab = "tutti" }: { initialTab?: s
           <div className="container mx-auto px-5 sm:px-6 lg:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-16 lg:gap-24 items-center">
               <div className="relative h-72 sm:h-96 lg:h-[520px] rounded-2xl sm:rounded-2xl overflow-hidden shadow-2xl border border-slate-200/50 group animate-fade-in-up">
-                <Image src="/images/outdoor-vertical-1.png" alt="Camminamenti e parti esterne" fill className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105" sizes="(max-width: 1024px) 100vw, 50vw" />
+                <Image src="/images/outdoor-vertical-1.webp" alt="Camminamenti e parti esterne" fill className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105" sizes="(max-width: 1024px) 100vw, 50vw" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-black/5" />
                 <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-8 lg:p-12">
                   <p className="text-white/60 text-[10px] uppercase tracking-[0.3em] mb-2 font-bold">Parti esterne</p>
@@ -259,7 +259,7 @@ export default function IlVerdeClient({ initialTab = "tutti" }: { initialTab?: s
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16">
               <div className="lg:col-span-8 relative h-[280px] sm:h-[450px] lg:h-[550px] rounded-2xl sm:rounded-2xl overflow-hidden shadow-2xl border border-white/10 group">
-                <Image src="/images/pool-and-gardens.png" alt="Piscina principale di Belvedere 35" fill className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105" sizes="(max-width: 1024px) 100vw, 66vw" />
+                <Image src="/images/pool-and-gardens.webp" alt="Piscina principale di Belvedere 35" fill className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105" sizes="(max-width: 1024px) 100vw, 66vw" />
               </div>
               <ul className="lg:col-span-4 divide-y divide-white/20 border-y border-white/20">
                 <li className="py-6">

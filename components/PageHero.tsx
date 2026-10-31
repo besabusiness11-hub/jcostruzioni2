@@ -8,7 +8,7 @@ interface PageHeroProps {
   imageAlt?: string
 }
 
-export default function PageHero({ title, subtitle, description, image = "/images/project-detail.jpg", imageAlt = "Belvedere 35" }: PageHeroProps) {
+export default function PageHero({ title, subtitle, description, image = "/images/project-detail.webp", imageAlt = "Belvedere 35" }: PageHeroProps) {
   return (
     <section data-header-theme="dark" className="page-hero relative flex items-end overflow-hidden">
       <div className="absolute inset-0 z-0">

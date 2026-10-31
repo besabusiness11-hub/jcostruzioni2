@@ -1,9 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  typescript: {
-    ignoreBuildErrors: true,
-  },
   images: {
+    // Le immagini sono già ottimizzate in WebP: il sito funziona su qualsiasi hosting.
     unoptimized: true,
   },
 }

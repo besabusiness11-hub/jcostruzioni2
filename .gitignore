@@ -16,3 +16,4 @@ open-design/
 
 # Local browser verification artifacts
 output/playwright/
+.env

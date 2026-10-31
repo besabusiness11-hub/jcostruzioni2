@@ -7,7 +7,7 @@ const apartments = [
   {
     title: "Bilocale",
     subtitle: "Ideale per giovani coppie",
-    image: "/images/apartment-2rooms.jpg",
+    image: "/images/apartment-2rooms.webp",
     price: "€ 245.000",
     available: 8,
     href: "/tipologie/bilocali",
@@ -15,7 +15,7 @@ const apartments = [
   {
     title: "Trilocale",
     subtitle: "La soluzione più richiesta",
-    image: "/images/apartment-3rooms.jpg",
+    image: "/images/apartment-3rooms.webp",
     price: "€ 365.000",
     available: 12,
     href: "/tipologie/trilocali",
@@ -23,7 +23,7 @@ const apartments = [
   {
     title: "Quadrilocale",
     subtitle: "Spazi generosi per la famiglia",
-    image: "/images/apartment-4rooms.jpg",
+    image: "/images/apartment-4rooms.webp",
     price: "€ 485.000",
     available: 6,
     href: "/tipologie/quadrilocali",

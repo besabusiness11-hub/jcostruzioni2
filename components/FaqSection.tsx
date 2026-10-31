@@ -3,24 +3,9 @@
 import { useState } from "react"
 import { Plus, Minus } from "lucide-react"
 
-const faqs = [
-  {
-    question: "In quale classe energetica rientrano gli immobili?",
-    answer: "Tutti gli appartamenti del complesso sono realizzati in Classe Energetica A, l'eccellenza in termini di efficienza sul mercato. Questo garantisce un abbattimento drastico dei costi di gestione e un comfort termico e acustico eccezionale."
-  },
-  {
-    question: "C'è la possibilità di personalizzare le finiture interne?",
-    answer: "Assolutamente sì. Offriamo un capitolato di pregio con un'ampia selezione di materiali italiani (parquet massello, ceramiche di design, infissi a taglio termico). Un nostro architetto sarà a tua disposizione per personalizzare ogni ambiente."
-  },
-  {
-    question: "La piscina è condominiale o privata?",
-    answer: "La grande piscina situata al centro del complesso è condominiale ed è ad uso esclusivo dei residenti di Belvedere 35. L'area comprende anche un solarium curato e percorsi verdi riservati."
-  },
-  {
-    question: "Cosa comprende il sistema di domotica di capitolato?",
-    answer: "Il capitolato include un sistema domotico integrato di ultima generazione per il controllo intelligente dell'illuminazione, del riscaldamento a pavimento e delle predisposizioni di sicurezza, interamente gestibile da smartphone o tablet."
-  }
-]
+import faqData from "@/content/faq.json"
+
+const faqs = faqData.faqs
 
 export default function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)

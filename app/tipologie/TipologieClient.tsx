@@ -9,72 +9,20 @@ import Footer from "@/components/Footer"
 import UnitAvailabilityTable from "@/components/UnitAvailabilityTable"
 import { motion, useReducedMotion } from "framer-motion"
 
-const apartmentsData = {
-  bilocali: {
-    title: "Bilocali",
-    subtitle: "Soluzioni compatte e luminose",
-    description: "Tre appartamenti tra piano terra e primo piano, con portici o terrazzi e planimetrie dedicate.",
-    image: "/images/interior-bilocale.jpg",
-    sqm: "60-63 mq",
-    priceFrom: "215.000",
-    available: 3,
-    features: [
-      "Piano terra con portico e giardino privato",
-      "Primo piano con terrazzo abitabile",
-      "Zona giorno luminosa e distribuzioni funzionali",
-      "Planimetria dedicata per ogni unità",
-    ],
-    units: [
-      { name: "2", floor: "Piano Terra", sqm: 63.38, terrace: 18.9, terraceLabel: "Portico", garden: 62.22, price: "235.000", available: true, planImage: "/images/planimetrie/appartamento-02.webp", uniqueness: "Bilocale al piano terra con portico e giardino privato." },
-      { name: "8", floor: "Piano 1", sqm: 61.17, terrace: 18.9, terraceLabel: "Terrazzo", price: "220.000", available: true, planImage: "/images/planimetrie/appartamento-08.webp", uniqueness: "Bilocale al primo piano con terrazzo privato." },
-      { name: "10", floor: "Piano 1", sqm: 59.6, terrace: 17.26, terraceLabel: "Terrazzo", price: "215.000", available: true, planImage: "/images/planimetrie/appartamento-10.webp", uniqueness: "Bilocale al primo piano con terrazzo privato." },
-    ],
-  },
-  trilocali: {
-    title: "Trilocali",
-    subtitle: "Spazi versatili per la vita quotidiana",
-    description: "Quattro trilocali con giardini al piano terra o spazi esterni esclusivi al primo piano.",
-    image: "/images/interior-trilocale.jpg",
-    sqm: "104-129 mq",
-    priceFrom: "405.000",
-    available: 4,
-    features: [
-      "Piano terra con portico e giardino privato",
-      "Primo piano con terrazzo, solarium e gazebo",
-      "Zona giorno luminosa e spazi ben distribuiti",
-      "Planimetria dedicata per ogni unità",
-    ],
-    units: [
-      { name: "3", floor: "Piano Terra", sqm: 114.25, terrace: 15.1, terraceLabel: "Portico", garden: 126.31, price: "405.000", available: true, planImage: "/images/planimetrie/appartamento-03.webp", uniqueness: "Trilocale al piano terra con portico e giardino privato." },
-      { name: "6", floor: "Piano Terra", sqm: 124.1, terrace: 45.2, terraceLabel: "Portico", garden: 308.6, price: "480.000", available: true, planImage: "/images/planimetrie/appartamento-06.webp", uniqueness: "Trilocale al piano terra con ampio portico e giardino privato." },
-      { name: "9", floor: "Piano 1", sqm: 103.5, terrace: 13.2, terraceLabel: "Terrazzo", price: "465.000", available: true, planImage: "/images/planimetrie/appartamento-09.webp", uniqueness: "Trilocale al primo piano con terrazzo, gazebo e solarium." },
-      { name: "13", floor: "Piano 1", sqm: 129, terrace: 31.7, terraceLabel: "Terrazzo", price: "565.000", available: true, planImage: "/images/planimetrie/appartamento-13.webp", uniqueness: "Trilocale al primo piano con terrazzo, gazebo e solarium." },
-    ],
-  },
-  quadrilocali: {
-    title: "Quadrilocali",
-    subtitle: "Spazi generosi per la famiglia",
-    description: "Sei quadrilocali con giardini, portici o ampi spazi esterni al primo piano.",
-    image: "/images/interior-quadrilocale.jpg",
-    sqm: "124-151 mq",
-    priceFrom: "475.000",
-    available: 6,
-    features: [
-      "Piano terra con portico e giardino privato",
-      "Primo piano con terrazzo, solarium e gazebo",
-      "Ambienti ampi e distribuzioni dedicate",
-      "Planimetria dedicata per ogni unità",
-    ],
-    units: [
-      { name: "1", floor: "Piano Terra", sqm: 128.34, terrace: 39.74, terraceLabel: "Portico", garden: 253, price: "485.000", available: true, planImage: "/images/planimetrie/appartamento-01.webp", uniqueness: "Quadrilocale al piano terra con portico e giardino privato." },
-      { name: "4", floor: "Piano Terra", sqm: 150.93, terrace: 71.21, terraceLabel: "Portico", garden: 298.5, price: "595.000", available: true, planImage: "/images/planimetrie/appartamento-04.webp", uniqueness: "Quadrilocale al piano terra con ampio portico e giardino privato." },
-      { name: "5", floor: "Piano Terra", sqm: 129.1, terrace: 28.7, terraceLabel: "Portico", garden: 240.3, price: "475.000", available: true, planImage: "/images/planimetrie/appartamento-05.webp", uniqueness: "Quadrilocale al piano terra con portico e giardino privato." },
-      { name: "7", floor: "Piano 1", sqm: 129.59, terrace: 42.81, terraceLabel: "Terrazzo", price: "595.000", available: true, planImage: "/images/planimetrie/appartamento-07.webp", uniqueness: "Quadrilocale al primo piano con terrazzo, gazebo e solarium." },
-      { name: "11", floor: "Piano 1", sqm: 150.99, terrace: 70.5, terraceLabel: "Terrazzo", price: "710.000", available: true, planImage: "/images/planimetrie/appartamento-11.webp", uniqueness: "Quadrilocale al primo piano con terrazzo, gazebo e solarium." },
-      { name: "12", floor: "Piano 1", sqm: 124.2, terrace: 45.1, terraceLabel: "Terrazzo", price: "570.000", available: true, planImage: "/images/planimetrie/appartamento-12.webp", uniqueness: "Quadrilocale al primo piano con terrazzo, gazebo e solarium." },
-    ],
-  },
-}
+import tipologie from "@/content/tipologie.json"
+
+type Stato = "disponibile" | "riservato" | "venduto"
+type RawUnit = (typeof tipologie)["bilocali"]["units"][number] & { stato: string; garden?: number }
+
+const withAvailability = (units: RawUnit[]) =>
+  units.map((u) => ({ ...u, stato: u.stato as Stato, available: u.stato === "disponibile" }))
+
+const apartmentsData = Object.fromEntries(
+  Object.entries(tipologie).map(([key, t]) => {
+    const units = withAvailability(t.units as RawUnit[])
+    return [key, { ...t, units, available: units.filter((u) => u.available).length }]
+  }),
+) as Record<"bilocali" | "trilocali" | "quadrilocali", (typeof tipologie)["bilocali"] & { units: ReturnType<typeof withAvailability>; available: number }>
 
 type TabType = "bilocali" | "trilocali" | "quadrilocali"
 
@@ -110,7 +58,7 @@ export default function TipologieClient() {
       <section data-header-theme="dark" className="page-hero relative flex items-end overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/interior-kitchen-sunset.jpg"
+            src="/images/interior-kitchen-sunset.webp"
             alt="Tipologie Abitative"
             fill
             className="object-cover scale-105"

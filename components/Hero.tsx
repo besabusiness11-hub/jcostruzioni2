@@ -29,7 +29,7 @@ export default function Hero() {
         className="absolute inset-0 z-0 select-none pointer-events-none lg:scale-110"
       >
         <Image
-          src="/images/project-day-drone.jpg"
+          src="/images/project-day-drone.webp"
           alt="Vista dall'alto del progetto Belvedere 35 a Garbagnate Monastero"
           fill
           className="object-cover object-[55%_center] lg:object-center"

@@ -14,6 +14,7 @@ export interface UnitAvailability {
   garden?: number
   price: string
   available: boolean
+  stato?: "disponibile" | "riservato" | "venduto"
   planImage?: string
   uniqueness?: string
 }
@@ -69,8 +70,8 @@ export default function UnitAvailabilityTable({ units, typeLabel }: UnitAvailabi
                     <td role="cell" data-label="Prezzo" className="px-3 py-5 font-serif text-xl text-foreground font-semibold">&euro; {unit.price}</td>
                     <td role="cell" data-label="Stato" className="px-3 py-5">
                       <span className={'inline-flex items-center gap-2 text-xs font-semibold ' + (unit.available ? "text-primary" : "text-muted-foreground")}>
-                        <span className={'h-2 w-2 shrink-0 rounded-full ' + (unit.available ? "bg-primary" : "bg-stone-400")} aria-hidden="true" />
-                        {unit.available ? "Disponibile" : "Venduto"}
+                        <span className={'h-2 w-2 shrink-0 rounded-full ' + (unit.available ? "bg-primary" : unit.stato === "riservato" ? "bg-amber-500" : "bg-stone-400")} aria-hidden="true" />
+                        {unit.stato === "riservato" ? "Riservato" : unit.available ? "Disponibile" : "Venduto"}
                       </span>
                     </td>
                     <td role="cell" className="unit-action px-3 py-5">
@@ -101,7 +102,7 @@ export default function UnitAvailabilityTable({ units, typeLabel }: UnitAvailabi
                             aria-label={"Ingrandisci planimetria " + unit.name}
                             className="relative flex aspect-[4/3] w-full items-end justify-center overflow-hidden rounded-xl border border-slate-200 bg-white p-3"
                           >
-                            <Image src={unit.planImage || "/images/floorplan-sample.jpg"} alt={"Planimetria " + unit.name} fill className="object-contain p-4 pb-14" sizes="(max-width: 1023px) 100vw, 620px" />
+                            <Image src={unit.planImage || "/images/floorplan-sample.webp"} alt={"Planimetria " + unit.name} fill className="object-contain p-4 pb-14" sizes="(max-width: 1023px) 100vw, 620px" />
                             <span className="relative inline-flex min-h-11 items-center gap-2 rounded-full bg-[#1b3941] px-4 py-2 text-xs font-semibold text-white">
                               <Maximize2 className="h-4 w-4" aria-hidden="true" />
                               Ingrandisci planimetria
@@ -113,6 +114,16 @@ export default function UnitAvailabilityTable({ units, typeLabel }: UnitAvailabi
                             <p className="text-base leading-relaxed text-muted-foreground">
                               {unit.uniqueness || ("La planimetria dell'appartamento " + unit.name + " valorizza " + unit.sqm + " mq con distribuzione dedicata, affacci e percorsi interni propri.")}
                             </p>
+                            {unit.stato !== "venduto" && (
+                              <a
+                                href={"/contatti?unita=" + encodeURIComponent(unit.name) + "&tipologia=" + encodeURIComponent(typeLabel.toLowerCase().replace(/i$/, "e"))}
+                                data-umami-event="Richiesta scheda unità"
+                                data-umami-event-unita={unit.name}
+                                className="mt-6 inline-flex min-h-11 items-center rounded-full bg-primary px-6 py-3 text-xs font-bold uppercase tracking-[0.18em] text-primary-foreground hover:bg-primary/90"
+                              >
+                                Richiedi la scheda tecnica
+                              </a>
+                            )}
                           </div>
                         </div>
                       </td>
@@ -148,7 +159,7 @@ export default function UnitAvailabilityTable({ units, typeLabel }: UnitAvailabi
           </p>
           <div ref={zoomArea} className="min-h-0 flex-1 overflow-auto overscroll-contain bg-white">
             <div style={{ width: (scale * 100) + "%", height: (scale * 100) + "%" }} className="relative min-h-full min-w-full">
-              {lightboxUnit && <Image src={lightboxUnit.planImage || "/images/floorplan-sample.jpg"} alt={"Planimetria " + lightboxUnit.name} fill className="object-contain p-3" sizes="100vw" />}
+              {lightboxUnit && <Image src={lightboxUnit.planImage || "/images/floorplan-sample.webp"} alt={"Planimetria " + lightboxUnit.name} fill className="object-contain p-3" sizes="100vw" />}
             </div>
           </div>
           <div className="flex shrink-0 items-center justify-center gap-3 border-t border-white/15 px-3 py-3">

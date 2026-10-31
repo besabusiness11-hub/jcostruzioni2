@@ -50,7 +50,7 @@ export default function OutdoorSection() {
           {/* Large Image - Terrace */}
           <div className="relative h-80 lg:h-[500px] rounded-2xl overflow-hidden group">
             <Image
-              src="/images/terrace.jpg"
+              src="/images/terrace.webp"
               alt="Terrazza panoramica"
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -66,7 +66,7 @@ export default function OutdoorSection() {
           {/* Large Image - Garden */}
           <div className="relative h-80 lg:h-[500px] rounded-2xl overflow-hidden group">
             <Image
-              src="/images/garden.jpg"
+              src="/images/garden.webp"
               alt="Giardino privato"
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-105"

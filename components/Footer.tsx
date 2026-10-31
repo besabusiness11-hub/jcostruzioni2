@@ -62,10 +62,10 @@ export default function Footer() {
           <h2 id="footer-partners-title" className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#9ddbd2]">Collaborazioni e associazioni</h2>
           <div className="mx-auto mt-8 grid max-w-2xl grid-cols-1 items-center gap-10 sm:grid-cols-2">
             <a href="https://www.jmc-spa.it/" target="_blank" rel="noopener noreferrer" aria-label="Visita il sito di JMC S.p.A." className="flex min-h-20 items-center justify-center rounded-sm transition-opacity hover:opacity-75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#9ddbd2]">
-              <Image src="/images/partner-jmc-transparent.png" alt="" width={150} height={90} className="h-16 w-auto object-contain" />
+              <Image src="/images/partner-jmc-transparent.webp" alt="" width={150} height={90} className="h-16 w-auto object-contain" />
             </a>
             <a href="https://www.ibim.it/" target="_blank" rel="noopener noreferrer" aria-label="Visita il sito di IBIM" className="flex min-h-20 items-center justify-center rounded-sm transition-opacity hover:opacity-75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#9ddbd2]">
-              <Image src="/images/partner-ibim-transparent.png" alt="" width={150} height={85} className="h-14 w-auto object-contain" />
+              <Image src="/images/partner-ibim-transparent.webp" alt="" width={150} height={85} className="h-14 w-auto object-contain" />
             </a>
           </div>
         </section>
@@ -73,6 +73,11 @@ export default function Footer() {
         <div className="pt-7 text-center text-xs leading-relaxed text-white/55">
           <p>Le immagini, i render e le planimetrie presenti sul sito sono illustrativi e non costituiscono elemento contrattuale.</p>
           <p className="mt-5">© {new Date().getFullYear()} Belvedere 35. Tutti i diritti riservati.</p>
+          <p className="mt-2">
+            <a href="/privacy" className={footerLinkClass}>Privacy policy</a>
+            <span aria-hidden="true"> · </span>
+            <a href="/cookie" className={footerLinkClass}>Cookie policy</a>
+          </p>
           <p className="mt-2">Realizzato con cura da <a href="https://besaweb.com" target="_blank" rel="noopener noreferrer" className={footerLinkClass}>Besaweb.com</a></p>
         </div>
       </div>

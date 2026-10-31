@@ -27,19 +27,19 @@ const features = [
 const apartments = [
   {
     title: "Bilocali",
-    image: "/images/interior-bilocale.jpg",
+    image: "/images/interior-bilocale.webp",
     sqm: "60-63 mq",
     href: "/tipologie?tab=bilocali",
   },
   {
     title: "Trilocali",
-    image: "/images/interior-trilocale.jpg",
+    image: "/images/interior-trilocale.webp",
     sqm: "104-129 mq",
     href: "/tipologie?tab=trilocali",
   },
   {
     title: "Quadrilocali",
-    image: "/images/interior-quadrilocale.jpg",
+    image: "/images/interior-quadrilocale.webp",
     sqm: "124-151 mq",
     href: "/tipologie?tab=quadrilocali",
   },
@@ -171,7 +171,7 @@ export default function Home() {
                 {/* Immagine Terrazza */}
                 <div className="relative h-64 sm:h-80 lg:h-96 rounded-2xl sm:rounded-2xl overflow-hidden shadow-lg border border-slate-200/50 hover:shadow-2xl transition-all duration-700 group hover:-translate-y-1">
                   <Image
-                    src="/images/terrace-main.png"
+                    src="/images/terrace-main.webp"
                     alt="Terrazza"
                     fill
                     className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
@@ -184,7 +184,7 @@ export default function Home() {
                 {/* Immagine Giardino */}
                 <div className="relative h-64 sm:h-80 lg:h-96 rounded-2xl sm:rounded-2xl overflow-hidden shadow-lg border border-slate-200/50 hover:shadow-2xl transition-all duration-700 sm:mt-12 group hover:-translate-y-1">
                   <Image
-                    src="/images/garden-main.png"
+                    src="/images/garden-main.webp"
                     alt="Giardino"
                     fill
                     className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
